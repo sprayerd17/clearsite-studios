@@ -6,7 +6,7 @@ const faqs = [
   {
     question: "How long does it take to build a website?",
     answer:
-      "Most projects are completed within 2–3 weeks depending on the size and complexity. I'll give you a clear timeline before we start.",
+      "Most projects are completed within a couple of days depending on the size and complexity. I'll give you a clear timeline before we start.",
   },
   {
     question: "Do I need to provide my own content and photos?",

@@ -5,7 +5,7 @@ const services = [
     subtitle: "Launch with confidence.",
     description:
       "Starting from scratch? We'll design and build a fully custom website that reflects your brand, speaks to your audience, and is ready to grow with your business from day one.",
-    points: ["Custom design tailored to your brand", "Mobile-first & fully responsive", "Fast load times, built for SEO", "Ready to launch in weeks, not months"],
+    points: ["Custom design tailored to your brand", "Mobile-first & fully responsive", "Fast load times, built for SEO", "Ready to launch in days, not months"],
     cta: "Start a project",
     href: "#contact",
     highlight: false,
