@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #fafafa;
+  --color-text: #27272a;
+  --color-accent: #7c3aed;
+  --color-accent-light: #a78bfa;
+  --color-accent-dark: #6d28d9;
+  --color-muted: #71717a;
+  --color-border: #e4e4e7;
+  --color-surface: #f4f4f5;
+  --color-dark: #1e1b4b;
+}
+
+@layer base {
+  html {
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-base leading-relaxed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold leading-tight;
+    color: var(--color-text);
+  }
+
+  a {
+    @apply transition-colors duration-150;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent));
+    color: white;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-sm border-2 transition-all duration-200 hover:-translate-y-0.5;
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-accent);
+    color: white;
+  }
+
+  .card {
+    @apply rounded-2xl p-6 border transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+    background-color: var(--color-bg);
+    border-color: var(--color-border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  .section {
+    @apply py-20 md:py-28;
+  }
+
+  .container-narrow {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide;
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+    color: var(--color-accent-dark);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
