@@ -82,7 +82,7 @@ export default function Showcase() {
         </div>
 
         <div className="text-center mt-12">
-          <a href="#contact" className="btn-primary">
+          <a href="/pricing" className="btn-primary">
             Start Your Project →
           </a>
         </div>

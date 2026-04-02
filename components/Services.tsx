@@ -7,7 +7,7 @@ const services = [
       "Starting from scratch? We'll design and build a fully custom website that reflects your brand, speaks to your audience, and is ready to grow with your business from day one.",
     points: ["Custom design tailored to your brand", "Mobile-first & fully responsive", "Fast load times, built for SEO", "Ready to launch in days, not months"],
     cta: "Start a project",
-    href: "#contact",
+    href: "/pricing",
     highlight: false,
   },
   {
@@ -18,7 +18,7 @@ const services = [
       "Got a site that's outdated, slow, or just not converting? We'll take what you have and turn it into something you're proud to share — sharper, faster, and built to perform.",
     points: ["Full visual overhaul", "Speed & performance optimisation", "Improved user experience", "Retain your existing content & SEO"],
     cta: "Refresh my site",
-    href: "#contact",
+    href: "/pricing",
     highlight: true,
   },
   {
@@ -29,7 +29,7 @@ const services = [
       "We build online stores that make buying effortless for your customers and managing orders simple for you — from single products to full catalogues.",
     points: ["Product listings & smart filters", "Secure checkout & payments", "Inventory & order management", "Promotions, discounts & upsells"],
     cta: "Build my store",
-    href: "#contact",
+    href: "/pricing",
     highlight: false,
   },
 ];

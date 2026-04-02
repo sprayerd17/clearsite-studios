@@ -31,9 +31,9 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="#contact" className="btn-primary text-base px-9 py-4">
+          <Link href="/pricing" className="btn-primary text-base px-9 py-4">
             Start a Project
-          </a>
+          </Link>
           <Link
             href="/portfolio"
             className="text-sm font-medium text-slate-400 hover:text-white transition-colors underline underline-offset-4"

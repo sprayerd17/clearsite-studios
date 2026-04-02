@@ -20,7 +20,7 @@ export default function About() {
               that builds trust, performance that keeps visitors from bouncing, and messaging that
               turns browsers into buyers.
             </p>
-            <a href="#contact" className="btn-primary">Work with us →</a>
+            <a href="/pricing" className="btn-primary">Work with us →</a>
           </div>
 
           {/* Visual cards */}
