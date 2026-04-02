@@ -93,16 +93,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Get Started CTA */}
-        <div className="px-6 py-6 border-t border-white/10">
-          <Link
-            href="/pricing"
-            onClick={() => setOpen(false)}
-            className="btn-primary w-full text-center block"
-          >
-            Get Started
-          </Link>
-        </div>
       </div>
     </>
   );
