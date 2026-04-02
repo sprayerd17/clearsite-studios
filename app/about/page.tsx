@@ -59,7 +59,7 @@ export default function AboutPage() {
               </div>
 
               <div className="mt-10">
-                <a href="mailto:clearsitestudios@outlook.com" className="btn-primary">Work with me →</a>
+                <a href="/pricing" className="btn-primary">Work with me →</a>
               </div>
             </div>
 
