@@ -7,13 +7,18 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem("cookies_accepted")) {
+    if (!localStorage.getItem("cookie_consent")) {
       setVisible(true);
     }
   }, []);
 
   function accept() {
-    localStorage.setItem("cookies_accepted", "true");
+    localStorage.setItem("cookie_consent", "accepted");
+    setVisible(false);
+  }
+
+  function decline() {
+    localStorage.setItem("cookie_consent", "declined");
     setVisible(false);
   }
 
@@ -28,11 +33,18 @@ export default function CookieBanner() {
         <div className="flex items-center gap-3 flex-shrink-0">
           <Link
             href="/privacy"
-            className="text-sm font-semibold px-4 py-2 rounded-lg border-2 transition-colors hover:bg-slate-50"
-            style={{ borderColor: "#7c3aed", color: "#7c3aed" }}
+            className="text-sm font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-slate-50"
+            style={{ color: "#9ca3af" }}
           >
             Learn More
           </Link>
+          <button
+            onClick={decline}
+            className="text-sm font-semibold px-4 py-2 rounded-lg border-2 transition-colors hover:bg-slate-50"
+            style={{ borderColor: "#7c3aed", color: "#7c3aed" }}
+          >
+            Decline
+          </button>
           <button
             onClick={accept}
             className="text-sm font-semibold px-4 py-2 rounded-lg text-white transition-opacity hover:opacity-90"

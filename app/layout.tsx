@@ -21,12 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <GoogleAnalytics />
-      </head>
       <body>
         {children}
         <CookieBanner />
+        <GoogleAnalytics />
       </body>
     </html>
   );
