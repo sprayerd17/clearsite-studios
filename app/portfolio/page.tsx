@@ -5,12 +5,14 @@ import Footer from "@/components/Footer";
 
 const projects = [
   {
-    name: "Bella's Bakery",
-    description: "A warm and inviting site for a local Cape Town bakery.",
-    industry: "Food & Hospitality",
-    accentColor: "#f59e0b",
-    image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800",
-    imageAlt: "Freshly baked bread and pastries on a wooden table",
+    name: "Hooked by Bella",
+    description: "A warm and inviting online store for a South African handmade crochet business, designed to showcase products and connect with customers.",
+    industry: "Crafts & Handmade Goods",
+    accentColor: "#e879a0",
+    image: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=800",
+    imageAlt: "Colourful handmade crochet products laid out on a surface",
+    concept: false,
+    url: "https://hookedbybella.co.za",
   },
   {
     name: "FixIt Plumbing",
@@ -19,6 +21,8 @@ const projects = [
     accentColor: "#3b82f6",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
     imageAlt: "Plumber working on pipes with professional tools",
+    concept: true,
+    url: null,
   },
   {
     name: "Langa Legal",
@@ -27,6 +31,8 @@ const projects = [
     accentColor: "#7c3aed",
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800",
     imageAlt: "Professional legal office with books and a desk",
+    concept: true,
+    url: null,
   },
 ];
 
@@ -47,11 +53,11 @@ export default function PortfolioPage() {
             ← Back to home
           </Link>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight tracking-tight">
-            <span className="text-white">Example</span>{" "}
-            <span className="gradient-text">Projects</span>
+            <span className="text-white">Our</span>{" "}
+            <span className="gradient-text">Work</span>
           </h1>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            These are concept projects created to demonstrate the type of work Clearsite Studios delivers. Real client work will be added as projects are completed.
+            Real websites built for real South African businesses, alongside concept projects showing the range of what we can create.
           </p>
         </div>
       </section>
@@ -63,7 +69,7 @@ export default function PortfolioPage() {
             {projects.map((project) => (
               <div
                 key={project.name}
-                className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+                className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col"
               >
                 {/* Project image */}
                 <div className="relative w-full aspect-video">
@@ -77,7 +83,7 @@ export default function PortfolioPage() {
                 </div>
 
                 {/* Card content */}
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center justify-between mb-3">
                     <span
                       className="text-xs font-bold uppercase tracking-widest"
@@ -85,16 +91,29 @@ export default function PortfolioPage() {
                     >
                       {project.industry}
                     </span>
-                    <span className="text-xs font-medium px-2 py-0.5 rounded-full" style={{ backgroundColor: "#f1f5f9", color: "#94a3b8" }}>
-                      Concept Project
-                    </span>
+                    {project.concept && (
+                      <span className="text-xs font-medium px-2 py-0.5 rounded-full" style={{ backgroundColor: "#f1f5f9", color: "#94a3b8" }}>
+                        Concept Project
+                      </span>
+                    )}
                   </div>
                   <h3 className="text-lg font-extrabold mt-1 mb-2" style={{ color: "#111827" }}>
                     {project.name}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "#6b7280" }}>
+                  <p className="text-sm leading-relaxed flex-1" style={{ color: "#6b7280" }}>
                     {project.description}
                   </p>
+                  {project.url && (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold transition-opacity hover:opacity-70"
+                      style={{ color: project.accentColor }}
+                    >
+                      Visit Site →
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
