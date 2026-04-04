@@ -9,8 +9,10 @@ const projects = [
     description: "A warm and inviting online store for a South African handmade crochet business, designed to showcase products and connect with customers.",
     industry: "Crafts & Handmade Goods",
     accentColor: "#e879a0",
-    image: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=800",
-    imageAlt: "Colourful handmade crochet products laid out on a surface",
+    image: "/portfolio/hooked-by-bella.jpg",
+    imageAlt: "Hooked by Bella logo — handmade crochet business",
+    imageBg: "#0d3b2e",
+    imageContain: true,
     concept: false,
     url: "https://hookedbybella.co.za",
   },
@@ -21,6 +23,8 @@ const projects = [
     accentColor: "#3b82f6",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
     imageAlt: "Plumber working on pipes with professional tools",
+    imageBg: undefined,
+    imageContain: false,
     concept: true,
     url: null,
   },
@@ -31,6 +35,8 @@ const projects = [
     accentColor: "#7c3aed",
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800",
     imageAlt: "Professional legal office with books and a desk",
+    imageBg: undefined,
+    imageContain: false,
     concept: true,
     url: null,
   },
@@ -72,12 +78,15 @@ export default function PortfolioPage() {
                 className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col"
               >
                 {/* Project image */}
-                <div className="relative w-full aspect-video">
+                <div
+                  className="relative w-full aspect-video"
+                  style={project.imageBg ? { backgroundColor: project.imageBg } : undefined}
+                >
                   <Image
                     src={project.image}
                     alt={project.imageAlt}
                     fill
-                    className="object-cover"
+                    className={project.imageContain ? "object-contain p-6" : "object-cover"}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
