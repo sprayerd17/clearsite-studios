@@ -10,9 +10,6 @@ export default function WhatsAppButton() {
         .whatsapp-btn {
           animation: whatsapp-pulse 2.5s infinite;
         }
-        @media (max-width: 767px) {
-          .whatsapp-label { display: none !important; }
-        }
       `}</style>
       <a
         href="https://wa.me/27603979279"
@@ -21,29 +18,11 @@ export default function WhatsAppButton() {
         aria-label="Chat with us on WhatsApp"
         style={{
           position: "fixed",
-          bottom: "24px",
+          bottom: "100px",
           right: "24px",
           zIndex: 9999,
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
         }}
       >
-        <span
-          className="whatsapp-label"
-          style={{
-            background: "#7c3aed",
-            color: "#fff",
-            fontSize: "14px",
-            fontWeight: 500,
-            padding: "6px 12px",
-            borderRadius: "20px",
-            whiteSpace: "nowrap",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-          }}
-        >
-          Chat with us
-        </span>
         <span
           className="whatsapp-btn"
           style={{
@@ -55,7 +34,6 @@ export default function WhatsAppButton() {
             alignItems: "center",
             justifyContent: "center",
             boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-            flexShrink: 0,
           }}
         >
           <svg
