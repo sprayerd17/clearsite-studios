@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "Do you offer payment plans?",
     answer:
-      "Yes — for larger projects I can arrange a 50% deposit upfront and 50% on completion. Get in touch to discuss options.",
+      "Absolutely. Every client and project is different, and we're happy to work out a payment arrangement that suits your specific situation. Get in touch and we'll find something that works for both of us.",
   },
   {
     question: "What do I need to get started?",
