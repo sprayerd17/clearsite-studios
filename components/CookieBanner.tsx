@@ -25,7 +25,7 @@ export default function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 border-t border-slate-200 bg-white shadow-lg">
+    <div id="cookie-banner" className="fixed bottom-0 inset-x-0 z-50 border-t border-slate-200 bg-white shadow-lg">
       <div className="container-narrow flex flex-col sm:flex-row items-center justify-between gap-4 py-4">
         <p className="text-sm text-center sm:text-left" style={{ color: "#6b7280" }}>
           We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies.

@@ -1,4 +1,24 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function WhatsAppButton() {
+  const [bottom, setBottom] = useState(24);
+
+  useEffect(() => {
+    function measureBanner() {
+      const banner = document.getElementById("cookie-banner");
+      setBottom(banner ? banner.offsetHeight + 16 : 24);
+    }
+
+    measureBanner();
+
+    const observer = new MutationObserver(measureBanner);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <style>{`
@@ -18,9 +38,10 @@ export default function WhatsAppButton() {
         aria-label="Chat with us on WhatsApp"
         style={{
           position: "fixed",
-          bottom: "100px",
+          bottom: `${bottom}px`,
           right: "24px",
           zIndex: 9999,
+          transition: "bottom 0.3s ease",
         }}
       >
         <span
