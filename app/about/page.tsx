@@ -58,7 +58,15 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="mt-10">
+              {/* Promise callout */}
+              <div className="mt-10 rounded-2xl p-6" style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe" }}>
+                <p className="text-sm font-bold mb-1" style={{ color: "#5b21b6" }}>Our promise to you</p>
+                <p className="text-sm leading-relaxed" style={{ color: "#6d28d9" }}>
+                  We build your website first — you only pay if you love it. No upfront costs, no risk.
+                </p>
+              </div>
+
+              <div className="mt-6">
                 <a href="/pricing" className="btn-primary">Work with me →</a>
               </div>
             </div>

@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import QuoteForm from "@/components/QuoteForm";
 
 export const metadata = {
   title: "Contact | ClearSite Studios",
@@ -104,17 +103,11 @@ export default function ContactPage() {
             ))}
           </div>
 
-          {/* Quote form */}
-          <div className="max-w-2xl mx-auto">
-            <div className="rounded-2xl border bg-white p-8 md:p-10 shadow-sm" style={{ borderColor: "#e4e4e7" }}>
-              <h2 className="text-2xl font-extrabold mb-1" style={{ color: "#111827" }}>
-                Send a full enquiry
-              </h2>
-              <p className="text-sm mb-8" style={{ color: "#6b7280" }}>
-                Fill in the form below and I&apos;ll get back to you with a tailored quote.
-              </p>
-              <QuoteForm />
-            </div>
+          {/* Promise line */}
+          <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe" }}>
+            <p className="text-sm font-semibold" style={{ color: "#5b21b6" }}>
+              ✦ We build your website first — you only pay if you love it. No upfront costs, no risk.
+            </p>
           </div>
 
         </div>

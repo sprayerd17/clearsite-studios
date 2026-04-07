@@ -42,6 +42,12 @@ export default function Hero() {
           </Link>
         </div>
 
+        {/* Promise badge */}
+        <div className="mt-8 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium" style={{ backgroundColor: "rgba(124,58,237,0.15)", color: "#c4b5fd", border: "1px solid rgba(124,58,237,0.3)" }}>
+          <span>✦</span>
+          <span>We build first — you only pay if you love it. No upfront costs, no risk.</span>
+        </div>
+
         {/* Quick trust strip */}
         <div className="mt-16 pt-10 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
           {[

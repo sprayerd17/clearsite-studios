@@ -30,6 +30,14 @@ export default function PricingPage() {
       <main className="flex-1 section" style={{ backgroundColor: "#f4f4f5" }}>
         <div className="container-narrow">
           <div className="max-w-2xl mx-auto">
+            {/* Promise block */}
+            <div className="rounded-2xl p-7 mb-8 text-center" style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#7c3aed" }}>Our Promise to You</p>
+              <p className="text-base leading-relaxed font-medium" style={{ color: "#3b0764" }}>
+                We build your website first and show it to you before any money changes hands. If you love it and want to go live, then we talk pricing. No upfront costs, no obligation, no risk.
+              </p>
+            </div>
+
             {/* Form card */}
             <div className="rounded-2xl border bg-white p-8 md:p-10 shadow-sm mb-10" style={{ borderColor: "#e4e4e7" }}>
               <h2 className="text-2xl font-extrabold mb-1" style={{ color: "#111827" }}>
