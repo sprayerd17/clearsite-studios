@@ -10,7 +10,7 @@ export default function Footer() {
           <Logo />
           <span>&copy; {year}. All rights reserved.</span>
         </span>
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-6" style={{ paddingRight: "80px" }}>
           <a href="mailto:clearsitestudios@outlook.com" className="hover:text-[var(--color-accent)] transition-colors">
             clearsitestudios@outlook.com
           </a>
