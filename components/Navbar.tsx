@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 
 const links = [
@@ -15,9 +16,36 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  function isActive(href: string) {
+    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  }
 
   return (
     <>
+      <style>{`
+        .nav-link {
+          position: relative;
+          padding-bottom: 2px;
+        }
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: #7c3aed;
+          border-radius: 2px;
+          transition: width 0.25s ease;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+          width: 100%;
+        }
+      `}</style>
+
       <header className="border-b border-[var(--color-border)] bg-[#fafafa]/90 backdrop-blur-md sticky top-0 z-50">
         <div className="container-narrow flex items-center justify-between h-16">
           <Link href="/" className="hover:opacity-80 transition-opacity">
@@ -26,15 +54,19 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--color-muted)]">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="hover:text-[var(--color-text)] transition-colors"
-              >
-                {l.label}
-              </Link>
-            ))}
+            {links.map((l) => {
+              const active = isActive(l.href);
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={`nav-link transition-colors ${active ? "active" : ""}`}
+                  style={{ color: active ? "#7c3aed" : undefined }}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <Link href="/pricing" className="btn-primary text-sm hidden md:inline-flex">
@@ -82,16 +114,23 @@ export default function Navbar() {
 
         {/* Nav links */}
         <nav className="flex flex-col px-4 py-6 gap-1 flex-1">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-all"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) => {
+            const active = isActive(l.href);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 rounded-xl text-base font-medium transition-all"
+                style={{
+                  color: active ? "#fff" : undefined,
+                  backgroundColor: active ? "rgba(124,58,237,0.25)" : undefined,
+                }}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
         </nav>
 
       </div>
