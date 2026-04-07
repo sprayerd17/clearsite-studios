@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Logo from "./Logo";
 
 export default function Footer() {
@@ -15,7 +16,7 @@ export default function Footer() {
             clearsitestudios@outlook.com
           </a>
           <a href="/portfolio" className="hover:text-[var(--color-text)] transition-colors">Portfolio</a>
-          <a href="#contact" className="hover:text-[var(--color-text)] transition-colors">Contact</a>
+          <Link href="/contact" className="hover:text-[var(--color-text)] transition-colors">Contact</Link>
         </nav>
       </div>
     </footer>
