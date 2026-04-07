@@ -15,8 +15,7 @@ export default function Footer() {
           <a href="mailto:clearsitestudios@outlook.com" className="hover:text-[var(--color-accent)] transition-colors">
             clearsitestudios@outlook.com
           </a>
-          <a href="/portfolio" className="hover:text-[var(--color-text)] transition-colors">Portfolio</a>
-          <Link href="/contact" className="hover:text-[var(--color-text)] transition-colors">Contact</Link>
+<Link href="/contact" className="hover:text-[var(--color-text)] transition-colors">Contact</Link>
         </nav>
       </div>
     </footer>
