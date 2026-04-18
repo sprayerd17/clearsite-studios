@@ -6,13 +6,23 @@ export default function ScrollObserver() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
     const selector =
       ".anim-fade-up, .anim-fade-left, .anim-fade-right, .anim-scale-in";
 
+    // Delay long enough for ScrollToTop's synchronous scroll to settle before
+    // we query element positions. Without this, mid-page elements would be
+    // incorrectly treated as already in view.
     const timer = setTimeout(() => {
-      const els = document.querySelectorAll<Element>(selector);
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      const els = Array.from(document.querySelectorAll<Element>(selector));
+
+      if (prefersReduced) {
+        els.forEach((el) => el.classList.add("anim-visible", "anim-instant"));
+        return;
+      }
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -26,10 +36,19 @@ export default function ScrollObserver() {
         { threshold: 0.1, rootMargin: "0px 0px -48px 0px" }
       );
 
-      els.forEach((el) => observer.observe(el));
+      els.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (inView) {
+          // Already visible on load — show instantly, no animation
+          el.classList.add("anim-visible", "anim-instant");
+        } else {
+          observer.observe(el);
+        }
+      });
 
       return () => observer.disconnect();
-    }, 50);
+    }, 120);
 
     return () => clearTimeout(timer);
   }, [pathname]);

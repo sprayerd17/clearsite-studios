@@ -133,6 +133,13 @@
   to   { opacity: 1; transform: scale(1); }
 }
 
+/* Elements already in the viewport on load — skip the animation entirely */
+.anim-instant {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .anim-fade-up,
   .anim-fade-left,

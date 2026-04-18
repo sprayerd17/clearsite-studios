@@ -4,6 +4,7 @@ import CookieBanner from "@/components/CookieBanner";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollObserver from "@/components/ScrollObserver";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "ClearSite Studios",
@@ -27,6 +28,7 @@ export default function RootLayout({
         <CookieBanner />
         <GoogleAnalytics />
         <WhatsAppButton />
+        <ScrollToTop />
         <ScrollObserver />
       </body>
     </html>
