@@ -24,9 +24,9 @@ const faqs = [
       "Absolutely. Every website I build is fully mobile responsive and tested across different screen sizes.",
   },
   {
-    question: "Do you offer payment plans?",
+    question: "Do I have to pay anything upfront?",
     answer:
-      "Absolutely. Every client and project is different, and we're happy to work out a payment arrangement that suits your specific situation. Get in touch and we'll find something that works for both of us.",
+      "No — we start with a free visual mockup so you can see exactly how your website will look before committing to anything. If you love it and want to move forward, we ask for a deposit to begin the build, with the remainder due once your site is live and hosting begins. No mockup cost, no surprises.",
   },
   {
     question: "What do I need to get started?",

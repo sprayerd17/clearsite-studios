@@ -106,7 +106,7 @@ export default function ContactPage() {
           {/* Promise line */}
           <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe" }}>
             <p className="text-sm font-semibold" style={{ color: "#5b21b6" }}>
-              ✦ We build your website first — you only pay if you love it. No upfront costs, no risk.
+              ✦ Free mockup included — see your website before you commit.
             </p>
           </div>
 

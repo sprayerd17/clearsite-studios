@@ -34,7 +34,7 @@ export default function PricingPage() {
             <div className="rounded-2xl p-7 mb-8 text-center" style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe" }}>
               <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#7c3aed" }}>Our Promise to You</p>
               <p className="text-base leading-relaxed font-medium" style={{ color: "#3b0764" }}>
-                We build your website first and show it to you before any money changes hands. If you love it and want to go live, then we talk pricing. No upfront costs, no obligation, no risk.
+                We start by creating a free visual mockup of your website so you can see the look and feel before making any decisions. If you love what you see and want to move forward, we&apos;ll discuss a payment plan that works for you — a deposit to begin the build, and the remainder once your site is live and hosting begins. No mockup cost, no surprises.
               </p>
             </div>
 

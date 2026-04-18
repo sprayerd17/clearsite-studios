@@ -45,7 +45,7 @@ export default function Hero() {
         {/* Promise badge */}
         <div className="mt-8 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium" style={{ backgroundColor: "rgba(124,58,237,0.15)", color: "#c4b5fd", border: "1px solid rgba(124,58,237,0.3)" }}>
           <span>✦</span>
-          <span>We build first — you only pay if you love it. No upfront costs, no risk.</span>
+          <span>See your website before you spend a cent — free mockup, no obligation.</span>
         </div>
 
         {/* Quick trust strip */}
