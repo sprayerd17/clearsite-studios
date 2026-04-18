@@ -42,17 +42,27 @@ export default function Features() {
     <section id="features" className="section bg-white">
       <div className="container-narrow">
         <div className="text-center mb-14">
-          <span className="badge mb-4">Why ClearSite Studios</span>
-          <h2 className="text-4xl font-extrabold text-[var(--color-text)] mb-4">
+          <span className="badge mb-4 anim-fade-up">Why ClearSite Studios</span>
+          <h2
+            className="text-4xl font-extrabold text-[var(--color-text)] mb-4 anim-fade-up"
+            style={{ animationDelay: "100ms" }}
+          >
             Built different, on purpose.
           </h2>
-          <p className="text-[var(--color-muted)] max-w-xl mx-auto">
+          <p
+            className="text-[var(--color-muted)] max-w-xl mx-auto anim-fade-up"
+            style={{ animationDelay: "180ms" }}
+          >
             A foundation that gets out of the way so you can focus on what matters — running your business.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map((feature) => (
-            <div key={feature.title} className="card group">
+          {features.map((feature, i) => (
+            <div
+              key={feature.title}
+              className="card group anim-fade-up"
+              style={{ animationDelay: `${i * 80}ms` }}
+            >
               <div className="text-2xl mb-4">{feature.icon}</div>
               <h3 className="text-base font-bold text-[var(--color-text)] mb-2">
                 {feature.title}

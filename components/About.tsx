@@ -4,7 +4,7 @@ export default function About() {
       <div className="container-narrow">
         <div className="grid md:grid-cols-2 gap-14 items-center">
           {/* Text */}
-          <div>
+          <div className="anim-fade-left">
             <span className="badge mb-5">About Us</span>
             <h2 className="text-4xl font-extrabold mb-6" style={{ color: "#111827" }}>
               We make websites that work for <span style={{ color: "#6366f1" }}>your business.</span>
@@ -30,10 +30,11 @@ export default function About() {
               { icon: "⚡", heading: "Built for speed", body: "Fast sites rank better, retain more visitors, and earn more trust." },
               { icon: "📱", heading: "Mobile first", body: "Over half your visitors are on mobile. We design for them first." },
               { icon: "🤝", heading: "Always responsive", body: "Questions? Changes? We respond fast and keep you in the loop." },
-            ].map((item) => (
+            ].map((item, i) => (
               <div
                 key={item.heading}
-                className="rounded-2xl p-5 border bg-[var(--color-surface)] hover:shadow-md transition-shadow duration-200" style={{ borderColor: "var(--color-border)" }}
+                className="rounded-2xl p-5 border bg-[var(--color-surface)] hover:shadow-md transition-shadow duration-200 anim-fade-right"
+                style={{ borderColor: "var(--color-border)", animationDelay: `${i * 80}ms` }}
               >
                 <div className="text-2xl mb-3">{item.icon}</div>
                 <h4 className="text-sm font-bold mb-1" style={{ color: "#111827" }}>{item.heading}</h4>

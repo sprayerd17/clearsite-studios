@@ -42,20 +42,27 @@ export default function Showcase() {
     <section id="showcase" className="section" style={{ backgroundColor: "#f8fafc" }}>
       <div className="container-narrow">
         <div className="text-center mb-14">
-          <span className="badge mb-4">Our Work</span>
-          <h2 className="text-4xl font-extrabold mb-4" style={{ color: "#111827" }}>
+          <span className="badge mb-4 anim-fade-up">Our Work</span>
+          <h2
+            className="text-4xl font-extrabold mb-4 anim-fade-up"
+            style={{ color: "#111827", animationDelay: "100ms" }}
+          >
             A site for every business.
           </h2>
-          <p className="max-w-xl mx-auto" style={{ color: "#6b7280" }}>
+          <p
+            className="max-w-xl mx-auto anim-fade-up"
+            style={{ color: "#6b7280", animationDelay: "180ms" }}
+          >
             From launch-day startups to established brands — we craft experiences tailored to your industry and your goals.
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {projects.map((project, i) => (
             <div
               key={project.title}
-              className="group rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 anim-fade-up"
+              style={{ animationDelay: `${i * 100}ms` }}
             >
               <div className="relative overflow-hidden h-48">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -81,7 +88,7 @@ export default function Showcase() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 anim-fade-up" style={{ animationDelay: "200ms" }}>
           <a href="/pricing" className="btn-primary">
             Start Your Project →
           </a>

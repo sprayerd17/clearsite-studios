@@ -90,3 +90,56 @@
     background-clip: text;
   }
 }
+
+/* ─── Scroll-triggered entrance animations ────────────────────────────── */
+.anim-fade-up,
+.anim-fade-left,
+.anim-fade-right,
+.anim-scale-in {
+  opacity: 0;
+}
+.anim-fade-up    { transform: translateY(24px); }
+.anim-fade-left  { transform: translateX(-32px); }
+.anim-fade-right { transform: translateX(32px); }
+.anim-scale-in   { transform: scale(0.88); }
+
+.anim-fade-up.anim-visible {
+  animation: _anim-fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.anim-fade-left.anim-visible {
+  animation: _anim-fade-left 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.anim-fade-right.anim-visible {
+  animation: _anim-fade-right 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.anim-scale-in.anim-visible {
+  animation: _anim-scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes _anim-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes _anim-fade-left {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes _anim-fade-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes _anim-scale-in {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-up,
+  .anim-fade-left,
+  .anim-fade-right,
+  .anim-scale-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

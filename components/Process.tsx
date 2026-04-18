@@ -19,16 +19,24 @@ const steps = [
   },
 ];
 
+const stepAnimClass = ["anim-fade-left", "anim-fade-up", "anim-fade-right"] as const;
+
 export default function Process() {
   return (
     <section id="process" className="section" style={{ backgroundColor: "#f8fafc" }}>
       <div className="container-narrow">
         <div className="text-center mb-14">
-          <span className="badge mb-4">How It Works</span>
-          <h2 className="text-4xl font-extrabold mb-4" style={{ color: "#111827" }}>
+          <span className="badge mb-4 anim-fade-up">How It Works</span>
+          <h2
+            className="text-4xl font-extrabold mb-4 anim-fade-up"
+            style={{ color: "#111827", animationDelay: "100ms" }}
+          >
             Simple, straightforward, stress-free.
           </h2>
-          <p className="max-w-xl mx-auto" style={{ color: "#6b7280" }}>
+          <p
+            className="max-w-xl mx-auto anim-fade-up"
+            style={{ color: "#6b7280", animationDelay: "180ms" }}
+          >
             Getting a great website doesn&apos;t have to be complicated. Here&apos;s how we make it easy.
           </p>
         </div>
@@ -37,8 +45,12 @@ export default function Process() {
           {/* Connecting line (desktop only) */}
           <div className="hidden md:block absolute top-10 left-[calc(16.66%+2rem)] right-[calc(16.66%+2rem)] h-px bg-slate-200" />
 
-          {steps.map((step) => (
-            <div key={step.number} className="relative text-center flex flex-col items-center">
+          {steps.map((step, i) => (
+            <div
+              key={step.number}
+              className={`relative text-center flex flex-col items-center ${stepAnimClass[i]}`}
+              style={{ animationDelay: `${i * 150}ms` }}
+            >
               {/* Step circle */}
               <div
                 className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-extrabold mb-6 border-4 border-white shadow-lg z-10"

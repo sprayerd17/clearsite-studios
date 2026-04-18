@@ -54,15 +54,21 @@ export default function PortfolioPage() {
         <div className="relative container-narrow text-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-white text-sm font-medium mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-white text-sm font-medium mb-8 transition-colors anim-fade-up"
           >
             ← Back to home
           </Link>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight tracking-tight">
+          <h1
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight tracking-tight anim-fade-up"
+            style={{ animationDelay: "100ms" }}
+          >
             <span className="text-white">Our</span>{" "}
             <span className="gradient-text">Work</span>
           </h1>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p
+            className="text-lg text-slate-400 max-w-2xl mx-auto anim-fade-up"
+            style={{ animationDelay: "200ms" }}
+          >
             Real websites built for real South African businesses, alongside concept projects showing the range of what we can create.
           </p>
         </div>
@@ -72,10 +78,11 @@ export default function PortfolioPage() {
       <main className="flex-1 py-20 md:py-28" style={{ backgroundColor: "#f8fafc" }}>
         <div className="container-narrow">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
+            {projects.map((project, i) => (
               <div
                 key={project.name}
-                className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col"
+                className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col anim-fade-up"
+                style={{ animationDelay: `${i * 120}ms` }}
               >
                 {/* Project image */}
                 <div
@@ -129,7 +136,7 @@ export default function PortfolioPage() {
           </div>
 
           {/* Bottom note */}
-          <div className="mt-16 text-center">
+          <div className="mt-16 text-center anim-fade-up" style={{ animationDelay: "100ms" }}>
             <p className="text-base" style={{ color: "#6b7280" }}>
               Want to see your business here?{" "}
               <Link

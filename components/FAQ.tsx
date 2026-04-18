@@ -42,11 +42,17 @@ export default function FAQ() {
     <section id="faq" className="section bg-white">
       <div className="container-narrow">
         <div className="text-center mb-12">
-          <span className="badge mb-4">FAQ</span>
-          <h2 className="text-4xl font-extrabold mb-4" style={{ color: "#111827" }}>
+          <span className="badge mb-4 anim-scale-in">FAQ</span>
+          <h2
+            className="text-4xl font-extrabold mb-4 anim-fade-up"
+            style={{ color: "#111827", animationDelay: "100ms" }}
+          >
             Common questions
           </h2>
-          <p className="max-w-xl mx-auto" style={{ color: "#6b7280" }}>
+          <p
+            className="max-w-xl mx-auto anim-fade-up"
+            style={{ color: "#6b7280", animationDelay: "180ms" }}
+          >
             Everything you need to know before getting started.
           </p>
         </div>
@@ -55,7 +61,11 @@ export default function FAQ() {
           {faqs.map((faq, i) => {
             const isOpen = open === i;
             return (
-              <div key={i}>
+              <div
+                key={i}
+                className="anim-fade-up"
+                style={{ animationDelay: `${i * 80}ms` }}
+              >
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="w-full flex items-center justify-between gap-4 py-5 text-left transition-colors"

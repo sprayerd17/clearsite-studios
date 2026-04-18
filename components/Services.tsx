@@ -39,25 +39,32 @@ export default function Services() {
     <section id="services" className="section bg-[var(--color-bg)]">
       <div className="container-narrow">
         <div className="text-center mb-14">
-          <span className="badge mb-4">What We Do</span>
-          <h2 className="text-4xl font-extrabold mb-4" style={{ color: "#111827" }}>
+          <span className="badge mb-4 anim-fade-up">What We Do</span>
+          <h2
+            className="text-4xl font-extrabold mb-4 anim-fade-up"
+            style={{ color: "#111827", animationDelay: "100ms" }}
+          >
             The right solution for your business.
           </h2>
-          <p className="max-w-xl mx-auto" style={{ color: "#6b7280" }}>
+          <p
+            className="max-w-xl mx-auto anim-fade-up"
+            style={{ color: "#6b7280", animationDelay: "180ms" }}
+          >
             Whether you&apos;re starting fresh, levelling up, or ready to sell online —
             we have a service built for exactly where you are.
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {services.map((s) => (
+          {services.map((s, i) => (
             <div
               key={s.title}
-              className={`relative rounded-2xl p-8 flex flex-col border transition-all duration-200 hover:-translate-y-1 hover:shadow-xl ${
+              className={`relative rounded-2xl p-8 flex flex-col border transition-all duration-200 hover:-translate-y-1 hover:shadow-xl anim-fade-up ${
                 s.highlight
                   ? "bg-[#1e1b4b] text-white border-transparent"
                   : "bg-white border-slate-200 shadow-sm"
               }`}
+              style={{ animationDelay: `${i * 120}ms` }}
             >
               {s.highlight && (
                 <span className="absolute top-5 right-5 text-xs font-bold px-3 py-1 rounded-full" style={{ background: "rgba(99,102,241,0.3)", color: "#a5b4fc" }}>

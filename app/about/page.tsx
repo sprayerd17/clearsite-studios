@@ -11,14 +11,20 @@ export default function AboutPage() {
         <div className="absolute -top-32 -right-32 w-[400px] h-[400px] bg-violet-500/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-fuchsia-500/15 rounded-full blur-3xl pointer-events-none" />
         <div className="relative container-narrow text-center">
-          <span className="badge mb-6" style={{ background: "rgba(255,255,255,0.1)", color: "white" }}>
+          <span className="badge mb-6 anim-scale-in" style={{ background: "rgba(255,255,255,0.1)", color: "white" }}>
             About Us
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight tracking-tight text-white">
+          <h1
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight tracking-tight text-white anim-fade-up"
+            style={{ animationDelay: "100ms" }}
+          >
             The studio behind<br />
             <span className="gradient-text">the website.</span>
           </h1>
-          <p className="text-lg text-slate-400 max-w-xl mx-auto">
+          <p
+            className="text-lg text-slate-400 max-w-xl mx-auto anim-fade-up"
+            style={{ animationDelay: "200ms" }}
+          >
             A little about who we are, how we work, and what we believe.
           </p>
         </div>
@@ -30,7 +36,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-16 items-start">
 
             {/* Text */}
-            <div>
+            <div className="anim-fade-left">
               <span className="badge mb-5">Our Story</span>
               <h2 className="text-3xl font-extrabold mb-8" style={{ color: "#111827" }}>
                 One studio. One focus.<br />
@@ -80,11 +86,11 @@ export default function AboutPage() {
                 { icon: "💸", heading: "Fair pricing", body: "Professional results without the big agency price tag." },
                 { icon: "⚡", heading: "Fast turnaround", body: "Get online quickly without cutting corners on quality." },
                 { icon: "🤝", heading: "Personal service", body: "You deal directly with me, start to finish, every time." },
-              ].map((item) => (
+              ].map((item, i) => (
                 <div
                   key={item.heading}
-                  className="rounded-2xl p-5 border bg-[var(--color-surface)] hover:shadow-md transition-shadow duration-200"
-                  style={{ borderColor: "var(--color-border)" }}
+                  className="rounded-2xl p-5 border bg-[var(--color-surface)] hover:shadow-md transition-shadow duration-200 anim-fade-right"
+                  style={{ borderColor: "var(--color-border)", animationDelay: `${i * 70}ms` }}
                 >
                   <div className="text-2xl mb-3">{item.icon}</div>
                   <h4 className="text-sm font-bold mb-1" style={{ color: "#111827" }}>{item.heading}</h4>

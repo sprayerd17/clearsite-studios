@@ -16,13 +16,19 @@ export default function ContactPage() {
         <div className="absolute -top-32 -right-32 w-[400px] h-[400px] bg-violet-500/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-fuchsia-500/15 rounded-full blur-3xl pointer-events-none" />
         <div className="relative container-narrow text-center">
-          <span className="badge mb-6" style={{ background: "rgba(255,255,255,0.1)", color: "white" }}>
+          <span className="badge mb-6 anim-scale-in" style={{ background: "rgba(255,255,255,0.1)", color: "white" }}>
             Contact
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight tracking-tight text-white">
+          <h1
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight tracking-tight text-white anim-fade-up"
+            style={{ animationDelay: "100ms" }}
+          >
             Get In Touch
           </h1>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p
+            className="text-lg text-slate-400 max-w-2xl mx-auto anim-fade-up"
+            style={{ animationDelay: "200ms" }}
+          >
             Have a question or ready to start your project? Reach out and I&apos;ll get back to you within 1 business day.
           </p>
         </div>
@@ -35,7 +41,10 @@ export default function ContactPage() {
           <div className="grid sm:grid-cols-2 gap-6 mb-10">
 
             {/* Email card */}
-            <div className="rounded-2xl border bg-white p-8 shadow-sm flex flex-col gap-5" style={{ borderColor: "#e4e4e7" }}>
+            <div
+              className="rounded-2xl border bg-white p-8 shadow-sm flex flex-col gap-5 anim-fade-left"
+              style={{ borderColor: "#e4e4e7" }}
+            >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: "#ede9fe" }}
@@ -59,7 +68,10 @@ export default function ContactPage() {
             </div>
 
             {/* WhatsApp / Phone card */}
-            <div className="rounded-2xl border bg-white p-8 shadow-sm flex flex-col gap-5" style={{ borderColor: "#e4e4e7" }}>
+            <div
+              className="rounded-2xl border bg-white p-8 shadow-sm flex flex-col gap-5 anim-fade-right"
+              style={{ borderColor: "#e4e4e7" }}
+            >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: "#ede9fe" }}
@@ -91,11 +103,11 @@ export default function ContactPage() {
               { icon: "📬", text: "Response within 1 business day" },
               { icon: "✋", text: "No obligation consultations" },
               { icon: "🇿🇦", text: "Based in South Africa" },
-            ].map((item) => (
+            ].map((item, i) => (
               <div
                 key={item.text}
-                className="rounded-2xl p-5 border text-center flex items-center justify-center gap-3"
-                style={{ borderColor: "#e4e4e7", backgroundColor: "#fafafa" }}
+                className="rounded-2xl p-5 border text-center flex items-center justify-center gap-3 anim-fade-up"
+                style={{ borderColor: "#e4e4e7", backgroundColor: "#fafafa", animationDelay: `${i * 100}ms` }}
               >
                 <span className="text-xl">{item.icon}</span>
                 <p className="text-sm font-semibold" style={{ color: "#374151" }}>{item.text}</p>
@@ -104,7 +116,10 @@ export default function ContactPage() {
           </div>
 
           {/* Promise line */}
-          <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe" }}>
+          <div
+            className="rounded-2xl p-6 text-center anim-fade-up"
+            style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe" }}
+          >
             <p className="text-sm font-semibold" style={{ color: "#5b21b6" }}>
               ✦ Free mockup included — see your website before you commit.
             </p>

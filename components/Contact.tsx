@@ -5,23 +5,36 @@ export default function Contact() {
       <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-fuchsia-500/15 rounded-full blur-3xl pointer-events-none" />
       <div className="relative container-narrow">
         <div className="max-w-xl mx-auto text-center">
-          <span className="badge mb-4" style={{ background: "rgba(255,255,255,0.1)", color: "white" }}>
+          <span
+            className="badge mb-4 anim-scale-in"
+            style={{ background: "rgba(255,255,255,0.1)", color: "white" }}
+          >
             Get in Touch
           </span>
-          <h2 className="text-4xl font-extrabold mb-4 text-white">
+          <h2
+            className="text-4xl font-extrabold mb-4 text-white anim-fade-up"
+            style={{ animationDelay: "100ms" }}
+          >
             Let&apos;s build something great.
           </h2>
-          <p className="text-slate-400 mb-8 leading-relaxed">
+          <p
+            className="text-slate-400 mb-8 leading-relaxed anim-fade-up"
+            style={{ animationDelay: "200ms" }}
+          >
             Ready to get your business online or take your existing site to the next level?
             Drop us an email and we&apos;ll get back to you promptly.
           </p>
           <a
             href="mailto:clearsitestudios@outlook.com"
-            className="btn-primary text-base inline-block px-8 py-4"
+            className="btn-primary text-base inline-block px-8 py-4 anim-fade-up"
+            style={{ animationDelay: "300ms" }}
           >
             clearsitestudios@outlook.com
           </a>
-          <p className="mt-5 text-xs text-slate-500">
+          <p
+            className="mt-5 text-xs text-slate-500 anim-fade-up"
+            style={{ animationDelay: "380ms" }}
+          >
             We typically respond within one business day.
           </p>
         </div>
