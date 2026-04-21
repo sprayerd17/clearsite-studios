@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const projects = [
   {
     title: "E-Commerce Store",
@@ -65,11 +67,12 @@ export default function Showcase() {
               style={{ animationDelay: `${i * 100}ms` }}
             >
               <div className="relative overflow-hidden h-48">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <span className="absolute bottom-3 left-3 text-xs font-semibold text-white bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-full">

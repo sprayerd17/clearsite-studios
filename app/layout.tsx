@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import "./globals.css";
-import CookieBanner from "@/components/CookieBanner";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollObserver from "@/components/ScrollObserver";
 import ScrollToTop from "@/components/ScrollToTop";
+
+const CookieBanner = dynamic(() => import("@/components/CookieBanner"));
+const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"));
 
 export const metadata: Metadata = {
   title: "ClearSite Studios",
@@ -23,6 +25,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        />
+      </head>
       <body>
         {children}
         <CookieBanner />

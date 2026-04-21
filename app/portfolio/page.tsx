@@ -9,7 +9,7 @@ const projects = [
     description: "A warm and inviting online store for a South African handmade crochet business, designed to showcase products and connect with customers.",
     industry: "Crafts & Handmade Goods",
     accentColor: "#e879a0",
-    image: "/portfolio/hooked-by-bella.jpg",
+    image: "/portfolio/hooked-by-bella.webp",
     imageAlt: "Hooked by Bella logo — handmade crochet business",
     imageBg: "#0d3b2e",
     imageContain: true,

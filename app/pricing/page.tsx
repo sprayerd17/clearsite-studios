@@ -1,6 +1,8 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import QuoteForm from "@/components/QuoteForm";
+
+const QuoteForm = dynamic(() => import("@/components/QuoteForm"));
 
 export default function PricingPage() {
   return (
