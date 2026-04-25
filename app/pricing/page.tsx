@@ -325,10 +325,10 @@ export default function PricingPage() {
               style={{ borderColor: "#e4e4e7", animationDelay: "200ms" }}
             >
               <h3 className="text-2xl font-extrabold mb-1" style={{ color: "#111827" }}>
-                Request a free quote
+                Tell Us What You Need
               </h3>
               <p className="text-sm mb-8" style={{ color: "#6b7280" }}>
-                Fill in the form below and I&apos;ll get back to you with a tailored quote.
+                Not sure which package suits you? Fill in the form and we&apos;ll help you find the best fit — no obligation.
               </p>
               <QuoteForm />
             </div>

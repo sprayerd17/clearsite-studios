@@ -67,7 +67,7 @@ export default function QuoteForm() {
           You&apos;re all set!
         </h3>
         <p className="text-base leading-relaxed max-w-md mx-auto" style={{ color: "#6b7280" }}>
-          Thanks! I&apos;ll review your details and get back to you within 1 business day.
+          Thanks! We&apos;ll review your details and get back to you within 1 business day with our recommendation.
         </p>
       </div>
     );
@@ -230,7 +230,7 @@ export default function QuoteForm() {
         disabled={status === "submitting"}
         className="btn-primary w-full py-4 text-base disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
       >
-        {status === "submitting" ? "Sending…" : "Send my quote request →"}
+        {status === "submitting" ? "Sending…" : "Send My Request"}
       </button>
 
       {status === "error" && (
