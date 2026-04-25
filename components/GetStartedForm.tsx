@@ -13,6 +13,12 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 const PLAN_OPTIONS = ["Starter", "Business", "Professional", "E-Commerce", "Unsure"];
 
+const RETAINER_OPTIONS = [
+  { value: "yes", label: "Yes — I'd like to add the monthly retainer (R500/month)" },
+  { value: "no", label: "No — just the once-off package for now" },
+  { value: "not-sure", label: "Not sure yet" },
+];
+
 const WEBSITE_TYPES = [
   "E-Commerce Store",
   "Restaurant or Café",
@@ -29,11 +35,14 @@ const WEBSITE_TYPES = [
 export default function GetStartedForm() {
   const searchParams = useSearchParams();
   const planParam = searchParams.get("plan") ?? "";
+  const retainerParam = searchParams.get("retainer") ?? "";
   const initialPlan = PLAN_OPTIONS.includes(planParam) ? planParam : "";
+  const initialRetainer = RETAINER_OPTIONS.some((o) => o.value === retainerParam) ? retainerParam : "";
 
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({
     plan: initialPlan,
+    retainer: initialRetainer,
     websiteType: "",
     fullName: "",
     businessName: "",
@@ -43,10 +52,12 @@ export default function GetStartedForm() {
   });
 
   useEffect(() => {
-    if (initialPlan) {
-      setForm((f) => ({ ...f, plan: initialPlan }));
-    }
-  }, [initialPlan]);
+    setForm((f) => ({
+      ...f,
+      plan: initialPlan || f.plan,
+      retainer: initialRetainer || f.retainer,
+    }));
+  }, [initialPlan, initialRetainer]);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -64,6 +75,7 @@ export default function GetStartedForm() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           "Plan Type": form.plan,
+          "Monthly Retainer": RETAINER_OPTIONS.find((o) => o.value === form.retainer)?.label ?? "Not answered",
           "Type of Website": form.websiteType,
           "Full Name": form.fullName,
           "Business Name": form.businessName,
@@ -102,44 +114,79 @@ export default function GetStartedForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Plan Type + Website Type */}
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className={labelClass} style={{ color: "#374151" }}>
-            Plan Type <span style={{ color: "#7c3aed" }}>*</span>
-          </label>
-          <select
-            name="plan"
-            required
-            value={form.plan}
-            onChange={handleChange}
-            className={inputClass}
-            style={{ ...inputStyle, ...focusRingStyle }}
-          >
-            <option value="" disabled>Select a plan</option>
-            {PLAN_OPTIONS.map((p) => (
-              <option key={p}>{p}</option>
-            ))}
-          </select>
+      {/* Plan Type */}
+      <div>
+        <label className={labelClass} style={{ color: "#374151" }}>
+          Plan Type <span style={{ color: "#7c3aed" }}>*</span>
+        </label>
+        <select
+          name="plan"
+          required
+          value={form.plan}
+          onChange={handleChange}
+          className={inputClass}
+          style={{ ...inputStyle, ...focusRingStyle }}
+        >
+          <option value="" disabled>Select a plan</option>
+          {PLAN_OPTIONS.map((p) => (
+            <option key={p}>{p}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Monthly Retainer */}
+      <div>
+        <p className={labelClass} style={{ color: "#374151" }}>
+          Monthly Retainer <span style={{ color: "#7c3aed" }}>*</span>
+        </p>
+        <div className="space-y-2.5">
+          {RETAINER_OPTIONS.map((opt) => {
+            const selected = form.retainer === opt.value;
+            return (
+              <label
+                key={opt.value}
+                className="flex items-center gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-all duration-150"
+                style={{
+                  borderColor: selected ? "#7c3aed" : "#e4e4e7",
+                  backgroundColor: selected ? "#ede9fe" : "#ffffff",
+                }}
+              >
+                <input
+                  type="radio"
+                  name="retainer"
+                  value={opt.value}
+                  required
+                  checked={selected}
+                  onChange={handleChange}
+                  className="shrink-0 accent-violet-700"
+                />
+                <span className="text-sm" style={{ color: selected ? "#5b21b6" : "#374151", fontWeight: selected ? 600 : 400 }}>
+                  {opt.label}
+                </span>
+              </label>
+            );
+          })}
         </div>
-        <div>
-          <label className={labelClass} style={{ color: "#374151" }}>
-            Type of Website <span style={{ color: "#7c3aed" }}>*</span>
-          </label>
-          <select
-            name="websiteType"
-            required
-            value={form.websiteType}
-            onChange={handleChange}
-            className={inputClass}
-            style={{ ...inputStyle, ...focusRingStyle }}
-          >
-            <option value="" disabled>Select an option</option>
-            {WEBSITE_TYPES.map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-        </div>
+      </div>
+
+      {/* Type of Website */}
+      <div>
+        <label className={labelClass} style={{ color: "#374151" }}>
+          Type of Website <span style={{ color: "#7c3aed" }}>*</span>
+        </label>
+        <select
+          name="websiteType"
+          required
+          value={form.websiteType}
+          onChange={handleChange}
+          className={inputClass}
+          style={{ ...inputStyle, ...focusRingStyle }}
+        >
+          <option value="" disabled>Select an option</option>
+          {WEBSITE_TYPES.map((t) => (
+            <option key={t}>{t}</option>
+          ))}
+        </select>
       </div>
 
       {/* Full Name + Business Name */}

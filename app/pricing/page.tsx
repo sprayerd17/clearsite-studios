@@ -262,7 +262,7 @@ export default function PricingPage() {
                 </ul>
               </div>
               <div className="shrink-0">
-                <a href="/get-started" className="btn-primary px-8 py-4 text-base">
+                <a href="/get-started?plan=Unsure&retainer=yes" className="btn-primary px-8 py-4 text-base">
                   Add to my package →
                 </a>
               </div>
