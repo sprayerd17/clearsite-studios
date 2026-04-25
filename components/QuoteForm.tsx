@@ -20,7 +20,6 @@ export default function QuoteForm() {
     websiteType: "",
     pageCount: "",
     description: "",
-    timeline: "",
   });
 
   function handleChange(
@@ -45,7 +44,6 @@ export default function QuoteForm() {
           "Type of Website": form.websiteType,
           "Number of Pages": form.pageCount,
           "Business Description": form.description,
-          "Timeline": form.timeline,
         }),
       });
 
@@ -158,11 +156,16 @@ export default function QuoteForm() {
             style={{ ...inputStyle, ...focusRingStyle }}
           >
             <option value="" disabled>Select an option</option>
-            <option>Brand New Website</option>
-            <option>Website Redesign</option>
-            <option>Landing Page</option>
-            <option>Website Maintenance</option>
-            <option>Not Sure Yet</option>
+            <option>E-Commerce Store</option>
+            <option>Restaurant or Café</option>
+            <option>Tradesperson or Contractor</option>
+            <option>Salon or Barber</option>
+            <option>Health or Wellness</option>
+            <option>Professional Services (Lawyer, Accountant etc.)</option>
+            <option>Real Estate or Property</option>
+            <option>Church or Non-Profit</option>
+            <option>Portfolio or Personal Brand</option>
+            <option>Other</option>
           </select>
         </div>
         <div>
@@ -202,27 +205,6 @@ export default function QuoteForm() {
           className={inputClass}
           style={{ ...inputStyle, ...focusRingStyle, resize: "vertical" }}
         />
-      </div>
-
-      {/* Timeline */}
-      <div>
-        <label className={labelClass} style={{ color: "#374151" }}>
-          How soon do you need it? <span style={{ color: "#7c3aed" }}>*</span>
-        </label>
-        <select
-          name="timeline"
-          required
-          value={form.timeline}
-          onChange={handleChange}
-          className={inputClass}
-          style={{ ...inputStyle, ...focusRingStyle }}
-        >
-          <option value="" disabled>Select an option</option>
-          <option>As soon as possible</option>
-          <option>Within a month</option>
-          <option>Within 3 months</option>
-          <option>Just exploring</option>
-        </select>
       </div>
 
       <button
