@@ -1,12 +1,10 @@
-import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const QuoteForm = dynamic(() => import("@/components/QuoteForm"));
 
 const packages = [
   {
     name: "STARTER",
+    planParam: "Starter",
     originalPrice: "R1,999",
     salePrice: "R1,399",
     note: "once-off",
@@ -22,6 +20,7 @@ const packages = [
   },
   {
     name: "BUSINESS",
+    planParam: "Business",
     originalPrice: "R3,499",
     salePrice: "R2,449",
     note: "once-off",
@@ -38,6 +37,7 @@ const packages = [
   },
   {
     name: "PROFESSIONAL",
+    planParam: "Professional",
     originalPrice: "R5,499",
     salePrice: "R3,849",
     note: "once-off",
@@ -54,6 +54,7 @@ const packages = [
   },
   {
     name: "E-COMMERCE",
+    planParam: "E-Commerce",
     originalPrice: "R6,499",
     salePrice: "R4,549",
     note: "once-off",
@@ -196,7 +197,7 @@ export default function PricingPage() {
                 </ul>
 
                 <a
-                  href="#quote-form"
+                  href={`/get-started?plan=${pkg.planParam}`}
                   className={pkg.popular ? "btn-primary text-center" : "btn-outline text-center"}
                 >
                   Get started →
@@ -249,7 +250,7 @@ export default function PricingPage() {
                 </ul>
               </div>
               <div className="shrink-0">
-                <a href="#quote-form" className="btn-primary px-8 py-4 text-base">
+                <a href="/get-started" className="btn-primary px-8 py-4 text-base">
                   Add to my package →
                 </a>
               </div>
@@ -315,66 +316,6 @@ export default function PricingPage() {
           <p className="text-sm text-center mt-5 anim-fade-up" style={{ color: "#9ca3af", animationDelay: "300ms" }}>
             All prices exclude domain registration if required. Free mockup available before any commitment.
           </p>
-        </div>
-      </section>
-
-      {/* Quote Form */}
-      <section id="quote-form" className="section" style={{ backgroundColor: "#ffffff" }}>
-        <div className="container-narrow">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-3 anim-fade-up" style={{ color: "#111827" }}>
-                Not sure which package suits you?
-              </h2>
-              <p className="text-base anim-fade-up" style={{ color: "#6b7280", animationDelay: "100ms" }}>
-                Fill in the form and we&apos;ll recommend the best fit.
-              </p>
-            </div>
-
-            {/* Promise block */}
-            <div
-              className="rounded-2xl p-7 mb-8 text-center anim-fade-up"
-              style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe", animationDelay: "150ms" }}
-            >
-              <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#7c3aed" }}>Our Promise to You</p>
-              <p className="text-base leading-relaxed font-medium" style={{ color: "#3b0764" }}>
-                We start by creating a free visual mockup of your website so you can see the look and feel before making any decisions. If you love what you see and want to move forward, we&apos;ll discuss a payment plan that works for you — a deposit to begin the build, and the remainder once your site is live and hosting begins. No mockup cost, no surprises.
-              </p>
-            </div>
-
-            {/* Form card */}
-            <div
-              className="rounded-2xl border bg-white p-8 md:p-10 shadow-sm mb-10 anim-fade-up"
-              style={{ borderColor: "#e4e4e7", animationDelay: "200ms" }}
-            >
-              <h3 className="text-2xl font-extrabold mb-1" style={{ color: "#111827" }}>
-                Tell Us What You Need
-              </h3>
-              <p className="text-sm mb-8" style={{ color: "#6b7280" }}>
-                Not sure which package suits you? Fill in the form and we&apos;ll help you find the best fit — no obligation.
-              </p>
-              <QuoteForm />
-            </div>
-
-            {/* Reassurance strip */}
-            <div className="grid sm:grid-cols-3 gap-4">
-              {[
-                { icon: "✋", heading: "No obligation quote", body: "Getting a quote costs nothing. Take your time deciding." },
-                { icon: "📬", heading: "Response within 1 business day", body: "You won't be left waiting — I reply promptly, every time." },
-                { icon: "💬", heading: "No tech jargon", body: "Just a plain, honest conversation about what you need." },
-              ].map((item, i) => (
-                <div
-                  key={item.heading}
-                  className="rounded-2xl p-5 border text-center anim-fade-up"
-                  style={{ borderColor: "#e4e4e7", backgroundColor: "#fafafa", animationDelay: `${i * 100}ms` }}
-                >
-                  <div className="text-2xl mb-2">{item.icon}</div>
-                  <h4 className="text-sm font-bold mb-1" style={{ color: "#111827" }}>{item.heading}</h4>
-                  <p className="text-xs leading-relaxed" style={{ color: "#6b7280" }}>{item.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
