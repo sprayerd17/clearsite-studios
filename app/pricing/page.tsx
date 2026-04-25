@@ -208,6 +208,18 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Unsure CTA */}
+      <section className="py-8" style={{ backgroundColor: "#f4f4f5" }}>
+        <div className="container-narrow text-center">
+          <a
+            href="/get-started?plan=Unsure"
+            className="btn-outline inline-flex items-center gap-2 anim-fade-up"
+          >
+            Not sure which package is right for you? Let us help →
+          </a>
+        </div>
+      </section>
+
       {/* Monthly Retainer */}
       <section className="section" style={{ backgroundColor: "#1e1b4b" }}>
         <div className="container-narrow">
