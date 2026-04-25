@@ -7,7 +7,8 @@ const QuoteForm = dynamic(() => import("@/components/QuoteForm"));
 const packages = [
   {
     name: "STARTER",
-    price: "R1,999",
+    originalPrice: "R1,999",
+    salePrice: "R1,399",
     note: "once-off",
     delivery: "3 days",
     popular: false,
@@ -21,7 +22,8 @@ const packages = [
   },
   {
     name: "BUSINESS",
-    price: "R3,499",
+    originalPrice: "R3,499",
+    salePrice: "R2,449",
     note: "once-off",
     delivery: "7 days",
     popular: false,
@@ -36,7 +38,8 @@ const packages = [
   },
   {
     name: "PROFESSIONAL",
-    price: "R5,499",
+    originalPrice: "R5,499",
+    salePrice: "R3,849",
     note: "once-off",
     delivery: "14 days",
     popular: true,
@@ -51,7 +54,8 @@ const packages = [
   },
   {
     name: "E-COMMERCE",
-    price: "R6,499",
+    originalPrice: "R6,499",
+    salePrice: "R4,549",
     note: "once-off",
     delivery: "21 days",
     popular: false,
@@ -66,16 +70,21 @@ const packages = [
 ];
 
 const compareRows = [
-  { pkg: "Starter (1 page)", clearsite: "R1,999", market: "R3,765", agency: "R5,000+" },
-  { pkg: "Business (5 pages)", clearsite: "R3,499", market: "R6,254", agency: "R15,000+" },
-  { pkg: "Professional (10 pages)", clearsite: "R5,499", market: "R14,780", agency: "R40,000+" },
-  { pkg: "E-Commerce", clearsite: "R6,499", market: "R27,980+", agency: "R40,000+" },
+  { pkg: "Starter (1 page)", clearsite: "R1,399", market: "R3,765", agency: "R5,000+" },
+  { pkg: "Business (5 pages)", clearsite: "R2,449", market: "R6,254", agency: "R15,000+" },
+  { pkg: "Professional (10 pages)", clearsite: "R3,849", market: "R14,780", agency: "R40,000+" },
+  { pkg: "E-Commerce", clearsite: "R4,549", market: "R27,980+", agency: "R40,000+" },
 ];
 
 export default function PricingPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
+
+      {/* Launch Sale Banner */}
+      <div className="w-full py-3 px-4 text-center text-white text-sm font-bold" style={{ background: "linear-gradient(135deg, #7c3aed, #6d28d9)" }}>
+        🚀 Launch Sale — 30% off for our first 5 clients. Lock in your rate before it&apos;s gone.
+      </div>
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#1e1b4b] text-white py-20 md:py-28">
@@ -127,6 +136,14 @@ export default function PricingPage() {
                   border: pkg.popular ? "2px solid #7c3aed" : undefined,
                 }}
               >
+                {/* Sale badge */}
+                <div
+                  className="inline-flex self-start mb-4 px-3 py-1 rounded-full text-xs font-bold text-white"
+                  style={{ background: "linear-gradient(135deg, #7c3aed, #6d28d9)" }}
+                >
+                  🎉 Launch Special — 30% OFF
+                </div>
+
                 {pkg.popular && (
                   <div
                     className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold tracking-widest text-white whitespace-nowrap"
@@ -144,11 +161,17 @@ export default function PricingPage() {
                     {pkg.name}
                   </p>
                   <div className="flex items-end gap-2 mb-1">
-                    <span className="text-4xl font-extrabold" style={{ color: "#111827" }}>
-                      {pkg.price}
+                    <span className="text-lg line-through" style={{ color: "#9ca3af" }}>
+                      {pkg.originalPrice}
+                    </span>
+                    <span className="text-4xl font-extrabold" style={{ color: "#7c3aed" }}>
+                      {pkg.salePrice}
                     </span>
                     <span className="text-sm mb-1.5" style={{ color: "#6b7280" }}>{pkg.note}</span>
                   </div>
+                  <p className="text-xs font-semibold mb-1" style={{ color: "#7c3aed" }}>
+                    Only available for the first 5 clients
+                  </p>
                   <p className="text-sm" style={{ color: "#6b7280" }}>
                     Delivered in <span className="font-semibold" style={{ color: "#374151" }}>{pkg.delivery}</span>
                   </p>
