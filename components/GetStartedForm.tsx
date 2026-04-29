@@ -14,8 +14,8 @@ type Status = "idle" | "submitting" | "success" | "error";
 const PLAN_OPTIONS = ["Starter", "Business", "Professional", "E-Commerce", "Unsure"];
 
 const RETAINER_OPTIONS = [
-  { value: "yes", label: "Yes — I'd like to add the monthly retainer (R500/month)" },
-  { value: "no", label: "No — just the once-off package for now" },
+  { value: "yes", label: "Yes — R300/month (content updates, design changes, priority support)" },
+  { value: "no", label: "No — just the R200/month hosting & maintenance fee" },
   { value: "not-sure", label: "Not sure yet" },
 ];
 
@@ -137,7 +137,7 @@ export default function GetStartedForm() {
       {/* Monthly Retainer */}
       <div>
         <p className={labelClass} style={{ color: "#374151" }}>
-          Monthly Retainer <span style={{ color: "#7c3aed" }}>*</span>
+          Would you like to add the Ongoing Retainer? <span style={{ color: "#7c3aed" }}>*</span>
         </p>
         <div className="space-y-2.5">
           {RETAINER_OPTIONS.map((opt) => {

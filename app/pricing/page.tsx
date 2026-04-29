@@ -120,7 +120,7 @@ export default function PricingPage() {
               Choose Your Package
             </h2>
             <p className="text-base anim-fade-up" style={{ color: "#6b7280", animationDelay: "100ms" }}>
-              All packages are once-off payments. Hosting available from R500/month.
+              All packages are once-off payments. Hosting from R200/month.
             </p>
           </div>
 
@@ -220,52 +220,83 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Monthly Retainer */}
+      {/* Monthly Services */}
       <section className="section" style={{ backgroundColor: "#1e1b4b" }}>
         <div className="container-narrow">
-          <div
-            className="rounded-2xl p-8 md:p-10 anim-fade-up"
-            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
-          >
-            <div className="flex flex-col md:flex-row md:items-center gap-8">
-              <div className="flex-1">
-                <p className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: "#a78bfa" }}>
-                  Ongoing Support
+          <div className="text-center mb-10">
+            <p className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: "#a78bfa" }}>
+              Ongoing Support
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+              Monthly Services
+            </h2>
+            <p className="text-base" style={{ color: "#94a3b8" }}>
+              Keep your website running, maintained, and up to date every month.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            {/* Hosting & Maintenance */}
+            <div
+              className="rounded-2xl p-7 flex flex-col anim-fade-up"
+              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-xs font-bold tracking-widest uppercase" style={{ color: "#94a3b8" }}>
+                  Hosting &amp; Maintenance
                 </p>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-                  Monthly Retainer — from R500/month
-                </h2>
-                <p className="text-base mb-6" style={{ color: "#94a3b8" }}>
-                  Keep your website maintained, updated, and running smoothly every month.
+                <span
+                  className="px-3 py-1 rounded-full text-xs font-bold"
+                  style={{ backgroundColor: "rgba(148,163,184,0.15)", color: "#94a3b8", border: "1px solid rgba(148,163,184,0.3)" }}
+                >
+                  Required
+                </span>
+              </div>
+              <div className="mb-1">
+                <span className="text-4xl font-extrabold text-white">R200</span>
+                <span className="text-sm ml-1" style={{ color: "#94a3b8" }}>/month</span>
+              </div>
+              <p className="text-xs font-semibold mb-4" style={{ color: "#94a3b8" }}>
+                Mandatory for all clients
+              </p>
+              <p className="text-sm flex-1" style={{ color: "#cbd5e1" }}>
+                Covers website hosting, uptime monitoring, and basic security updates. Required for all active websites.
+              </p>
+            </div>
+
+            {/* Ongoing Retainer */}
+            <div
+              className="rounded-2xl p-7 flex flex-col anim-fade-up"
+              style={{
+                background: "rgba(124,58,237,0.12)",
+                border: "1px solid rgba(167,139,250,0.35)",
+                animationDelay: "80ms",
+              }}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-xs font-bold tracking-widest uppercase" style={{ color: "#a78bfa" }}>
+                  Ongoing Retainer
                 </p>
-                <ul className="grid sm:grid-cols-2 gap-2.5">
-                  {[
-                    "Hosting management",
-                    "Content updates (up to 2/month)",
-                    "Security monitoring",
-                    "Priority support",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2.5 text-sm" style={{ color: "#cbd5e1" }}>
-                      <svg
-                        className="shrink-0 w-4 h-4"
-                        style={{ color: "#a78bfa" }}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <span
+                  className="px-3 py-1 rounded-full text-xs font-bold"
+                  style={{ backgroundColor: "rgba(124,58,237,0.25)", color: "#c4b5fd", border: "1px solid rgba(167,139,250,0.4)" }}
+                >
+                  Optional
+                </span>
               </div>
-              <div className="shrink-0">
-                <a href="/get-started?plan=Unsure&retainer=yes" className="btn-primary px-8 py-4 text-base">
-                  Add to my package →
-                </a>
+              <div className="mb-1">
+                <span className="text-4xl font-extrabold text-white">R300</span>
+                <span className="text-sm ml-1" style={{ color: "#94a3b8" }}>/month</span>
               </div>
+              <p className="text-xs font-semibold mb-4" style={{ color: "#a78bfa" }}>
+                Optional add-on
+              </p>
+              <p className="text-sm flex-1 mb-6" style={{ color: "#cbd5e1" }}>
+                Covers content updates, design changes, and priority support. Cancel anytime with 30 days notice.
+              </p>
+              <a href="/get-started?retainer=yes" className="btn-primary text-center text-sm py-3">
+                Add to my package →
+              </a>
             </div>
           </div>
         </div>
