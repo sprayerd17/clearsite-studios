@@ -44,6 +44,10 @@ export default function Navbar() {
         .nav-link.active::after {
           width: 100%;
         }
+        .ig-link { color: #1a1a1a; }
+        .ig-link:hover { color: #7c3aed; }
+        .ig-link .ig-icon { color: #7c3aed; }
+        .ig-link:hover .ig-icon { color: #7c3aed; }
       `}</style>
 
       <header className="border-b border-[var(--color-border)] bg-[#fafafa]/90 backdrop-blur-md sticky top-0 z-50">
@@ -69,9 +73,31 @@ export default function Navbar() {
             })}
           </nav>
 
-          <Link href="/pricing" className="btn-primary text-sm hidden md:inline-flex">
-            Get Started
-          </Link>
+          <a
+            href="https://instagram.com/clearsitestudios"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ig-link hidden md:inline-flex items-center gap-2 text-sm font-medium transition-colors duration-150"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              className="ig-icon"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+            @clearsitestudios
+          </a>
 
           {/* Hamburger — mobile only */}
           <button
