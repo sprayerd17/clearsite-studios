@@ -9,6 +9,8 @@ const projects = [
     description: "A warm and inviting online store for a South African handmade crochet business, designed to showcase products and connect with customers.",
     industry: "Crafts & Handmade Goods",
     accentColor: "#e879a0",
+    screenshot: "/portfolio/hookedbybella.png",
+    screenshotAlt: "Hooked by Bella website screenshot",
     image: "/portfolio/hooked-by-bella.webp",
     imageAlt: "Hooked by Bella logo — handmade crochet business",
     imageBg: "#0d3b2e",
@@ -21,6 +23,8 @@ const projects = [
     description: "A clean service site for a plumbing company in Johannesburg.",
     industry: "Trades & Services",
     accentColor: "#3b82f6",
+    screenshot: undefined,
+    screenshotAlt: undefined,
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
     imageAlt: "Plumber working on pipes with professional tools",
     imageBg: undefined,
@@ -33,6 +37,8 @@ const projects = [
     description: "A professional law firm website built for trust and clarity.",
     industry: "Professional Services",
     accentColor: "#7c3aed",
+    screenshot: undefined,
+    screenshotAlt: undefined,
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800",
     imageAlt: "Professional legal office with books and a desk",
     imageBg: undefined,
@@ -84,22 +90,50 @@ export default function PortfolioPage() {
                 className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col anim-fade-up"
                 style={{ animationDelay: `${i * 120}ms` }}
               >
-                {/* Project image */}
-                <div
-                  className="relative w-full aspect-video"
-                  style={project.imageBg ? { backgroundColor: project.imageBg } : undefined}
-                >
-                  <Image
-                    src={project.image}
-                    alt={project.imageAlt}
-                    fill
-                    className={project.imageContain ? "object-contain p-6" : "object-cover"}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
+                {/* Screenshot preview — shown when available */}
+                {project.screenshot ? (
+                  <div className="relative w-full aspect-video overflow-hidden">
+                    <Image
+                      src={project.screenshot}
+                      alt={project.screenshotAlt ?? ""}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                ) : (
+                  /* Fallback: original cover/contain image for cards without a screenshot */
+                  <div
+                    className="relative w-full aspect-video"
+                    style={project.imageBg ? { backgroundColor: project.imageBg } : undefined}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.imageAlt}
+                      fill
+                      className={project.imageContain ? "object-contain p-6" : "object-cover"}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                )}
 
                 {/* Card content */}
                 <div className="p-6 flex flex-col flex-1">
+                  {/* Logo — displayed below the screenshot when one exists */}
+                  {project.screenshot && (
+                    <div
+                      className="relative w-full h-20 rounded-xl overflow-hidden mb-4 shadow-sm"
+                      style={{ backgroundColor: project.imageBg ?? "#f1f5f9" }}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.imageAlt}
+                        fill
+                        className="object-contain p-3"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
+                  )}
                   <div className="flex items-center justify-between mb-3">
                     <span
                       className="text-xs font-bold uppercase tracking-widest"
