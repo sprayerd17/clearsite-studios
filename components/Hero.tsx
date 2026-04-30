@@ -1,71 +1,91 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col md:flex-row md:h-screen">
-      {/* LEFT SIDE — white background */}
-      <div className="w-full md:flex-1 bg-white flex items-center px-8 py-16 md:px-20 md:py-0">
-        <div className="max-w-lg">
-          <span className="badge mb-8 anim-scale-in">
+    <>
+      <style>{`
+        @keyframes hero-bg-shift {
+          0%, 100% { background-color: #1e1b4b; }
+          50%       { background-color: #2d1b69; }
+        }
+        .hero-animated-bg {
+          animation: hero-bg-shift 6s ease-in-out infinite;
+        }
+      `}</style>
+
+      <section className="hero-animated-bg relative overflow-hidden text-white">
+        {/* Glow blobs */}
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-violet-500/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-fuchsia-500/15 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Dot texture overlay — 7% opacity for subtle depth */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        />
+
+        <div className="relative section container-narrow text-center">
+          {/* Pill badge */}
+          <span className="badge mb-8 px-4 py-1.5 text-xs anim-scale-in">
             ✦ Web Design &amp; Development Studio
           </span>
 
+          {/* Headline */}
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 anim-fade-up"
-            style={{ color: "#1a1a1a", animationDelay: "100ms" }}
+            className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6 anim-fade-up"
+            style={{ animationDelay: "100ms" }}
           >
-            See your brand new website before spending a single cent.
+            <span className="text-white">See your brand new website </span>
+            <span style={{ color: "#a78bfa" }}>
+              before spending a single cent.
+            </span>
           </h1>
 
+          {/* Subheadline */}
           <p
-            className="text-lg leading-relaxed mb-8 anim-fade-up"
-            style={{ color: "#71717a", animationDelay: "200ms" }}
+            className="text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed anim-fade-up"
+            style={{ animationDelay: "200ms" }}
           >
-            We design a fully custom mockup for free — built to your exact vision. You decide if you want to go further. Zero pressure, zero obligation.
+            We design a fully custom mockup for free — built to your exact
+            vision. You decide if you want to go further. Zero pressure, zero
+            obligation.
           </p>
 
+          {/* CTAs */}
           <div
-            className="flex flex-col sm:flex-row gap-4 mb-6 anim-fade-up"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center anim-fade-up"
             style={{ animationDelay: "300ms" }}
           >
-            <Link href="/get-started" className="btn-primary text-base px-8 py-4">
+            <Link href="/get-started" className="btn-primary text-base px-9 py-4">
               Get My Free Mockup →
             </Link>
-            <Link href="/portfolio" className="btn-outline text-base px-8 py-4">
-              View Our Work
+            <Link
+              href="/portfolio"
+              className="text-sm font-medium text-slate-400 hover:text-white transition-colors underline underline-offset-4"
+            >
+              View Our Work →
             </Link>
           </div>
 
-          <p
-            className="text-sm anim-fade-up"
-            style={{ color: "#a1a1aa", animationDelay: "400ms" }}
+          {/* Trust badge */}
+          <div
+            className="mt-8 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium anim-fade-up"
+            style={{
+              backgroundColor: "rgba(124,58,237,0.15)",
+              color: "#c4b5fd",
+              border: "1px solid rgba(124,58,237,0.3)",
+              animationDelay: "400ms",
+            }}
           >
-            ✦ 100% custom design — no templates, no shortcuts
-          </p>
+            <span>✦</span>
+            <span>100% custom design — no templates, no shortcuts</span>
+          </div>
         </div>
-      </div>
-
-      {/* RIGHT SIDE — dark navy with image */}
-      <div
-        className="relative w-full h-[300px] md:flex-1 md:h-auto overflow-hidden md:rounded-tr-3xl md:rounded-br-3xl"
-        style={{ backgroundColor: "#1e1b4b" }}
-      >
-        <Image
-          src="/portfolio/hooked-by-bella.jpg"
-          alt="Website design showcase"
-          fill
-          className="object-cover"
-          priority
-        />
-        {/* Subtle purple gradient overlay fading up from bottom */}
-        <div
-          className="absolute inset-x-0 bottom-0 h-1/3 pointer-events-none"
-          style={{
-            background: "linear-gradient(to top, rgba(30,27,75,0.85), transparent)",
-          }}
-        />
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
