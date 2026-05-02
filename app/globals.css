@@ -148,3 +148,37 @@
     animation: none;
   }
 }
+
+/* ─── Hero gradient animation (GPU-composited transform only) ────────────── */
+.hero-gradient-1 {
+  background:
+    radial-gradient(ellipse 80% 80% at 35% 55%, rgba(124,58,237,0.82) 0%, rgba(76,29,149,0.5) 45%, transparent 70%),
+    radial-gradient(ellipse 60% 60% at 75% 35%, rgba(76,29,149,0.72) 0%, transparent 65%);
+  filter: blur(50px);
+  animation: hero-drift-1 18s ease-in-out infinite alternate;
+}
+
+.hero-gradient-2 {
+  background:
+    radial-gradient(ellipse 70% 70% at 58% 72%, rgba(168,85,247,0.62) 0%, rgba(124,58,237,0.3) 50%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 12% 25%, rgba(45,27,105,0.55) 0%, transparent 65%);
+  filter: blur(50px);
+  animation: hero-drift-2 24s ease-in-out infinite alternate;
+}
+
+@keyframes hero-drift-1 {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(10%, 6%); }
+}
+
+@keyframes hero-drift-2 {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-8%, 10%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient-1,
+  .hero-gradient-2 {
+    animation: none;
+  }
+}
