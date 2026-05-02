@@ -4,16 +4,8 @@ export default function Hero() {
   return (
     <section
       className="relative overflow-hidden text-white"
-      style={{ backgroundColor: "#1e1b4b" }}
+      style={{ background: "linear-gradient(135deg, #1e1b4b 0%, #2d1b69 50%, #1e1b4b 100%)" }}
     >
-      <div className="hero-gradient-1 absolute inset-0 pointer-events-none" aria-hidden="true" />
-      <div className="hero-gradient-2 absolute inset-0 pointer-events-none" aria-hidden="true" />
-
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ backgroundColor: "rgba(10,6,30,0.20)" }}
-      />
-
       <div className="relative z-10 section container-narrow text-center">
         <span className="badge mb-8 px-4 py-1.5 text-xs anim-scale-in">
           ✦ Web Design &amp; Development Studio
