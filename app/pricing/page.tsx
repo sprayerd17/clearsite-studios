@@ -128,13 +128,10 @@ export default function PricingPage() {
             {packages.map((pkg, i) => (
               <div
                 key={pkg.name}
-                className={`relative rounded-2xl bg-white p-7 flex flex-col transition-all duration-200 hover:shadow-xl hover:-translate-y-1 anim-fade-up ${
-                  pkg.popular ? "shadow-lg" : "shadow-sm border"
-                }`}
+                className="relative rounded-2xl bg-white p-7 flex flex-col transition-all duration-200 hover:shadow-xl hover:-translate-y-1 anim-fade-up shadow-lg"
                 style={{
                   animationDelay: `${i * 80}ms`,
-                  borderColor: pkg.popular ? undefined : "#e4e4e7",
-                  border: pkg.popular ? "2px solid #7c3aed" : undefined,
+                  border: "2px solid #7c3aed",
                 }}
               >
                 {/* Sale badge */}
@@ -157,7 +154,7 @@ export default function PricingPage() {
                 <div className="mb-5">
                   <p
                     className="text-xs font-bold tracking-widest uppercase mb-2"
-                    style={{ color: pkg.popular ? "#7c3aed" : "#9ca3af" }}
+                    style={{ color: "#7c3aed" }}
                   >
                     {pkg.name}
                   </p>
@@ -198,7 +195,7 @@ export default function PricingPage() {
 
                 <a
                   href={`/get-started?plan=${pkg.planParam}`}
-                  className={pkg.popular ? "btn-primary text-center" : "btn-outline text-center"}
+                  className="btn-primary text-center"
                 >
                   Get started →
                 </a>
