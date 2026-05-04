@@ -42,7 +42,7 @@ const packages = [
     salePrice: "R3,849",
     note: "once-off",
     delivery: "14 days",
-    popular: true,
+    popular: false,
     features: [
       "Up to 10 pages",
       "Everything in Business",
