@@ -4,45 +4,45 @@ import Footer from "@/components/Footer";
 const sections = [
   {
     number: "01",
-    feature: "Up to 5 Pages",
-    title: "A complete online presence, not just a placeholder",
-    body: "Five pages means your customers can learn everything they need to know before picking up the phone — Home, About, Services, Gallery, and Contact. Each page serves a purpose and moves your visitor closer to becoming a paying customer. More pages means more opportunities for Google to find and rank your business.",
+    feature: "More Pages = More Google Real Estate",
+    title: "Every page is another chance to be found on Google",
+    body: "Google doesn't just rank websites — it ranks individual pages. A single page website gives Google one page to index. A 5 page website gives Google five. That means five times the opportunities to show up when potential customers search for what you offer. A dedicated Services page can rank for 'plumber in Cape Town'. An About page can rank for 'trusted electrician Durbanville'. Each page works independently to pull in traffic you would otherwise miss entirely with a single page site.",
   },
   {
     number: "02",
-    feature: "Contact Form + WhatsApp",
-    title: "Two ways to reach you — because customers have preferences",
-    body: "Some customers prefer filling in a form. Others want to WhatsApp immediately. By offering both you remove every barrier between a visitor and a conversation. A contact form also captures enquiries while you sleep — you wake up to leads in your inbox without lifting a finger.",
+    feature: "Credibility That Converts",
+    title: "Customers trust businesses that look established",
+    body: "A single page site gets you online. A multi-page site makes you look like a real, established business. When a potential customer lands on your site and sees dedicated pages for your services, your story, and your contact details — they stay longer, trust you more, and are far more likely to pick up the phone. First impressions are everything, and five pages gives you five chances to make one.",
   },
   {
     number: "03",
-    feature: "Google Maps Integration",
-    title: "Show customers exactly where you are",
-    body: "An embedded Google Map on your website does two things — it tells customers where to find you, and it signals to Google that you are a legitimate local business. This directly improves your visibility in local search results when people search for services near them. For any business with a physical location or service area this is not optional — it is essential.",
+    feature: "Contact Form + WhatsApp",
+    title: "Capture leads even while you sleep",
+    body: "The Starter package has a WhatsApp button — which is great for immediate contact. The Business package adds a contact form too. This means customers who aren't ready to chat right now can leave their details and you follow up at your convenience. You wake up to leads in your inbox without lifting a finger. Two contact options means no customer slips through the cracks.",
   },
   {
     number: "04",
-    feature: "Basic SEO Setup",
-    title: "Get found before your competitors",
-    body: "SEO is what determines whether your business shows up on page one or page five of Google. We set up your metadata, page titles, descriptions, and technical foundations correctly from the start. Most small business websites in South Africa have no SEO setup at all — this alone puts you ahead of the majority of your local competition.",
+    feature: "Google Maps Integration",
+    title: "Local searches are where small businesses win",
+    body: "When someone searches 'hair salon near me' or 'electrician Cape Town', Google prioritises businesses with a strong local presence. An embedded Google Map on your website signals to Google that you are a real, located business — which directly boosts your visibility in those high-intent local searches. These are the searches where customers are ready to buy. Being found here is worth more than any social media post.",
   },
   {
     number: "05",
     feature: "Social Media Links",
-    title: "Connect your online presence",
-    body: "Your website and social media accounts should work together. By linking your Instagram, Facebook, and WhatsApp from your website, visitors can follow you, see your latest work, and stay connected with your brand long after they leave your site. It also builds credibility — a business with an active social presence looks established and trustworthy.",
+    title: "Turn website visitors into long-term followers",
+    body: "Most visitors won't contact you on their first visit. But if they follow your Instagram or Facebook, they stay in your world — seeing your work, your updates, and your personality over time. By the time they need your service, you're the first name they think of. Social media links turn a one-time visit into an ongoing relationship.",
   },
   {
     number: "06",
     feature: "2 Rounds of Revisions",
-    title: "We get it right — together",
-    body: "Two rounds of revisions means you have two opportunities to review the design and request changes before anything goes live. We work collaboratively to make sure the final result truly represents your business. No rushing, no shortcuts.",
+    title: "More pages means more to perfect — and we give you the time to do it",
+    body: "With 5 pages there is naturally more to review and refine. Two rounds of revisions means you can go through the full site twice, requesting tweaks and adjustments until every page feels exactly right. We don't rush you — we get it right.",
   },
   {
     number: "07",
-    feature: "The Value Comparison",
-    title: "What does R2,449 actually mean?",
-    body: "The South African market average for a 5 page website is R6,254 — and agency pricing starts at R15,000+. At R2,449 you are getting a fully custom, professionally built, SEO-optimised, mobile-ready 5 page website at less than half the market rate. This launch special price is only available for our first 5 clients — once those spots are filled, the price returns to R3,499.",
+    feature: "The Real Question",
+    title: "Is R1,050 worth 5x the Google visibility?",
+    body: "The difference between the Starter and Business package is R1,050. For that R1,050 you get four additional pages, a contact form, Google Maps, social media integration, and five times the SEO surface area. If your website brings in even one additional customer because of those extra pages, it has already paid for the upgrade — and then some. For any business that relies on local customers finding them online, the Business package is not an upgrade. It is the smarter starting point.",
   },
 ];
 
@@ -74,22 +74,80 @@ export default function BusinessPackagePage() {
             className="text-4xl sm:text-5xl font-extrabold mb-5 leading-tight tracking-tight text-white anim-fade-up"
             style={{ animationDelay: "100ms" }}
           >
-            What you get with the Business package —{" "}
-            <span className="gradient-text">and why it&apos;s worth every cent</span>
+            Why the Business package is{" "}
+            <span className="gradient-text">worth the upgrade</span>
           </h1>
           <p
             className="text-lg max-w-2xl anim-fade-up"
             style={{ color: "#94a3b8", animationDelay: "200ms" }}
           >
-            At R2,449 once-off, the Business package gives growing businesses everything they need
-            to compete online professionally.
+            You have a single page site — or you&apos;re considering one. Here&apos;s why upgrading
+            to 5 pages could be the single best decision you make for your business online.
           </p>
         </div>
       </section>
 
-      {/* Sections */}
+      {/* Main content */}
       <main className="flex-1 section" style={{ backgroundColor: "#f4f4f5" }}>
         <div className="container-narrow">
+
+          {/* Comparison callout */}
+          <div
+            className="rounded-2xl overflow-hidden mb-8 anim-fade-up"
+            style={{ border: "2px solid #7c3aed", boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}
+          >
+            <div
+              className="px-6 py-3 text-xs font-bold tracking-widest uppercase text-center"
+              style={{ background: "linear-gradient(135deg, #7c3aed, #6d28d9)", color: "white" }}
+            >
+              Side by Side
+            </div>
+            <div className="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-[#e4e4e7] bg-white">
+              <div className="p-6">
+                <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: "#9ca3af" }}>
+                  Starter — R1,399
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    { label: "1 page" },
+                    { label: "1 Google entry point" },
+                    { label: "WhatsApp only" },
+                  ].map((item) => (
+                    <li key={item.label} className="flex items-center gap-2.5 text-sm" style={{ color: "#6b7280" }}>
+                      <span
+                        className="shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
+                        style={{ background: "#f3f4f6", color: "#9ca3af" }}
+                      >
+                        ·
+                      </span>
+                      {item.label}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="p-6" style={{ background: "rgba(124,58,237,0.04)" }}>
+                <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: "#7c3aed" }}>
+                  Business — R2,449
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    "5 pages",
+                    "5 Google entry points",
+                    "Form + WhatsApp + Maps",
+                  ].map((item) => (
+                    <li key={item} className="flex items-center gap-2.5 text-sm font-semibold" style={{ color: "#111827" }}>
+                      <svg className="shrink-0 w-4 h-4" style={{ color: "#7c3aed" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Section cards */}
           <div className="grid gap-5">
             {sections.map((section, i) => (
               <div
@@ -98,7 +156,7 @@ export default function BusinessPackagePage() {
                 style={{
                   border: "1px solid #e4e4e7",
                   boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
-                  animationDelay: `${i * 80}ms`,
+                  animationDelay: `${(i + 1) * 80}ms`,
                 }}
               >
                 <div className="flex items-center gap-3 mb-3">
@@ -131,24 +189,34 @@ export default function BusinessPackagePage() {
             ))}
           </div>
 
-          {/* CTA */}
+          {/* CTA block */}
           <div
             className="mt-12 rounded-2xl p-8 text-center anim-fade-up"
             style={{
               background: "linear-gradient(135deg, #1e1b4b, #2e1065)",
-              animationDelay: "600ms",
+              animationDelay: "720ms",
             }}
           >
             <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#a78bfa" }}>
               Launch Special — First 5 Clients Only
             </p>
             <p className="text-white text-lg font-semibold mb-6 max-w-xl mx-auto">
-              Ready to grow your business online? Claim this package before the launch price is gone.
+              Ready to give your business the online presence it deserves? Lock in the launch price before it&apos;s gone.
             </p>
             <a href="/get-started?plan=Business" className="btn-primary text-sm px-8 py-3.5">
-              Claim This Package →
+              Upgrade to Business →
             </a>
+            <p className="mt-4">
+              <a
+                href="/get-started?plan=Starter"
+                className="text-sm transition-colors duration-150"
+                style={{ color: "#94a3b8" }}
+              >
+                Start with Starter instead
+              </a>
+            </p>
           </div>
+
         </div>
       </main>
 
