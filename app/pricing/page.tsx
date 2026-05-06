@@ -1,7 +1,19 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const packages = [
+type Package = {
+  name: string;
+  planParam: string;
+  originalPrice: string;
+  salePrice: string;
+  note: string;
+  delivery: string;
+  popular: boolean;
+  learnMoreLink?: string;
+  features: string[];
+};
+
+const packages: Package[] = [
   {
     name: "STARTER",
     planParam: "Starter",
@@ -194,14 +206,14 @@ export default function PricingPage() {
                   ))}
                 </ul>
 
-                {"learnMoreLink" in pkg && pkg.learnMoreLink && (
+                {pkg.learnMoreLink && (
                   <p className="text-center mb-5">
                     <a
                       href={pkg.learnMoreLink}
                       className="text-xs hover:underline transition-colors duration-150"
                       style={{ color: "#9ca3af" }}
                     >
-                      Why this package?
+                      Why this package? →
                     </a>
                   </p>
                 )}
