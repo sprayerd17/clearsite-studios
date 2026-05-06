@@ -41,8 +41,8 @@ const sections = [
   {
     number: "07",
     feature: "The Real Question",
-    title: "Is R1,050 worth 5x the Google visibility?",
-    body: "The difference between the Starter and Business package is R1,050. For that R1,050 you get four additional pages, a contact form, Google Maps, social media integration, and five times the SEO surface area. If your website brings in even one additional customer because of those extra pages, it has already paid for the upgrade — and then some. For any business that relies on local customers finding them online, the Business package is not an upgrade. It is the smarter starting point.",
+    title: "Is R1,500 worth 5x the Google visibility?",
+    body: "The difference between the Starter and Business package is R1,500. For that R1,500 you get four additional pages, a contact form, Google Maps, social media integration, and five times the SEO surface area. If your website brings in even one additional customer because of those extra pages, it has already paid for the upgrade — and then some. For any business that relies on local customers finding them online, the Business package is not an upgrade. It is the smarter starting point.",
   },
 ];
 
@@ -67,7 +67,7 @@ export default function BusinessPackagePage() {
               className="badge mb-6 anim-scale-in"
               style={{ background: "rgba(255,255,255,0.1)", color: "white" }}
             >
-              Business Package — R2,449
+              Business Package — R3,499
             </span>
           </div>
           <h1
@@ -105,7 +105,7 @@ export default function BusinessPackagePage() {
             <div className="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-[#e4e4e7] bg-white">
               <div className="p-6">
                 <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: "#9ca3af" }}>
-                  Starter — R1,399
+                  Starter — R1,999
                 </p>
                 <ul className="space-y-3">
                   {[
@@ -127,7 +127,7 @@ export default function BusinessPackagePage() {
               </div>
               <div className="p-6" style={{ background: "rgba(124,58,237,0.04)" }}>
                 <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: "#7c3aed" }}>
-                  Business — R2,449
+                  Business — R3,499
                 </p>
                 <ul className="space-y-3">
                   {[
@@ -198,10 +198,10 @@ export default function BusinessPackagePage() {
             }}
           >
             <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#a78bfa" }}>
-              Launch Special — First 5 Clients Only
+              Business Package — R3,499 once-off
             </p>
             <p className="text-white text-lg font-semibold mb-6 max-w-xl mx-auto">
-              Ready to give your business the online presence it deserves? Lock in the launch price before it&apos;s gone.
+              Ready to give your business the online presence it deserves? Let&apos;s build something you&apos;re proud of.
             </p>
             <a href="/get-started?plan=Business" className="btn-primary text-sm px-8 py-3.5">
               Upgrade to Business →
