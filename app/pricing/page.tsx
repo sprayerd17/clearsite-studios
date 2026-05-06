@@ -10,6 +10,7 @@ const packages = [
     note: "once-off",
     delivery: "3 days",
     popular: false,
+    learnMoreLink: "/packages/starter",
     features: [
       "Single page website",
       "Mobile responsive",
@@ -175,7 +176,7 @@ export default function PricingPage() {
                   </p>
                 </div>
 
-                <ul className="space-y-2.5 flex-1 mb-7">
+                <ul className="space-y-2.5 flex-1 mb-5">
                   {pkg.features.map((feat) => (
                     <li key={feat} className="flex items-start gap-2.5 text-sm" style={{ color: "#374151" }}>
                       <svg
@@ -192,6 +193,18 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
+
+                {"learnMoreLink" in pkg && pkg.learnMoreLink && (
+                  <p className="text-center mb-5">
+                    <a
+                      href={pkg.learnMoreLink}
+                      className="text-xs hover:underline transition-colors duration-150"
+                      style={{ color: "#9ca3af" }}
+                    >
+                      Why this package?
+                    </a>
+                  </p>
+                )}
 
                 <a
                   href={`/get-started?plan=${pkg.planParam}`}
