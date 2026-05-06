@@ -35,8 +35,8 @@ const sections = [
   {
     number: "06",
     feature: "The Value Comparison",
-    title: "What does R1,399 actually mean?",
-    body: "The average South African web design agency charges R5,000+ for a single page website — and that is before revisions or mobile optimisation. At R1,399 you are getting a fully custom, professionally built, mobile-ready website at less than a third of the market rate. And because this is a launch special for our first 5 clients, this price will not be available again once those spots are filled.",
+    title: "What does R1,999 actually mean?",
+    body: "The average South African web design agency charges R5,000+ for a single page website — and that is before revisions or mobile optimisation. At R1,999 you are getting a fully custom, professionally built, mobile-ready website at less than half the market rate. That is professional web design at a price that makes sense for a small business that is just getting started.",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function StarterPackagePage() {
               className="badge mb-6 anim-scale-in"
               style={{ background: "rgba(255,255,255,0.1)", color: "white" }}
             >
-              Starter Package — R1,399
+              Starter Package — R1,999
             </span>
           </div>
           <h1
@@ -75,7 +75,7 @@ export default function StarterPackagePage() {
             className="text-lg max-w-2xl anim-fade-up"
             style={{ color: "#94a3b8", animationDelay: "200ms" }}
           >
-            At R1,399 once-off, the Starter package is the fastest way to get your business online
+            At R1,999 once-off, the Starter package is the fastest way to get your business online
             professionally. Here&apos;s exactly what that means for you.
           </p>
         </div>
