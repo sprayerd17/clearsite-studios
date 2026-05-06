@@ -52,10 +52,7 @@ export default function StarterPackagePage() {
         <div className="relative container-narrow">
           <a
             href="/pricing"
-            className="inline-flex items-center gap-1.5 text-sm mb-8 transition-colors duration-150"
-            style={{ color: "#94a3b8" }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#ffffff")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#94a3b8")}
+            className="inline-flex items-center gap-1.5 text-sm mb-8 transition-colors duration-150 text-slate-400 hover:text-white"
           >
             ← Back to Pricing
           </a>
