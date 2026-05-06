@@ -235,12 +235,60 @@ export default function PricingPage() {
               </a>
             </div>
 
-            {/* Professional and E-Commerce */}
-            {packages.slice(2).map((pkg, i) => (
+            {/* Professional card — hardcoded so the learn-more link is always present */}
+            <div
+              className="relative rounded-2xl bg-white p-7 flex flex-col transition-all duration-200 hover:shadow-xl hover:-translate-y-1 anim-fade-up shadow-lg"
+              style={{ animationDelay: "160ms", border: "2px solid #7c3aed" }}
+            >
+              <div
+                className="inline-flex self-start mb-4 px-3 py-1 rounded-full text-xs font-bold text-white"
+                style={{ background: "linear-gradient(135deg, #7c3aed, #6d28d9)" }}
+              >
+                🎉 Launch Special — 30% OFF
+              </div>
+              <div className="mb-5">
+                <p className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: "#7c3aed" }}>
+                  PROFESSIONAL
+                </p>
+                <div className="flex items-end gap-2 mb-1">
+                  <span className="text-lg line-through" style={{ color: "#9ca3af" }}>R5,499</span>
+                  <span className="text-4xl font-extrabold" style={{ color: "#7c3aed" }}>R3,849</span>
+                  <span className="text-sm mb-1.5" style={{ color: "#6b7280" }}>once-off</span>
+                </div>
+                <p className="text-xs font-semibold mb-1" style={{ color: "#7c3aed" }}>
+                  Only available for the first 5 clients
+                </p>
+                <p className="text-sm" style={{ color: "#6b7280" }}>
+                  Delivered in <span className="font-semibold" style={{ color: "#374151" }}>14 days</span>
+                </p>
+              </div>
+              <ul className="space-y-2.5 flex-1 mb-5">
+                {["Up to 10 pages", "Everything in Business", "Blog or news section", "Google Analytics setup", "Speed optimised", "3 rounds of revisions"].map((feat) => (
+                  <li key={feat} className="flex items-start gap-2.5 text-sm" style={{ color: "#374151" }}>
+                    <svg className="mt-0.5 shrink-0 w-4 h-4" style={{ color: "#7c3aed" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {feat}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="/packages/professional"
+                className="text-sm text-gray-400 hover:text-purple-600 transition-colors mt-2 block text-center mb-4"
+              >
+                Why this package? →
+              </a>
+              <a href="/get-started?plan=Professional" className="btn-primary text-center">
+                Get started →
+              </a>
+            </div>
+
+            {/* E-Commerce */}
+            {packages.slice(3).map((pkg, i) => (
               <div
                 key={pkg.name}
                 className="relative rounded-2xl bg-white p-7 flex flex-col transition-all duration-200 hover:shadow-xl hover:-translate-y-1 anim-fade-up shadow-lg"
-                style={{ animationDelay: `${(i + 2) * 80}ms`, border: "2px solid #7c3aed" }}
+                style={{ animationDelay: `${(i + 3) * 80}ms`, border: "2px solid #7c3aed" }}
               >
                 <div
                   className="inline-flex self-start mb-4 px-3 py-1 rounded-full text-xs font-bold text-white"
