@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "What to Prepare Before Building Your Website | Clearsite Studios",
+  description: "A simple checklist of what to have ready before your first conversation with a web designer. Save time and money with these preparation tips.",
+};
 
 export default function ArticlePage() {
   return (

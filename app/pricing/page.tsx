@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Website Pricing | Clearsite Studios",
+  description: "Transparent, affordable website pricing for South African small businesses. Starter from R1,999. Free mockup before you commit.",
+};
 
 type Package = {
   name: string;

@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Tips & Insights | Clearsite Studios Blog",
+  description: "Practical web design and business tips to help South African small businesses grow their online presence.",
+};
 
 const posts = [
   {

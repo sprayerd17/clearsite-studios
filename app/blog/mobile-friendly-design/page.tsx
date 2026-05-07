@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Why Mobile-Friendly Design Is No Longer Optional | Clearsite Studios",
+  description: "Over 60% of web traffic comes from phones. Here is what a poor mobile experience is costing your South African business right now.",
+};
 
 export default function ArticlePage() {
   return (

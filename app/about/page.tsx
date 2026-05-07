@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "About Clearsite Studios | South African Web Design Studio",
+  description: "Clearsite Studios is a solo web design studio based in Cape Town, South Africa. We build clean, affordable, professional websites for small businesses.",
+};
 
 export default function AboutPage() {
   return (

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Business Package Breakdown | Clearsite Studios",
+  description: "Why the Business package is the smartest upgrade from Starter. 5 pages, SEO, Google Maps and more for R3,499.",
+};
 
 const sections = [
   {

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Starter Package Breakdown | Clearsite Studios",
+  description: "Everything included in the Clearsite Studios Starter package and why it is worth R1,999 for your South African small business.",
+};
 
 const sections = [
   {

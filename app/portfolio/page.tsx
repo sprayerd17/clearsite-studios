@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Our Work | Clearsite Studios Portfolio",
+  description: "See real websites built for South African small businesses by Clearsite Studios. Custom designs, no templates, no shortcuts.",
+};
 
 const projects = [
   {

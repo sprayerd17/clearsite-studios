@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Clearsite Studios",
+  description: "Clearsite Studios privacy policy. How we collect, use and protect your information.",
+};
 
 const sections = [
   {

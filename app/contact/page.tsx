@@ -2,8 +2,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Contact | ClearSite Studios",
-  description: "Get in touch with ClearSite Studios for project enquiries, quotes, or a quick chat.",
+  title: "Contact Clearsite Studios | Get In Touch",
+  description: "Get in touch with Clearsite Studios. Email us or WhatsApp us directly. Based in Cape Town, serving small businesses across South Africa.",
 };
 
 export default function ContactPage() {
