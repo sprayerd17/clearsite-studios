@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.clearsitestudios.co.za/sitemap.xml

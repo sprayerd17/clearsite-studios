@@ -1,9 +1,14 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Contact Clearsite Studios | Get In Touch",
   description: "Get in touch with Clearsite Studios. Email us or WhatsApp us directly. Based in Cape Town, serving small businesses across South Africa.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/contact",
+  },
 };
 
 export default function ContactPage() {

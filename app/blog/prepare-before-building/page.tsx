@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "What to Prepare Before Building Your Website | Clearsite Studios",
   description: "A simple checklist of what to have ready before your first conversation with a web designer. Save time and money with these preparation tips.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/blog/prepare-before-building",
+  },
 };
 
 export default function ArticlePage() {

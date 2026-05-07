@@ -5,36 +5,42 @@ const projects = [
     title: "E-Commerce Store",
     description: "Product-first layouts built to drive sales and simplify checkout.",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop&auto=format&q=80",
+    alt: "Online store product grid with shopping cart interface on a modern website",
     tag: "Retail & Shopping",
   },
   {
     title: "Restaurant & Hospitality",
     description: "Warm, immersive designs that get customers through the door.",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&fit=crop&auto=format&q=80",
+    alt: "Elegantly plated dish on a restaurant table representing hospitality web design",
     tag: "Food & Drink",
   },
   {
     title: "Creative Portfolio",
     description: "Bold, visual-forward sites that let your work speak for itself.",
     image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop&auto=format&q=80",
+    alt: "Creative design portfolio mockup with bold typography and visual layout",
     tag: "Creatives & Artists",
   },
   {
     title: "Corporate & Professional",
     description: "Polished business sites that build trust from the first scroll.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop&auto=format&q=80",
+    alt: "Modern open-plan corporate office representing professional business website design",
     tag: "Business & Services",
   },
   {
     title: "Health & Wellness",
     description: "Clean, calming designs for clinics, coaches, and wellness brands.",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop&auto=format&q=80",
+    alt: "Bright yoga studio with people exercising representing health and wellness website design",
     tag: "Health & Lifestyle",
   },
   {
     title: "Blog & Editorial",
     description: "Readable, engaging layouts that keep your audience coming back.",
     image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=500&fit=crop&auto=format&q=80",
+    alt: "Person writing on a laptop at a desk with coffee cup representing blog and editorial website design",
     tag: "Content & Media",
   },
 ];
@@ -69,7 +75,7 @@ export default function Showcase() {
               <div className="relative overflow-hidden h-48">
                 <Image
                   src={project.image}
-                  alt={project.title}
+                  alt={project.alt}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"

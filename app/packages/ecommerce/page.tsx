@@ -5,6 +5,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "E-Commerce Package Breakdown | Clearsite Studios",
   description: "Why the E-Commerce package turns your website into a 24/7 revenue machine with a full online store and PayFast integration for R6,499.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/packages/ecommerce",
+  },
 };
 
 const sections = [

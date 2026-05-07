@@ -5,6 +5,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Starter Package Breakdown | Clearsite Studios",
   description: "Everything included in the Clearsite Studios Starter package and why it is worth R1,999 for your South African small business.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/packages/starter",
+  },
 };
 
 const sections = [

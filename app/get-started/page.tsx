@@ -5,9 +5,14 @@ import Footer from "@/components/Footer";
 
 const GetStartedForm = dynamic(() => import("@/components/GetStartedForm"));
 
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Get Started | Clearsite Studios",
   description: "Tell us about your business and we will create a free custom website mockup for you. No upfront cost, no obligation.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/get-started",
+  },
 };
 
 export default function GetStartedPage() {

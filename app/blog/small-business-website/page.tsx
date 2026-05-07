@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "5 Reasons Your Small Business Needs a Website in 2026 | Clearsite Studios",
   description: "Still relying on social media alone? Here is why a professional website is the smartest investment your South African business can make this year.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/blog/small-business-website",
+  },
 };
 
 export default function ArticlePage() {

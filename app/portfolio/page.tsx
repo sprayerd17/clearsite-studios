@@ -7,6 +7,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Our Work | Clearsite Studios Portfolio",
   description: "See real websites built for South African small businesses by Clearsite Studios. Custom designs, no templates, no shortcuts.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/portfolio",
+  },
 };
 
 const projects = [

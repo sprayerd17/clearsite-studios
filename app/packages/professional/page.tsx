@@ -5,6 +5,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Professional Package Breakdown | Clearsite Studios",
   description: "Why the Professional package doubles your Google visibility with 10 pages, a blog, and Google Analytics for R5,499.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/packages/professional",
+  },
 };
 
 const sections = [

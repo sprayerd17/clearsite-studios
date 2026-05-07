@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Thank You | Clearsite Studios",
   description: "Thanks for reaching out to Clearsite Studios. We will be in touch within 1 business day.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/thank-you",
+  },
 };
 
 export default function ThankYouPage() {

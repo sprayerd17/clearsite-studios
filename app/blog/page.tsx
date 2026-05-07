@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Tips & Insights | Clearsite Studios Blog",
   description: "Practical web design and business tips to help South African small businesses grow their online presence.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/blog",
+  },
 };
 
 const posts = [

@@ -5,6 +5,9 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Website Pricing | Clearsite Studios",
   description: "Transparent, affordable website pricing for South African small businesses. Starter from R1,999. Free mockup before you commit.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/pricing",
+  },
 };
 
 type Package = {

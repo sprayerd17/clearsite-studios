@@ -4,6 +4,9 @@ import Navbar from "@/components/Navbar";
 export const metadata: Metadata = {
   title: "Clearsite Studios | Affordable Web Design for South African Businesses",
   description: "See your brand new website before spending a cent. Custom web design for small businesses across South Africa. Free mockup, no obligation.",
+  alternates: {
+    canonical: "https://www.clearsitestudios.co.za/",
+  },
 };
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
