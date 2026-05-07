@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import dynamic from "next/dynamic";
 import "./globals.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -7,6 +8,13 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 const CookieBanner = dynamic(() => import("@/components/CookieBanner"));
 const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"));
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-plus-jakarta-sans",
+});
 
 export const metadata: Metadata = {
   title: "ClearSite Studios",
@@ -24,15 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        />
-      </head>
+    <html lang="en" className={plusJakartaSans.variable}>
       <body>
         {children}
         <CookieBanner />

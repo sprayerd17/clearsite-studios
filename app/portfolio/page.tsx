@@ -101,12 +101,14 @@ export default function PortfolioPage() {
               >
                 {/* Screenshot preview — shown when available */}
                 {project.screenshot ? (
-                  <div className="relative w-full aspect-video overflow-hidden">
+                  <div className="w-full aspect-video overflow-hidden">
                     <Image
                       src={project.screenshot}
                       alt={project.screenshotAlt ?? ""}
-                      fill
-                      className="object-cover object-top"
+                      width={800}
+                      height={450}
+                      loading="lazy"
+                      className="w-full h-full object-cover object-top"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
