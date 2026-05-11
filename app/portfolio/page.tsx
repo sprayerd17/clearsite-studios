@@ -130,21 +130,6 @@ export default function PortfolioPage() {
 
                 {/* Card content */}
                 <div className="p-6 flex flex-col flex-1">
-                  {/* Logo — displayed below the screenshot when one exists */}
-                  {project.screenshot && (
-                    <div
-                      className="relative w-full h-20 rounded-xl overflow-hidden mb-4 shadow-sm"
-                      style={{ backgroundColor: project.imageBg ?? "#f1f5f9" }}
-                    >
-                      <Image
-                        src={project.image}
-                        alt={project.imageAlt}
-                        fill
-                        className="object-contain p-3"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                    </div>
-                  )}
                   <div className="flex items-center justify-between mb-3">
                     <span
                       className="text-xs font-bold uppercase tracking-widest"
