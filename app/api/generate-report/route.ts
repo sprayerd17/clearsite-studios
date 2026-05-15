@@ -218,16 +218,28 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Generate report
-    const htmlReport = await generateReport(data);
+    // Return success immediately so the user sees the success screen right away
+    // Then process the report in the background
+    const response = NextResponse.json({ success: true });
 
-    // Send report to client and lead notification to ClearSite — run in parallel
-    await Promise.all([
-      sendReportToClient(data, htmlReport),
-      sendLeadNotification(data),
-    ]);
+    // Run report generation and emails after response is sent
+    // Using waitUntil pattern — fire and forget
+    const process = async () => {
+      try {
+        const htmlReport = await generateReport(data);
+        await Promise.all([
+          sendReportToClient(data, htmlReport),
+          sendLeadNotification(data),
+        ]);
+      } catch (err) {
+        console.error('Background report error:', err);
+      }
+    };
 
-    return NextResponse.json({ success: true });
+    // Start background processing without awaiting
+    process();
+
+    return response;
   } catch (err) {
     console.error('Report generation error:', err);
     return NextResponse.json({ error: 'Failed to generate report' }, { status: 500 });

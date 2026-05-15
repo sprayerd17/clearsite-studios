@@ -109,12 +109,12 @@ export default function ReportForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-3xl font-bold text-white mb-3">Report On Its Way!</h2>
+        <h2 className="text-3xl font-bold text-white mb-3">You&apos;re All Set!</h2>
         <p className="text-white/60 text-lg mb-2">
-          Your personalised Business Analysis Report is being generated right now.
+          Your personalised Business Analysis Report is being generated now.
         </p>
         <p className="text-white/40 text-sm mb-8">
-          Check your inbox at <span className="text-[#7B5EA7]">{formData.email}</span> — it should arrive within 2 minutes.
+          It will arrive at <span className="text-[#7B5EA7]">{formData.email}</span> within the next 2-3 minutes. Check your spam folder if you don&apos;t see it.
         </p>
         <div className="bg-[#7B5EA7]/10 border border-[#7B5EA7]/30 rounded-2xl p-6 mb-6 text-left">
           <p className="text-white font-semibold mb-2">While you wait — take the next step:</p>
