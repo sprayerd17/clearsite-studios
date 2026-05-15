@@ -14,7 +14,7 @@ export default function AnnouncementBar() {
 
   useEffect(() => {
     if (suppress) return;
-    if (localStorage.getItem(STORAGE_KEY)) return;
+    if (sessionStorage.getItem(STORAGE_KEY)) return;
     setVisible(true);
   }, [suppress]);
 
@@ -32,7 +32,7 @@ export default function AnnouncementBar() {
   function dismiss(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
-    localStorage.setItem(STORAGE_KEY, "1");
+    sessionStorage.setItem(STORAGE_KEY, "1");
     setVisible(false);
   }
 

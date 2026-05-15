@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const STORAGE_KEY = "report_popup_shown";
-const DELAY_MS = 15000;
+const DELAY_MS = 3000;
 
 export default function ReportPopup() {
   const pathname = usePathname();
