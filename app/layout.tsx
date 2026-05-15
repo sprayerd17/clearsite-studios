@@ -9,6 +9,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 const CookieBanner = dynamic(() => import("@/components/CookieBanner"));
 const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"));
 const ReportPopup = dynamic(() => import("@/components/ReportPopup"));
+const AnnouncementBar = dynamic(() => import("@/components/AnnouncementBar"));
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({
     <html lang="en" className={plusJakartaSans.variable}>
       <body>
         {children}
+        <AnnouncementBar />
         <ReportPopup />
         <CookieBanner />
         <GoogleAnalytics />

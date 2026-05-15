@@ -50,7 +50,7 @@ export default function Navbar() {
         .ig-link:hover .ig-icon { color: #7c3aed; }
       `}</style>
 
-      <header className="border-b border-[var(--color-border)] bg-[#fafafa]/90 backdrop-blur-md sticky top-0 z-50">
+      <header className="sticky-nav border-b border-[var(--color-border)] bg-[#fafafa]/90 backdrop-blur-md sticky top-0 z-50">
         <div className="container-narrow flex items-center justify-between h-16">
           <Link href="/" className="hover:opacity-80 transition-opacity">
             <Logo />
