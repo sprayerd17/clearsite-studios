@@ -8,6 +8,7 @@
 import { useEffect } from "react";
 
 const GA_MEASUREMENT_ID = "G-VWN7ZZQMN7";
+const GADS_ID = "AW-18158357587";
 
 export default function GoogleAnalytics() {
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function GoogleAnalytics() {
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', '${GA_MEASUREMENT_ID}');
+      gtag('config', '${GADS_ID}');
     `;
     document.head.appendChild(script2);
   }, []);
