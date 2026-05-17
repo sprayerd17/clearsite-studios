@@ -61,10 +61,16 @@ export default function Services() {
               key={s.title}
               className={`relative rounded-2xl p-8 flex flex-col glass-card-hover anim-fade-up ${
                 s.highlight
-                  ? "bg-[#1e1b4b] text-white glass-card-dark"
+                  ? "bg-[#1e1b4b] text-white"
                   : "glass-card-light"
               }`}
-              style={{ animationDelay: `${i * 120}ms` }}
+              style={{
+                animationDelay: `${i * 120}ms`,
+                ...(s.highlight && {
+                  border: "1px solid rgba(124,58,237,0.35)",
+                  boxShadow: "0 2px 24px rgba(124,58,237,0.12)",
+                }),
+              }}
             >
               {s.highlight && (
                 <span className="absolute top-5 right-5 text-xs font-bold px-3 py-1 rounded-full" style={{ background: "rgba(99,102,241,0.3)", color: "#a5b4fc" }}>
