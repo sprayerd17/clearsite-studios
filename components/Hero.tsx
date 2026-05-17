@@ -6,23 +6,45 @@ export default function Hero() {
       className="relative overflow-hidden text-white"
       style={{ background: "linear-gradient(135deg, #1e1b4b 0%, #2d1b69 50%, #1e1b4b 100%)" }}
     >
-      <div className="relative z-10 section container-narrow text-center">
-        <span className="badge mb-8 px-4 py-1.5 text-xs anim-scale-in">
+      {/* Radial glow behind content */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "45%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "900px",
+          height: "700px",
+          background: "radial-gradient(ellipse at center, rgba(124,58,237,0.11) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      <div className="relative z-10 py-24 md:py-32 lg:py-40 container-narrow text-center">
+        <span className="hero-badge mb-8 anim-scale-in">
           ✦ Web Design &amp; Development Studio
         </span>
 
         <h1
-          className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6 anim-fade-up"
+          className="text-6xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-tight mb-6 anim-fade-up"
           style={{ animationDelay: "100ms" }}
         >
           <span className="text-white">See your brand new website </span>
-          <span style={{ color: "#c4b5fd" }}>
+          <span
+            style={{
+              background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
             before spending a single cent.
           </span>
         </h1>
 
         <p
-          className="text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed anim-fade-up"
+          className="text-xl text-slate-300 max-w-2xl mx-auto mb-12 leading-loose anim-fade-up"
           style={{ animationDelay: "200ms" }}
         >
           We design a fully custom mockup for free — built to your exact vision.
@@ -33,12 +55,12 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center anim-fade-up"
           style={{ animationDelay: "300ms" }}
         >
-          <Link href="/get-started" className="btn-primary text-base px-9 py-4">
+          <Link href="/get-started" className="btn-primary hero-btn-primary text-base px-9 py-4">
             Get My Free Mockup →
           </Link>
           <Link
             href="/portfolio"
-            className="text-sm font-medium text-slate-300 hover:text-white transition-colors underline underline-offset-4"
+            className="hero-btn-secondary text-sm font-medium text-slate-300 hover:text-white underline underline-offset-4"
           >
             View Our Work →
           </Link>
