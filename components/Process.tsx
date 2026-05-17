@@ -82,19 +82,21 @@ export default function Process() {
 
                 {/* ── Right column: title + description ───────────────── */}
                 {/* pb-10 on non-last steps creates the gap the connector fills */}
-                <div className={isLast ? "pt-[18px]" : "pt-[18px] pb-10"}>
-                  <h3
-                    className="text-lg font-bold mb-2"
-                    style={{ color: "#111827" }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "#6b7280" }}
-                  >
-                    {step.description}
-                  </p>
+                <div className={`min-w-0 flex-1 ${isLast ? "" : "pb-10"}`}>
+                  <div className="glass-card-light glass-card-hover rounded-2xl px-5 pb-5 pt-[18px]">
+                    <h3
+                      className="text-lg font-bold mb-2"
+                      style={{ color: "#111827" }}
+                    >
+                      {step.title}
+                    </h3>
+                    <p
+                      className="text-sm leading-relaxed"
+                      style={{ color: "#6b7280" }}
+                    >
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             );

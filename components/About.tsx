@@ -33,8 +33,8 @@ export default function About() {
             ].map((item, i) => (
               <div
                 key={item.heading}
-                className="rounded-2xl p-5 border bg-[var(--color-surface)] hover:shadow-md transition-shadow duration-200 anim-fade-right"
-                style={{ borderColor: "var(--color-border)", animationDelay: `${i * 80}ms` }}
+                className="rounded-2xl p-6 glass-card-light glass-card-hover anim-fade-right"
+                style={{ animationDelay: `${i * 80}ms` }}
               >
                 <div className="text-2xl mb-3">{item.icon}</div>
                 <h4 className="text-sm font-bold mb-1" style={{ color: "#111827" }}>{item.heading}</h4>

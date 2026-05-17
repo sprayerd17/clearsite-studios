@@ -29,6 +29,12 @@ export default function WhatsAppButton() {
         }
         .whatsapp-btn {
           animation: whatsapp-pulse 2.5s infinite;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .whatsapp-btn:hover {
+          animation: none;
+          transform: scale(1.08);
+          box-shadow: 0 0 28px rgba(124, 58, 237, 0.65), 0 4px 16px rgba(0, 0, 0, 0.2);
         }
       `}</style>
       <a

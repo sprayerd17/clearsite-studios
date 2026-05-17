@@ -59,10 +59,10 @@ export default function Services() {
           {services.map((s, i) => (
             <div
               key={s.title}
-              className={`relative rounded-2xl p-8 flex flex-col border transition-all duration-200 hover:-translate-y-1 hover:shadow-xl anim-fade-up ${
+              className={`relative rounded-2xl p-8 flex flex-col glass-card-hover anim-fade-up ${
                 s.highlight
-                  ? "bg-[#1e1b4b] text-white border-transparent"
-                  : "bg-white border-slate-200 shadow-sm"
+                  ? "bg-[#1e1b4b] text-white glass-card-dark"
+                  : "glass-card-light"
               }`}
               style={{ animationDelay: `${i * 120}ms` }}
             >

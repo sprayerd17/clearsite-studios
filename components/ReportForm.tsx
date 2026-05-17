@@ -221,7 +221,7 @@ export default function ReportForm() {
           <button
             onClick={() => setStep(2)}
             disabled={!formData.name || !formData.email || !formData.businessName || !formData.businessType || !formData.hasWebsite}
-            className="w-full py-3.5 rounded-xl bg-[#7B5EA7] text-white font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#6a4f96] transition-colors"
+            className="w-full py-3.5 rounded-xl bg-[#7B5EA7] text-white font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#6a4f96] transition-all duration-200 hover:shadow-[0_0_24px_rgba(124,58,237,0.5)] hover:scale-[1.01]"
           >
             Continue →
           </button>
@@ -288,7 +288,7 @@ export default function ReportForm() {
             <button
               onClick={() => setStep(3)}
               disabled={formData.challenges.length === 0}
-              className="flex-1 py-3.5 rounded-xl bg-[#7B5EA7] text-white font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#6a4f96] transition-colors"
+              className="flex-1 py-3.5 rounded-xl bg-[#7B5EA7] text-white font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#6a4f96] transition-all duration-200 hover:shadow-[0_0_24px_rgba(124,58,237,0.5)] hover:scale-[1.01]"
             >
               Continue →
             </button>
@@ -343,7 +343,7 @@ export default function ReportForm() {
             <button
               onClick={handleSubmit}
               disabled={loading || !formData.biggestGoal || !formData.monthlyRevenue}
-              className="flex-1 py-3.5 rounded-xl bg-[#7B5EA7] text-white font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#6a4f96] transition-colors flex items-center justify-center gap-2"
+              className="flex-1 py-3.5 rounded-xl bg-[#7B5EA7] text-white font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#6a4f96] transition-all duration-200 hover:shadow-[0_0_24px_rgba(124,58,237,0.5)] hover:scale-[1.01] flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>

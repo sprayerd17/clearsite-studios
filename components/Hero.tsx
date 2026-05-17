@@ -21,7 +21,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 py-24 md:py-32 lg:py-40 container-narrow text-center">
+      <div className="relative z-10 pt-12 pb-20 md:pt-16 md:pb-28 lg:pt-20 lg:pb-32 container-narrow text-center">
         <span className="hero-badge mb-8 anim-scale-in">
           ✦ Web Design &amp; Development Studio
         </span>

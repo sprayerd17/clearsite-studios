@@ -22,10 +22,15 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <div className="section-divider" />
         <Services />
+        <div className="section-divider" />
         <Process />
+        <div className="section-divider" />
         <About />
+        <div className="section-divider" />
         <Contact />
+        <div className="section-divider" />
         <FAQ />
       </main>
       <Footer />

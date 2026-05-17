@@ -57,18 +57,18 @@ export default function FAQ() {
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto divide-y divide-slate-200 border-y border-slate-200">
+        <div className="max-w-2xl mx-auto space-y-3">
           {faqs.map((faq, i) => {
             const isOpen = open === i;
             return (
               <div
                 key={i}
-                className="anim-fade-up"
+                className="glass-card-light glass-card-hover rounded-2xl anim-fade-up"
                 style={{ animationDelay: `${i * 80}ms` }}
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 py-5 text-left transition-colors"
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left transition-colors"
                   aria-expanded={isOpen}
                 >
                   <span
@@ -88,7 +88,7 @@ export default function FAQ() {
                   </span>
                 </button>
                 {isOpen && (
-                  <p className="pb-5 text-sm leading-relaxed" style={{ color: "#6b7280" }}>
+                  <p className="px-6 pb-5 text-sm leading-relaxed" style={{ color: "#6b7280" }}>
                     {faq.answer}
                   </p>
                 )}

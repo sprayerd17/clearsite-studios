@@ -47,6 +47,7 @@
   .btn-primary:hover {
     background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent));
     color: white;
+    box-shadow: 0 0 24px rgba(124, 58, 237, 0.35), 0 8px 24px rgba(0, 0, 0, 0.15);
   }
 
   .btn-outline {
@@ -68,7 +69,7 @@
   }
 
   .section {
-    @apply py-20 md:py-28;
+    @apply py-24 md:py-32;
   }
 
   .container-narrow {
@@ -118,6 +119,46 @@
 }
 .hero-btn-secondary:hover {
   transform: scale(1.02);
+}
+
+/* ─── Glass card styles ─────────────────────────────────────────────────── */
+/* Lighter frosted glass — for use on dark section backgrounds */
+.glass-card-dark {
+  background: rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(124, 58, 237, 0.22) !important;
+}
+
+/* Slightly tinted frosted glass — for use on light section backgrounds */
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  box-shadow: 0 2px 16px rgba(124, 58, 237, 0.06);
+}
+
+/* Hover lift — applied to every card type */
+.glass-card-hover {
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.2);
+}
+
+/* ─── Section dividers ──────────────────────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(124, 58, 237, 0.22) 25%,
+    rgba(168, 85, 247, 0.28) 50%,
+    rgba(124, 58, 237, 0.22) 75%,
+    transparent 100%
+  );
 }
 
 /* ─── Scroll-triggered entrance animations ────────────────────────────── */
