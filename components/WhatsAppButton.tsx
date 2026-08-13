@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { whatsappLink } from "@/lib/sale";
 
 export default function WhatsAppButton() {
   const [bottom, setBottom] = useState(24);
@@ -38,10 +39,10 @@ export default function WhatsAppButton() {
         }
       `}</style>
       <a
-        href="https://wa.me/27603979279"
+        href={whatsappLink()}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat with us on WhatsApp"
+        aria-label="Chat with Divan on WhatsApp"
         style={{
           position: "fixed",
           bottom: `${bottom}px`,

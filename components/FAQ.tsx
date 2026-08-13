@@ -1,37 +1,38 @@
 "use client";
 
 import { useState } from "react";
+import { PAYMENT_TERMS, SUPPORT_WINDOW } from "@/lib/sale";
 
 const faqs = [
   {
-    question: "How long does it take to build a website?",
+    question: "What happens to my site after ClearSite closes?",
     answer:
-      "Most projects are completed within a couple of days depending on the size and complexity. I'll give you a clear timeline before we start.",
+      "Nothing. Your site keeps running exactly as it is. It is deployed to a hosting account in your name, not mine, so it does not depend on ClearSite Studios still existing. When I close the studio, nothing switches off and nothing needs to be moved.",
   },
   {
-    question: "Do I need to provide my own content and photos?",
+    question: "Who hosts it, and what does hosting cost me?",
     answer:
-      "You provide the basic info about your business — I'll help shape it into clean, professional copy. For photos, I recommend using your own but I can source free stock images if needed.",
+      "Your site is deployed on a free hosting tier under an account in your own name, and I hand you the credentials on completion. That is R0 per month. There is no hosting fee, no maintenance fee, and no invoice from me ever again. The only separate cost is a custom domain if you want one, which you pay directly to the registrar — I do not mark it up or hold it on your behalf.",
   },
   {
-    question: "What if I need changes after the website launches?",
+    question: "Do I own the site and the code?",
     answer:
-      "Minor changes are included for 2 weeks after launch. For ongoing updates, you can sign up for one of our monthly maintenance plans.",
+      "Yes, outright. Once the build is paid for, the site, the code and the hosting account are all yours. There is no licence, no subscription and no lock-in. If you ever want another developer to take it over, they can — everything they need is already in your hands.",
   },
   {
-    question: "Will my website work on mobile phones?",
+    question: "What if something breaks later?",
     answer:
-      "Absolutely. Every website I build is fully mobile responsive and tested across different screen sizes.",
+      `Straight answer: I am not offering ongoing support once the studio closes, so you should not buy on the assumption that I will be around. Two things make that manageable. A static site on a free tier has very little that can break on its own — there is no server to fall over and no database to corrupt. And because you own the code and the hosting account outright, any developer can pick it up without needing anything from me. I will answer handover questions during the build and for ${SUPPORT_WINDOW} after launch.`,
   },
   {
-    question: "Do I have to pay anything upfront?",
+    question: "Why is the price so low?",
     answer:
-      "No — we start with a free visual mockup so you can see exactly how your website will look before committing to anything. If you love it and want to move forward, we ask for a deposit to begin the build, with the remainder due once your site is live and hosting begins. No mockup cost, no surprises.",
+      "Because I am closing, not because the work is different. I am moving on to build Mathly, my maths education platform, and I would rather finish a few more sites properly than leave the remaining packages unsold. You are getting the same build I have been charging full price for. There is also no monthly fee attached any more, so the number you see is genuinely the whole cost.",
   },
   {
-    question: "What do I need to get started?",
+    question: "How long does a build take, and how do I pay?",
     answer:
-      "Just fill in the quote request form and I'll get back to you within 1 business day. No commitment required.",
+      `Build times depend on the package: 3 days for Starter, 7 for Business, 14 for Professional and 21 for E-Commerce, counted from when you have sent me your content. Payment is a 50% deposit to secure your spot and start the build, with the balance due once the site is live and handed over to you. ${PAYMENT_TERMS}`,
   },
 ];
 
@@ -44,16 +45,17 @@ export default function FAQ() {
         <div className="text-center mb-12">
           <span className="badge mb-4 anim-scale-in">FAQ</span>
           <h2
-            className="text-4xl font-extrabold mb-4 anim-fade-up"
+            className="text-3xl sm:text-4xl font-extrabold mb-4 anim-fade-up"
             style={{ color: "#111827", animationDelay: "100ms" }}
           >
-            Common questions
+            The questions you should be asking
           </h2>
           <p
             className="max-w-xl mx-auto anim-fade-up"
             style={{ color: "#6b7280", animationDelay: "180ms" }}
           >
-            Everything you need to know before getting started.
+            Buying from a business that is closing is a fair thing to be careful about. Here is
+            exactly how it works.
           </p>
         </div>
 

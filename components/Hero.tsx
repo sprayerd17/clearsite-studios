@@ -21,16 +21,16 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 pt-12 pb-20 md:pt-16 md:pb-28 lg:pt-20 lg:pb-32 container-narrow text-center">
+      <div className="relative z-10 pt-12 pb-16 md:pt-16 md:pb-24 lg:pt-20 lg:pb-28 container-narrow text-center">
         <span className="hero-badge mb-8 anim-scale-in">
-          ✦ Web Design &amp; Development Studio
+          ✦ Closing Down Sale
         </span>
 
         <h1
-          className="text-6xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-tight mb-6 anim-fade-up"
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6 anim-fade-up"
           style={{ animationDelay: "100ms" }}
         >
-          <span className="text-white">See your brand new website </span>
+          <span className="text-white">ClearSite Studios is closing. </span>
           <span
             style={{
               background: "linear-gradient(135deg, #7c3aed, #a855f7)",
@@ -39,30 +39,40 @@ export default function Hero() {
               backgroundClip: "text",
             }}
           >
-            before spending a single cent.
+            The remaining packages are reduced.
           </span>
         </h1>
 
+        {/* Founder's note */}
         <p
-          className="text-xl text-slate-300 max-w-2xl mx-auto mb-12 leading-loose anim-fade-up"
+          className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-6 leading-relaxed anim-fade-up"
           style={{ animationDelay: "200ms" }}
         >
-          We design a fully custom mockup for free — built to your exact vision.
-          You decide if you want to go further. Zero pressure, zero obligation.
+          I&apos;m Divan, founder of ClearSite Studios. I&apos;m moving on to build Mathly, my maths
+          education platform, so I&apos;m closing the studio and clearing the remaining packages at a
+          reduced once-off price. The work is the same as it has always been — the price is lower
+          because I&apos;m wrapping up, not because the build is.
+        </p>
+
+        <p
+          className="text-sm text-slate-400 mb-10 anim-fade-up"
+          style={{ animationDelay: "260ms" }}
+        >
+          — Divan Bosman, founder
         </p>
 
         <div
           className="flex flex-col sm:flex-row gap-4 justify-center items-center anim-fade-up"
           style={{ animationDelay: "300ms" }}
         >
-          <Link href="/get-started" className="btn-primary hero-btn-primary text-base px-9 py-4">
-            Get My Free Mockup →
+          <Link href="/pricing" className="btn-primary hero-btn-primary text-base px-9 py-4">
+            See the reduced prices →
           </Link>
           <Link
             href="/portfolio"
             className="hero-btn-secondary text-sm font-medium text-slate-300 hover:text-white underline underline-offset-4"
           >
-            View Our Work →
+            See work I&apos;ve delivered →
           </Link>
         </div>
 
@@ -76,7 +86,7 @@ export default function Hero() {
           }}
         >
           <span>✦</span>
-          <span>100% custom design — no templates, no shortcuts</span>
+          <span>Once-off price — no monthly fee, no ongoing dependency on me</span>
         </div>
       </div>
     </section>

@@ -13,12 +13,6 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 const PLAN_OPTIONS = ["Starter", "Business", "Professional", "E-Commerce", "Unsure"];
 
-const RETAINER_OPTIONS = [
-  { value: "yes", label: "Yes — R300/month (content updates, design changes, priority support)" },
-  { value: "no", label: "No — just the R200/month hosting & maintenance fee" },
-  { value: "not-sure", label: "Not sure yet" },
-];
-
 const WEBSITE_TYPES = [
   "E-Commerce Store",
   "Restaurant or Café",
@@ -35,14 +29,11 @@ const WEBSITE_TYPES = [
 export default function GetStartedForm() {
   const searchParams = useSearchParams();
   const planParam = searchParams.get("plan") ?? "";
-  const retainerParam = searchParams.get("retainer") ?? "";
   const initialPlan = PLAN_OPTIONS.includes(planParam) ? planParam : "";
-  const initialRetainer = RETAINER_OPTIONS.some((o) => o.value === retainerParam) ? retainerParam : "";
 
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({
     plan: initialPlan,
-    retainer: initialRetainer,
     websiteType: "",
     fullName: "",
     businessName: "",
@@ -55,9 +46,8 @@ export default function GetStartedForm() {
     setForm((f) => ({
       ...f,
       plan: initialPlan || f.plan,
-      retainer: initialRetainer || f.retainer,
     }));
-  }, [initialPlan, initialRetainer]);
+  }, [initialPlan]);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -75,7 +65,6 @@ export default function GetStartedForm() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           "Plan Type": form.plan,
-          "Monthly Retainer": RETAINER_OPTIONS.find((o) => o.value === form.retainer)?.label ?? "Not answered",
           "Type of Website": form.websiteType,
           "Full Name": form.fullName,
           "Business Name": form.businessName,
@@ -132,41 +121,6 @@ export default function GetStartedForm() {
             <option key={p}>{p}</option>
           ))}
         </select>
-      </div>
-
-      {/* Monthly Retainer */}
-      <div>
-        <p className={labelClass} style={{ color: "#374151" }}>
-          Would you like to add the Ongoing Retainer? <span style={{ color: "#7c3aed" }}>*</span>
-        </p>
-        <div className="space-y-2.5">
-          {RETAINER_OPTIONS.map((opt) => {
-            const selected = form.retainer === opt.value;
-            return (
-              <label
-                key={opt.value}
-                className="flex items-center gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-all duration-150"
-                style={{
-                  borderColor: selected ? "#7c3aed" : "#e4e4e7",
-                  backgroundColor: selected ? "#ede9fe" : "#ffffff",
-                }}
-              >
-                <input
-                  type="radio"
-                  name="retainer"
-                  value={opt.value}
-                  required
-                  checked={selected}
-                  onChange={handleChange}
-                  className="shrink-0 accent-violet-700"
-                />
-                <span className="text-sm" style={{ color: selected ? "#5b21b6" : "#374151", fontWeight: selected ? 600 : 400 }}>
-                  {opt.label}
-                </span>
-              </label>
-            );
-          })}
-        </div>
       </div>
 
       {/* Type of Website */}

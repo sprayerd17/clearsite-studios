@@ -3,10 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { MATHLY_SCREENSHOT, MATHLY_URL } from "@/lib/sale";
 
 export const metadata: Metadata = {
   title: "Our Work | Clearsite Studios Portfolio",
-  description: "See real websites built for South African small businesses by Clearsite Studios. Custom designs, no templates, no shortcuts.",
+  description: "Live websites built for South African small businesses by Clearsite Studios, plus Mathly — the venture I'm closing the studio to build.",
   alternates: {
     canonical: "https://www.clearsitestudios.co.za/portfolio",
   },
@@ -25,7 +26,7 @@ const projects = [
     imageBg: "#0d3b2e",
     imageContain: true,
     concept: false,
-    url: "https://hookedbybella.co.za",
+    url:"https://hookedbybella.co.za",
   },
   {
     name: "Beaver Tree Felling & Gardening Services",
@@ -39,21 +40,7 @@ const projects = [
     imageBg: undefined,
     imageContain: false,
     concept: false,
-    url: "https://beavertreefellinggardeningservices.co.za",
-  },
-  {
-    name: "Langa Legal",
-    description: "A professional law firm website built for trust and clarity.",
-    industry: "Professional Services",
-    accentColor: "#7c3aed",
-    screenshot: undefined,
-    screenshotAlt: undefined,
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800",
-    imageAlt: "Professional legal office with books and a desk",
-    imageBg: undefined,
-    imageContain: false,
-    concept: true,
-    url: null,
+    url:"https://beavertreefellinggardeningservices.co.za",
   },
 ];
 
@@ -84,7 +71,7 @@ export default function PortfolioPage() {
             className="text-lg text-slate-400 max-w-2xl mx-auto anim-fade-up"
             style={{ animationDelay: "200ms" }}
           >
-            Real websites built for real South African businesses, alongside concept projects showing the range of what we can create.
+            Live websites built for real South African businesses — open them and see for yourself. Alongside them, Mathly: the venture I&apos;m closing the studio to build.
           </p>
         </div>
       </section>
@@ -165,16 +152,84 @@ export default function PortfolioPage() {
             ))}
           </div>
 
+          {/* What I'm building next — deliberately outside the client grid.
+              Mathly is the founder's own venture, not ClearSite work. */}
+          <div
+            className="mt-16 rounded-2xl overflow-hidden anim-fade-up"
+            style={{ border: "2px dashed #99f6e4", backgroundColor: "#f0fdfa" }}
+          >
+            {MATHLY_SCREENSHOT && (
+              <div className="w-full aspect-[21/9] overflow-hidden">
+                <Image
+                  src={MATHLY_SCREENSHOT}
+                  alt="Mathly maths education platform screenshot"
+                  width={1400}
+                  height={600}
+                  loading="lazy"
+                  className="w-full h-full object-cover object-top"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                />
+              </div>
+            )}
+
+            <div className="p-7 sm:p-10">
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <span
+                  className="text-xs font-bold uppercase tracking-widest"
+                  style={{ color: "#0d9488" }}
+                >
+                  What I&apos;m Building Next
+                </span>
+                <span
+                  className="text-xs font-bold px-2.5 py-0.5 rounded-full"
+                  style={{ backgroundColor: "#ccfbf1", color: "#0f766e" }}
+                >
+                  Not a ClearSite project
+                </span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl font-extrabold mb-4" style={{ color: "#111827" }}>
+                Mathly
+              </h2>
+
+              <div className="max-w-2xl space-y-4">
+                <p className="text-base leading-relaxed" style={{ color: "#4b5563" }}>
+                  Mathly is the maths education platform I&apos;m leaving ClearSite Studios to build
+                  full-time. It is the reason the studio is closing and the reason the remaining
+                  packages are going at a reduced price — I&apos;d rather finish a few more sites
+                  properly than leave them unsold.
+                </p>
+                <p className="text-base leading-relaxed" style={{ color: "#4b5563" }}>
+                  It&apos;s my own venture, not a ClearSite product, service or client project. I
+                  include it here for one reason: it&apos;s the clearest evidence of what I can
+                  build, so you can look at it and judge for yourself before hiring me.
+                </p>
+              </div>
+
+              {MATHLY_URL && (
+                <a
+                  href={MATHLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 mt-6 text-sm font-semibold transition-opacity hover:opacity-70"
+                  style={{ color: "#0d9488" }}
+                >
+                  Take a look at Mathly →
+                </a>
+              )}
+            </div>
+          </div>
+
           {/* Bottom note */}
           <div className="mt-16 text-center anim-fade-up" style={{ animationDelay: "100ms" }}>
             <p className="text-base" style={{ color: "#6b7280" }}>
-              Want to see your business here?{" "}
+              I&apos;m closing the studio and clearing the remaining packages.{" "}
               <Link
                 href="/pricing"
                 className="font-semibold underline underline-offset-4 hover:opacity-70 transition-opacity"
                 style={{ color: "#7c3aed" }}
               >
-                Request a free quote.
+                See the reduced prices.
               </Link>
             </p>
           </div>

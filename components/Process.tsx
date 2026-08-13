@@ -1,27 +1,27 @@
 const steps = [
   {
     number: "01",
-    title: "Tell us about your business",
+    title: "WhatsApp me",
     description:
-      "Fill in a quick form telling us about your business, your goals, and the look you're going for. No lengthy back-and-forth — just the basics.",
+      "Message me directly and tell me about your business, what you need, and which package looks right. You're talking to me, not a sales team.",
   },
   {
     number: "02",
-    title: "We design your free mockup",
+    title: "We agree the scope and price",
     description:
-      "We get to work on a fully custom mockup tailored to your brand — completely free. You'll see exactly what your website will look like before committing to anything.",
+      "I confirm what's included and what it costs before anything starts, then invoice you for the 50% deposit that secures your spot. The balance is invoiced on completion.",
   },
   {
     number: "03",
-    title: "Love it? We build it",
+    title: "I build it",
     description:
-      "If you're happy with the mockup and want to go live, we start the build. A 50% deposit secures your spot, with the balance due on completion.",
+      "Between 3 and 21 days depending on the package, counted from when you've sent me your content. You see it and get your revisions before it goes live.",
   },
   {
     number: "04",
-    title: "Launch & grow",
+    title: "Launch and handover",
     description:
-      "Once everything is tested, approved, and ready, your site goes live. Fast, professional, and built to make a great first impression from day one.",
+      "Your site goes live on a free hosting tier under an account in your name, and I hand you the credentials. It's yours outright — no monthly fee and nothing left depending on me.",
   },
 ];
 
@@ -33,16 +33,16 @@ export default function Process() {
         <div className="text-center mb-14">
           <span className="badge mb-4 anim-fade-up">How It Works</span>
           <h2
-            className="text-4xl font-extrabold mb-4 anim-fade-up"
+            className="text-3xl sm:text-4xl font-extrabold mb-4 anim-fade-up"
             style={{ color: "#111827", animationDelay: "100ms" }}
           >
-            Simple, straightforward, stress-free.
+            From message to handover.
           </h2>
           <p
             className="max-w-xl mx-auto anim-fade-up"
             style={{ color: "#6b7280", animationDelay: "180ms" }}
           >
-            Getting a great website doesn&apos;t have to be complicated. Here&apos;s how we make it easy.
+            Four steps, no forms, no drawn-out process. Here&apos;s exactly what happens.
           </p>
         </div>
 

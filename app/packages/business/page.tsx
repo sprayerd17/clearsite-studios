@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import PackageSaleBanner from "@/components/PackageSaleBanner";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -59,6 +60,7 @@ export default function BusinessPackagePage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
+      <PackageSaleBanner planParam="Business" />
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#1e1b4b] text-white py-20 md:py-28">

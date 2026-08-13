@@ -1,22 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-const STORAGE_KEY = "announcement_bar_dismissed";
+// Key is versioned so visitors who dismissed the previous bar still see this one.
+const STORAGE_KEY = "closing_sale_bar_dismissed";
 
 export default function AnnouncementBar() {
-  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
 
-  const suppress = pathname === "/business-report";
-
   useEffect(() => {
-    if (suppress) return;
     if (sessionStorage.getItem(STORAGE_KEY)) return;
     setVisible(true);
-  }, [suppress]);
+  }, []);
 
   useEffect(() => {
     if (visible) {
@@ -40,18 +36,18 @@ export default function AnnouncementBar() {
 
   return (
     <Link
-      href="/business-report"
+      href="/pricing"
       className="announcement-bar"
-      aria-label="Get your free Business Health Report"
+      aria-label="Closing down sale — see the reduced packages"
     >
       {/* Desktop text */}
       <span className="announcement-bar__text--desktop">
-        🎁 Free offer — Get your personalised Business Health Report and discover how to grow online →
+        Closing down — remaining packages reduced to a once-off price. →
       </span>
 
       {/* Mobile text */}
       <span className="announcement-bar__text--mobile">
-        🎁 Get your free Business Health Report →
+        Closing down — packages reduced →
       </span>
 
       {/* Dismiss button */}

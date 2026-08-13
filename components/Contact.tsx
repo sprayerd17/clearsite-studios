@@ -1,3 +1,5 @@
+import { PHONE_DISPLAY, TEL_LINK, whatsappLink } from "@/lib/sale";
+
 export default function Contact() {
   return (
     <section id="contact" className="section bg-[#1e1b4b] text-white relative overflow-hidden">
@@ -12,30 +14,45 @@ export default function Contact() {
             Get in Touch
           </span>
           <h2
-            className="text-4xl font-extrabold mb-4 text-white anim-fade-up"
+            className="text-3xl sm:text-4xl font-extrabold mb-4 text-white anim-fade-up"
             style={{ animationDelay: "100ms" }}
           >
-            Let&apos;s build something great.
+            Message me directly.
           </h2>
           <p
             className="text-slate-400 mb-8 leading-relaxed anim-fade-up"
             style={{ animationDelay: "200ms" }}
           >
-            Ready to get your business online or take your existing site to the next level?
-            Drop us an email and we&apos;ll get back to you promptly.
+            No forms and no waiting on email. Send me a WhatsApp and you&apos;ll be talking to me,
+            not an inbox.
           </p>
-          <a
-            href="mailto:clearsitestudios@outlook.com"
-            className="btn-primary text-base inline-block px-8 py-4 anim-fade-up"
+
+          <div
+            className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center anim-fade-up"
             style={{ animationDelay: "300ms" }}
           >
-            clearsitestudios@outlook.com
-          </a>
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-base px-8 py-4"
+            >
+              WhatsApp me →
+            </a>
+            <a
+              href={TEL_LINK}
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold text-sm border-2 transition-all duration-200 hover:-translate-y-0.5"
+              style={{ borderColor: "rgba(255,255,255,0.25)", color: "#e2e8f0" }}
+            >
+              Call {PHONE_DISPLAY}
+            </a>
+          </div>
+
           <p
             className="mt-5 text-xs text-slate-500 anim-fade-up"
             style={{ animationDelay: "380ms" }}
           >
-            We typically respond within one business day.
+            You&apos;re messaging Divan directly.
           </p>
         </div>
       </div>

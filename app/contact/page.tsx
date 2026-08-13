@@ -1,11 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PHONE_DISPLAY, TEL_LINK, whatsappLink } from "@/lib/sale";
 
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact Clearsite Studios | Get In Touch",
-  description: "Get in touch with Clearsite Studios. Email us or WhatsApp us directly. Based in Cape Town, serving small businesses across South Africa.",
+  description: "WhatsApp or call Divan directly about the ClearSite Studios closing-down sale. Based in South Africa.",
   alternates: {
     canonical: "https://www.clearsitestudios.co.za/contact",
   },
@@ -34,7 +35,7 @@ export default function ContactPage() {
             className="text-lg text-slate-400 max-w-2xl mx-auto anim-fade-up"
             style={{ animationDelay: "200ms" }}
           >
-            Have a question or ready to start your project? Reach out and I&apos;ll get back to you within 1 business day.
+            WhatsApp is the fastest way to reach me — you&apos;ll be messaging me directly, not an inbox.
           </p>
         </div>
       </section>
@@ -45,7 +46,7 @@ export default function ContactPage() {
           {/* Contact cards */}
           <div className="grid sm:grid-cols-2 gap-6 mb-10">
 
-            {/* Email card */}
+            {/* Call card */}
             <div
               className="rounded-2xl border bg-white p-8 shadow-sm flex flex-col gap-5 anim-fade-left"
               style={{ borderColor: "#e4e4e7" }}
@@ -55,24 +56,23 @@ export default function ContactPage() {
                 style={{ backgroundColor: "#ede9fe" }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-extrabold mb-1" style={{ color: "#111827" }}>Email Us</h2>
-                <p className="text-sm mb-4" style={{ color: "#6b7280" }}>For project enquiries and quotes</p>
-                <p className="text-sm font-semibold mb-5" style={{ color: "#111827" }}>clearsitestudios@outlook.com</p>
+                <h2 className="text-xl font-extrabold mb-1" style={{ color: "#111827" }}>Call Me</h2>
+                <p className="text-sm mb-4" style={{ color: "#6b7280" }}>If you&apos;d rather talk than type</p>
+                <p className="text-sm font-semibold mb-5" style={{ color: "#111827" }}>{PHONE_DISPLAY}</p>
                 <a
-                  href="mailto:clearsitestudios@outlook.com"
+                  href={TEL_LINK}
                   className="btn-primary inline-flex text-sm"
                 >
-                  Send Email →
+                  Call {PHONE_DISPLAY} →
                 </a>
               </div>
             </div>
 
-            {/* WhatsApp / Phone card */}
+            {/* WhatsApp card */}
             <div
               className="rounded-2xl border bg-white p-8 shadow-sm flex flex-col gap-5 anim-fade-right"
               style={{ borderColor: "#e4e4e7" }}
@@ -87,11 +87,11 @@ export default function ContactPage() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-extrabold mb-1" style={{ color: "#111827" }}>WhatsApp / Call Us</h2>
-                <p className="text-sm mb-4" style={{ color: "#6b7280" }}>For quick questions and conversations</p>
-                <p className="text-sm font-semibold mb-5" style={{ color: "#111827" }}>060 397 9279</p>
+                <h2 className="text-xl font-extrabold mb-1" style={{ color: "#111827" }}>WhatsApp Me</h2>
+                <p className="text-sm mb-4" style={{ color: "#6b7280" }}>Fastest way to reach me — goes straight to my phone</p>
+                <p className="text-sm font-semibold mb-5" style={{ color: "#111827" }}>{PHONE_DISPLAY}</p>
                 <a
-                  href="https://wa.me/27603979279"
+                  href={whatsappLink()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary inline-flex text-sm"
@@ -105,8 +105,8 @@ export default function ContactPage() {
           {/* Reassurance strip */}
           <div className="grid sm:grid-cols-3 gap-4 mb-12">
             {[
-              { icon: "📬", text: "Response within 1 business day" },
-              { icon: "✋", text: "No obligation consultations" },
+              { icon: "🙋", text: "You're messaging Divan directly" },
+              { icon: "✋", text: "No obligation, no sales script" },
               { icon: "🇿🇦", text: "Based in South Africa" },
             ].map((item, i) => (
               <div
@@ -126,7 +126,7 @@ export default function ContactPage() {
             style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe" }}
           >
             <p className="text-sm font-semibold" style={{ color: "#5b21b6" }}>
-              ✦ Free mockup included — see your website before you commit.
+              ✦ Prefer email? clearsitestudios@outlook.com — but WhatsApp will always be faster.
             </p>
           </div>
 

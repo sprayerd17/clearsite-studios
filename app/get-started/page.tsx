@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { whatsappLink } from "@/lib/sale";
 
 const GetStartedForm = dynamic(() => import("@/components/GetStartedForm"));
 
@@ -9,7 +10,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Get Started | Clearsite Studios",
-  description: "Tell us about your business and we will create a free custom website mockup for you. No upfront cost, no obligation.",
+  description: "Send me your details about a closing-down-sale website package. WhatsApp is faster, but this form reaches me too.",
   alternates: {
     canonical: "https://www.clearsitestudios.co.za/get-started",
   },
@@ -29,20 +30,30 @@ export default function GetStartedPage() {
             className="badge mb-6 anim-scale-in"
             style={{ background: "rgba(255,255,255,0.1)", color: "white" }}
           >
-            Free Mockup Included
+            Closing Down Sale
           </span>
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight tracking-tight text-white anim-fade-up"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5 leading-tight tracking-tight text-white anim-fade-up"
             style={{ animationDelay: "100ms" }}
           >
             Let&apos;s Get Started
           </h1>
           <p
-            className="text-lg text-slate-400 max-w-2xl mx-auto anim-fade-up"
+            className="text-lg text-slate-400 max-w-2xl mx-auto mb-8 anim-fade-up"
             style={{ animationDelay: "200ms" }}
           >
-            Fill in your details below and we&apos;ll be in touch within 1 business day.
+            WhatsApp is the fastest way to reach me — but if you&apos;d rather send your details in
+            writing, this form gets to me too.
           </p>
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary text-base px-8 py-4 anim-fade-up"
+            style={{ animationDelay: "280ms" }}
+          >
+            WhatsApp me instead →
+          </a>
         </div>
       </section>
 
@@ -56,10 +67,13 @@ export default function GetStartedPage() {
               style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe" }}
             >
               <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#7c3aed" }}>
-                Our Promise to You
+                What Happens Next
               </p>
               <p className="text-base leading-relaxed font-medium" style={{ color: "#3b0764" }}>
-                We start with a free visual mockup so you can see your website before committing. If you love it, we&apos;ll agree a payment plan — deposit to start the build, remainder when you go live. No mockup cost, no surprises.
+                I&apos;ll confirm the scope and the price before anything starts, then send you an
+                invoice for the 50% deposit that secures your spot. The balance is invoiced once the
+                site is live and handed over to you — hosting account, credentials and all. No
+                monthly fee after that.
               </p>
             </div>
 
@@ -82,8 +96,8 @@ export default function GetStartedPage() {
             {/* Reassurance strip */}
             <div className="grid sm:grid-cols-3 gap-4">
               {[
-                { icon: "✋", heading: "No obligation", body: "Getting a quote costs nothing. Take your time deciding." },
-                { icon: "📬", heading: "Reply within 1 business day", body: "You won't be left waiting — we reply promptly, every time." },
+                { icon: "✋", heading: "No obligation", body: "Asking costs nothing. Take your time deciding." },
+                { icon: "🙋", heading: "You reach me directly", body: "One person reads this. No queue, no account manager." },
                 { icon: "💬", heading: "No tech jargon", body: "Just a plain, honest conversation about what you need." },
               ].map((item, i) => (
                 <div
