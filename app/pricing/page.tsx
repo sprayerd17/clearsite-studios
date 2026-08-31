@@ -53,7 +53,7 @@ export default function PricingPage() {
         className="w-full py-3 px-4 text-center text-white text-sm font-bold"
         style={{ background: "linear-gradient(135deg, #7c3aed, #6d28d9)" }}
       >
-        Closing down — these are the final prices.
+        Closing down — remaining packages reduced to a once-off price.
       </div>
 
       {/* Hero */}
@@ -103,6 +103,18 @@ export default function PricingPage() {
             </p>
           </div>
 
+          {/* Estimate disclaimer — sits above the cards so it is read first */}
+          <div
+            className="max-w-3xl mx-auto mb-10 rounded-2xl px-6 py-5 text-center anim-fade-up"
+            style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe", animationDelay: "150ms" }}
+          >
+            <p className="text-sm leading-relaxed font-medium" style={{ color: "#5b21b6" }}>
+              These prices are estimates for a typical build. Your final price is confirmed in a
+              written quote once I know exactly what you need — message me and I&apos;ll put one
+              together. No cost and no obligation for the quote.
+            </p>
+          </div>
+
           <div className="grid sm:grid-cols-2 gap-6">
             {packages.map((pkg, i) => (
               <div
@@ -114,7 +126,7 @@ export default function PricingPage() {
                   className="inline-flex self-start mb-4 px-3 py-1 rounded-full text-xs font-bold text-white"
                   style={{ background: "linear-gradient(135deg, #7c3aed, #6d28d9)" }}
                 >
-                  Closing down — 80% off
+                  {pkg.salePrice ? "Closing down — 80% off" : "Closing down sale"}
                 </div>
 
                 <div className="mb-5">
@@ -125,16 +137,30 @@ export default function PricingPage() {
                     {pkg.name}
                   </p>
                   <div className="flex flex-wrap items-end gap-2 mb-1">
-                    <span className="text-lg line-through" style={{ color: "#9ca3af" }}>
-                      {pkg.originalPrice}
-                    </span>
-                    <span className="text-4xl font-extrabold" style={{ color: "#7c3aed" }}>
-                      {pkg.salePrice}
-                    </span>
-                    <span className="text-sm mb-1.5" style={{ color: "#6b7280" }}>
-                      once-off
-                    </span>
+                    {pkg.salePrice ? (
+                      <>
+                        <span className="text-lg line-through" style={{ color: "#9ca3af" }}>
+                          {pkg.originalPrice}
+                        </span>
+                        <span className="text-4xl font-extrabold" style={{ color: "#7c3aed" }}>
+                          {pkg.salePrice}
+                        </span>
+                        <span className="text-sm mb-1.5" style={{ color: "#6b7280" }}>
+                          once-off
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-3xl font-extrabold" style={{ color: "#7c3aed" }}>
+                        Quoted on request
+                      </span>
+                    )}
                   </div>
+                  {!pkg.salePrice && (
+                    <p className="text-sm mb-1" style={{ color: "#6b7280" }}>
+                      Stores vary too much to price up front — tell me what you need to sell and
+                      I&apos;ll quote you.
+                    </p>
+                  )}
                   <p className="text-sm" style={{ color: "#6b7280" }}>
                     Delivered in{" "}
                     <span className="font-semibold" style={{ color: "#374151" }}>
@@ -186,13 +212,17 @@ export default function PricingPage() {
                 </a>
                 <a
                   href={whatsappLink(
-                    `Hi Divan, I saw the ClearSite closing-down sale and I'm interested in the ${pkg.planParam} package.`
+                    pkg.salePrice
+                      ? `Hi Divan, I saw the ClearSite closing-down sale and I'm interested in the ${pkg.planParam} package.`
+                      : `Hi Divan, I saw the ClearSite closing-down sale and I'd like a quote for the ${pkg.planParam} package.`
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary text-center"
                 >
-                  WhatsApp me about {pkg.planParam} →
+                  {pkg.salePrice
+                    ? `WhatsApp me about ${pkg.planParam} →`
+                    : `Get an ${pkg.planParam} quote →`}
                 </a>
               </div>
             ))}
@@ -330,7 +360,7 @@ export default function PricingPage() {
                         className="px-5 py-4 text-sm font-bold text-center"
                         style={{ color: "#7c3aed", borderBottom: cellBorder }}
                       >
-                        {pkg.salePrice}
+                        {pkg.salePrice ?? "On request"}
                       </td>
                       <td
                         className="px-5 py-4 text-sm text-center"
@@ -355,7 +385,8 @@ export default function PricingPage() {
             className="text-sm text-center mt-5 anim-fade-up"
             style={{ color: "#9ca3af", animationDelay: "300ms" }}
           >
-            All prices exclude domain registration if required.
+            Estimates only — your final price is confirmed by quote. All prices exclude domain
+            registration if required.
           </p>
         </div>
       </section>

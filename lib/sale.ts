@@ -49,14 +49,15 @@ export const PAYMENT_TERMS =
 /* ─── Pricing ───────────────────────────────────────────────────────────── */
 
 /**
- * Every tier is discounted 80% off its original price, matching Starter
- * (R1,999 -> R399), rounded down to the nearest x99.
+ * Fixed-price tiers are discounted 80% off their original price, matching
+ * Starter (R1,999 -> R399), rounded down to the nearest x99.
  */
 export type Package = {
   name: string;
   planParam: string;
   originalPrice: string;
-  salePrice: string;
+  /** null = priced per project, quoted on request. */
+  salePrice: string | null;
   delivery: string;
   learnMoreLink: string;
   features: string[];
@@ -114,7 +115,7 @@ export const packages: Package[] = [
     name: "E-COMMERCE",
     planParam: "E-Commerce",
     originalPrice: "R6,499",
-    salePrice: "R1,299",
+    salePrice: null,
     delivery: "21 days",
     learnMoreLink: "/packages/ecommerce",
     features: [
