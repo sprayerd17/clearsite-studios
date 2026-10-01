@@ -1,0 +1,12 @@
+rules_version = '2';
+
+// Clients upload through server actions (Admin SDK), so browsers never write
+// to Storage directly. Files are shown through download URLs, which carry
+// their own unguessable token.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

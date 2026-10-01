@@ -4,14 +4,16 @@ import { ImageResponse } from "next/og";
  * Link-preview card, generated at build time.
  *
  * This is the first thing a prospect sees when the site is pasted into
- * WhatsApp, so it carries the announcement rather than just the logo.
+ * WhatsApp, so it carries the positioning rather than just the logo.
  * Next picks this up by file convention and populates og:image and
  * twitter:image for every route — no manual asset to keep in sync.
  */
-export const alt =
-  "ClearSite Studios closing down — remaining website packages reduced";
+export const alt = "ClearSite Studios — websites that win customers, workflows that run the rest";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+const INK = "#0a0b0d";
+const LIME = "#c6f24e";
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -23,37 +25,58 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "linear-gradient(135deg, #1e1b4b 0%, #2d1b69 50%, #1e1b4b 100%)",
-          padding: "72px 80px",
+          backgroundColor: INK,
+          backgroundImage:
+            "radial-gradient(circle at 50% -10%, rgba(198,242,78,0.22), transparent 55%), linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
+          backgroundSize: "100% 100%, 64px 64px, 64px 64px",
+          padding: "68px 80px",
           fontFamily: "sans-serif",
         }}
       >
-        {/* Top row — studio name + sale pill */}
+        {/* Top row — mark + wordmark, and a pill */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 30,
-              fontWeight: 700,
-              color: "#ffffff",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            ClearSite Studios
+          <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+            <div style={{ display: "flex", position: "relative", width: 44, height: 44 }}>
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                  width: 26,
+                  height: 26,
+                  borderRadius: 8,
+                  border: "2.5px solid rgba(255,255,255,0.55)",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  left: 15,
+                  top: 15,
+                  width: 29,
+                  height: 29,
+                  borderRadius: 8,
+                  background: LIME,
+                }}
+              />
+            </div>
+            <div style={{ display: "flex", fontSize: 32, fontWeight: 700, color: "#fff", letterSpacing: "-0.03em" }}>
+              Clearsite
+              <span style={{ color: "rgba(255,255,255,0.5)", fontWeight: 400, marginLeft: 8 }}>Studios</span>
+            </div>
           </div>
           <div
             style={{
               display: "flex",
               fontSize: 22,
-              fontWeight: 700,
-              color: "#c4b5fd",
-              background: "rgba(124,58,237,0.18)",
-              border: "2px solid rgba(124,58,237,0.45)",
+              color: "rgba(255,255,255,0.75)",
+              border: "1.5px solid rgba(255,255,255,0.15)",
+              background: "rgba(255,255,255,0.04)",
               borderRadius: 999,
-              padding: "10px 26px",
+              padding: "10px 24px",
             }}
           >
-            Closing Down Sale
+            Websites · Business workflows
           </div>
         </div>
 
@@ -62,47 +85,37 @@ export default function OpengraphImage() {
           <div
             style={{
               display: "flex",
-              fontSize: 74,
-              fontWeight: 800,
+              fontSize: 80,
+              fontWeight: 700,
               color: "#ffffff",
-              lineHeight: 1.1,
-              letterSpacing: "-0.03em",
+              lineHeight: 1.04,
+              letterSpacing: "-0.045em",
             }}
           >
-            The studio is closing.
+            Websites that win customers.
           </div>
           <div
             style={{
               display: "flex",
-              fontSize: 74,
-              fontWeight: 800,
-              color: "#a855f7",
-              lineHeight: 1.1,
-              letterSpacing: "-0.03em",
-              marginTop: 8,
+              fontSize: 80,
+              fontWeight: 700,
+              lineHeight: 1.04,
+              letterSpacing: "-0.045em",
+              marginTop: 4,
             }}
           >
-            Remaining packages reduced.
+            <span style={{ color: LIME }}>Workflows</span>
+            <span style={{ color: "#ffffff", marginLeft: 22 }}>that run the rest.</span>
           </div>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 31,
-              color: "#cbd5e1",
-              marginTop: 28,
-              lineHeight: 1.4,
-            }}
-          >
-            Websites from R399 once-off — yours outright, no monthly fee.
+          <div style={{ display: "flex", fontSize: 29, color: "rgba(255,255,255,0.55)", marginTop: 30, lineHeight: 1.4 }}>
+            Built by one person, handed over in full — no monthly fee.
           </div>
         </div>
 
         {/* Bottom rule */}
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div style={{ display: "flex", width: 64, height: 5, background: "#7c3aed", borderRadius: 999 }} />
-          <div style={{ display: "flex", fontSize: 25, color: "#94a3b8" }}>
-            clearsitestudios.co.za
-          </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+          <div style={{ display: "flex", width: 56, height: 5, background: LIME, borderRadius: 999 }} />
+          <div style={{ display: "flex", fontSize: 24, color: "rgba(255,255,255,0.45)" }}>clearsitestudios.co.za</div>
         </div>
       </div>
     ),

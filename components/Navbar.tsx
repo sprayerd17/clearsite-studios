@@ -1,71 +1,69 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import { ArrowRight, Instagram, Menu, WhatsApp, X } from "./icons";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, whatsappLink } from "@/lib/site";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#services", label: "Services" },
+  { href: "/#workflows", label: "Workflows" },
+  { href: "/portfolio", label: "Work" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   function isActive(href: string) {
-    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+    if (href.startsWith("/#")) return false;
+    return pathname.startsWith(href);
   }
 
   return (
     <>
-      <style>{`
-        .nav-link {
-          position: relative;
-          padding-bottom: 2px;
-        }
-        .nav-link::after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background-color: #7c3aed;
-          border-radius: 2px;
-          transition: width 0.25s ease;
-        }
-        .nav-link:hover::after,
-        .nav-link.active::after {
-          width: 100%;
-        }
-        .ig-link { color: #1a1a1a; }
-        .ig-link:hover { color: #7c3aed; }
-        .ig-link .ig-icon { color: #7c3aed; }
-        .ig-link:hover .ig-icon { color: #7c3aed; }
-      `}</style>
-
-      <header className="sticky-nav border-b border-[var(--color-border)] bg-[#fafafa]/90 backdrop-blur-md sticky top-0 z-50">
-        <div className="container-narrow flex items-center justify-between h-16">
-          <Link href="/" className="hover:opacity-80 transition-opacity">
-            <Logo />
+      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+        <div
+          className={`mx-auto flex h-14 max-w-site items-center justify-between rounded-2xl border pl-4 pr-2 transition-all duration-300 sm:pl-5 ${
+            scrolled
+              ? "border-white/10 bg-ink/80 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+              : "border-white/[0.06] bg-ink/40 backdrop-blur-md"
+          }`}
+        >
+          <Link href="/" className="shrink-0 transition-opacity hover:opacity-80" aria-label="Clearsite Studios home">
+            <Logo tone="light" />
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--color-muted)]">
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
             {links.map((l) => {
               const active = isActive(l.href);
               return (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className={`nav-link transition-colors ${active ? "active" : ""}`}
-                  style={{ color: active ? "#7c3aed" : undefined }}
+                  className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
+                    active ? "bg-white/[0.08] text-white" : "text-white/60 hover:text-white"
+                  }`}
                 >
                   {l.label}
                 </Link>
@@ -73,92 +71,83 @@ export default function Navbar() {
             })}
           </nav>
 
-          <a
-            href="https://instagram.com/clearsitestudios"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ig-link hidden md:inline-flex items-center gap-2 text-sm font-medium transition-colors duration-150"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-              className="ig-icon"
+          <div className="flex items-center gap-2">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden h-10 w-10 items-center justify-center rounded-full text-white/55 transition-colors hover:bg-white/[0.06] hover:text-white xl:inline-flex"
+              aria-label={`Instagram ${INSTAGRAM_HANDLE}`}
             >
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-              <circle cx="12" cy="12" r="4" />
-              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-            </svg>
-            @clearsitestudios
-          </a>
-
-          {/* Hamburger — mobile only */}
-          <button
-            onClick={() => setOpen(true)}
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg hover:bg-slate-100 transition-colors"
-            aria-label="Open menu"
-          >
-            <span className="w-5 h-0.5 bg-[#1a1a1a] rounded-full" />
-            <span className="w-5 h-0.5 bg-[#1a1a1a] rounded-full" />
-            <span className="w-5 h-0.5 bg-[#1a1a1a] rounded-full" />
-          </button>
+              <Instagram size={18} />
+            </a>
+            <Link href="/quote" className="btn-lime btn-sm hidden sm:inline-flex">
+              Get a quote
+              <ArrowRight size={15} className="btn-arrow" />
+            </Link>
+            <button
+              onClick={() => setOpen(true)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/[0.08] lg:hidden"
+              aria-label="Open menu"
+              aria-expanded={open}
+            >
+              <Menu size={20} />
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Overlay */}
-      {open && (
-        <div
-          className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
-        />
-      )}
-
-      {/* Sidebar */}
+      {/* Mobile sheet */}
       <div
-        className={`fixed top-0 right-0 h-full w-72 z-50 flex flex-col bg-[#1e1b4b] text-white shadow-2xl transition-transform duration-300 ease-in-out ${
-          open ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 z-[60] bg-ink/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
+      <div
+        className={`fixed inset-x-3 top-3 z-[70] origin-top rounded-3xl border border-white/10 bg-ink p-5 shadow-2xl transition-all duration-300 lg:hidden ${
+          open ? "scale-100 opacity-100" : "pointer-events-none scale-[0.97] opacity-0"
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
       >
-        {/* Sidebar header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-          <Logo className="brightness-0 invert" />
+        <div className="flex items-center justify-between">
+          <Logo tone="light" />
           <button
             onClick={() => setOpen(false)}
-            className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors text-white text-xl leading-none"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/[0.08]"
             aria-label="Close menu"
           >
-            ✕
+            <X size={20} />
           </button>
         </div>
 
-        {/* Nav links */}
-        <nav className="flex flex-col px-4 py-6 gap-1 flex-1">
-          {links.map((l) => {
-            const active = isActive(l.href);
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="px-4 py-3 rounded-xl text-base font-medium transition-all"
-                style={{
-                  color: active ? "#fff" : undefined,
-                  backgroundColor: active ? "rgba(124,58,237,0.25)" : undefined,
-                }}
-              >
-                {l.label}
-              </Link>
-            );
-          })}
+        <nav className="mt-6 flex flex-col" aria-label="Mobile">
+          {[{ href: "/", label: "Home" }, ...links, { href: "/contact", label: "Contact" }, { href: "/quote", label: "Get a quote" }].map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between border-b border-white/[0.06] py-3.5 text-lg font-medium tracking-tight text-white/85 transition-colors hover:text-white"
+            >
+              {l.label}
+              <ArrowRight size={16} className="text-white/30" />
+            </Link>
+          ))}
         </nav>
 
+        <div className="mt-6 grid grid-cols-2 gap-2">
+          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn-lime">
+            <WhatsApp size={16} />
+            WhatsApp
+          </a>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-dark">
+            <Instagram size={16} />
+            Instagram
+          </a>
+        </div>
       </div>
     </>
   );

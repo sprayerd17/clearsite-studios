@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import ClientStrip from "@/components/ClientStrip";
+import Services from "@/components/Services";
+import WorkflowShowcase from "@/components/WorkflowShowcase";
+import PortfolioPreview from "@/components/PortfolioPreview";
+import Process from "@/components/Process";
+import About from "@/components/About";
+import FAQ from "@/components/FAQ";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
-const title = "Closing Down Sale — Websites from R399 | ClearSite Studios";
+const title = "ClearSite Studios — Websites & Business Workflows | South Africa";
 const description =
-  "I'm closing ClearSite Studios to build Mathly, my maths education platform, so the remaining website packages are going at a reduced once-off price. You own the site outright, hosted free, no monthly fee.";
+  "Fast, modern websites and custom business workflows — quotes, approvals, invoices and payments in one place. Built by one person, handed over in full, no monthly fee.";
+const ogTitle = "Websites that win customers. Workflows that run the rest.";
 const ogDescription =
-  "Built by one person, handed over in full, no monthly fee. Remaining packages from R399.";
+  "Websites and custom business workflows for South African businesses. Yours outright, no monthly fee.";
 
 export const metadata: Metadata = {
   title,
@@ -17,44 +28,31 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.clearsitestudios.co.za/",
     siteName: "ClearSite Studios",
-    title: "Closing down — remaining website packages reduced",
+    title: ogTitle,
     description: ogDescription,
     // og:image comes from app/opengraph-image.tsx by file convention.
     locale: "en_ZA",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Closing down — remaining website packages reduced",
+    title: ogTitle,
     description: ogDescription,
   },
 };
 
-import Hero from "@/components/Hero";
-import PortfolioPreview from "@/components/PortfolioPreview";
-import Services from "@/components/Services";
-import Process from "@/components/Process";
-import About from "@/components/About";
-import Contact from "@/components/Contact";
-import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
-
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <div className="section-divider" />
-        <PortfolioPreview />
-        <div className="section-divider" />
+        <ClientStrip />
         <Services />
-        <div className="section-divider" />
+        <WorkflowShowcase />
+        <PortfolioPreview />
         <Process />
-        <div className="section-divider" />
         <About />
-        <div className="section-divider" />
         <FAQ />
-        <div className="section-divider" />
         <Contact />
       </main>
       <Footer />

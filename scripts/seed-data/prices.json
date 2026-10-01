@@ -1,0 +1,41 @@
+{
+  "_note": "Starting price list. Prices in rand. Edit any time in /admin/prices. autoAddFor = brief answers that add the item to a new lead's draft quote.",
+  "prices": [
+    {
+      "name": "Basic website",
+      "description": "One page: your services or catalogue, contact details and a WhatsApp button. Mobile responsive.",
+      "price": 800,
+      "autoAddFor": ["pages:1"]
+    },
+    {
+      "name": "Starter website",
+      "description": "Single page website, mobile responsive, WhatsApp contact button, basic SEO setup, 1 round of revisions.",
+      "price": 1999,
+      "autoAddFor": []
+    },
+    {
+      "name": "Business website",
+      "description": "Up to 5 pages, WhatsApp contact button, Google Maps integration, basic SEO setup, social media links, 2 rounds of revisions.",
+      "price": 3499,
+      "autoAddFor": ["pages:2-5"]
+    },
+    {
+      "name": "Professional website",
+      "description": "Up to 10 pages, everything in Business, blog or news section, Google Analytics setup, speed optimised, 3 rounds of revisions.",
+      "price": 5499,
+      "autoAddFor": ["pages:6-10", "pages:10+"]
+    },
+    {
+      "name": "E-commerce store",
+      "description": "Full online store, product catalogue, PayFast integration, order management, everything in Professional.",
+      "price": 6499,
+      "autoAddFor": ["service:store"]
+    },
+    {
+      "name": "Custom business workflow",
+      "description": "A custom system built around how your business works. Scope agreed after our chat — set the price per project.",
+      "price": 0,
+      "autoAddFor": ["service:workflow"]
+    }
+  ]
+}

@@ -1,29 +1,38 @@
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
+import { FileText } from "@/components/icons";
 
 export default function BlogPostPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center py-28" style={{ backgroundColor: "#f8fafc" }}>
-        <div className="text-center">
-          <div className="text-5xl mb-6">✍️</div>
-          <h1 className="text-3xl font-extrabold mb-4" style={{ color: "#111827" }}>
-            Full article coming soon.
-          </h1>
-          <p className="text-base mb-8" style={{ color: "#6b7280" }}>
-            We&apos;re working on this one. Check back shortly.
-          </p>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4 hover:opacity-70 transition-opacity"
-            style={{ color: "#7c3aed" }}
+      <main className="flex flex-1 flex-col bg-ink">
+        <PageHero
+          eyebrow="Blog"
+          back={{ href: "/blog", label: "Back to blog" }}
+          title={
+            <>
+              Full article <span className="serif-accent text-lime">coming soon.</span>
+            </>
+          }
+          intro="We're working on this one. Check back shortly."
+        >
+          <div
+            aria-hidden="true"
+            className="mx-auto flex max-w-sm items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left backdrop-blur"
           >
-            ← Back to blog
-          </Link>
-        </div>
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-lime text-ink">
+              <FileText size={20} />
+            </span>
+            <span className="flex flex-1 flex-col gap-2">
+              <span className="block h-2 w-4/5 animate-pulse rounded-full bg-white/15" />
+              <span className="block h-2 w-3/5 animate-pulse rounded-full bg-white/10" />
+              <span className="block h-2 w-2/5 animate-pulse rounded-full bg-white/[0.07]" />
+            </span>
+          </div>
+        </PageHero>
       </main>
 
       <Footer />

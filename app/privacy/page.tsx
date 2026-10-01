@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
+import { Calendar } from "@/components/icons";
+import { EMAIL, MAIL_LINK } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Clearsite Studios",
@@ -11,14 +13,24 @@ export const metadata: Metadata = {
   },
 };
 
-const sections = [
+type Section = {
+  number: string;
+  title: string;
+  content: string | null;
+  list?: string[];
+  contact?: boolean;
+};
+
+const sections: Section[] = [
   {
-    title: "1. Introduction",
+    number: "01",
+    title: "Introduction",
     content:
       "At Clearsite Studios, we are committed to protecting your privacy. This policy explains what information we collect, how we use it, and your rights regarding your personal data.",
   },
   {
-    title: "2. What Information We Collect",
+    number: "02",
+    title: "What Information We Collect",
     content:
       "When you submit a quote request through our website, we collect the following information:",
     list: [
@@ -26,34 +38,48 @@ const sections = [
       "Your business name",
       "Your email address",
       "Your phone number",
+      "The details of your project that you choose to share (what you need, timeline and budget range)",
+      "If you go ahead: proof of payment and the content you upload for your project (logo, photos, text)",
     ],
   },
   {
-    title: "3. How We Use Your Information",
+    number: "03",
+    title: "Your Project Page",
+    content:
+      "When you request a quote, you get a private project page with an unguessable link. Your quote, invoices and uploads are shown there, so keep the link to yourself. Only Clearsite Studios can see your details in our admin system, and your information is stored securely with Google Firebase. We keep it for as long as we work together and as required for tax and accounting records, and you can ask us to delete it at any time.",
+  },
+  {
+    number: "04",
+    title: "How We Use Your Information",
     content:
       "The information you provide is used solely to respond to your quote request and to communicate with you about your project. We will never sell, rent, or share your personal information with third parties for marketing purposes.",
   },
   {
-    title: "4. Cookies",
+    number: "05",
+    title: "Cookies",
     content:
       "We use basic cookies to improve your browsing experience on our site. These cookies do not collect personally identifiable information. By continuing to use our site, you consent to our use of cookies. You can disable cookies through your browser settings at any time.",
   },
   {
-    title: "5. Third-Party Services",
+    number: "06",
+    title: "Third-Party Services",
     content:
       "We use the following third-party services to operate this website:",
     list: [
-      "Formspree — used to process and deliver quote request form submissions.",
+      "Google Firebase — used to store quote requests, project pages and uploaded files securely.",
+      "Formspree — used as a backup to deliver quote request form submissions.",
       "Google Analytics — used to understand how visitors interact with our site. Data collected is anonymous and aggregated.",
     ],
   },
   {
-    title: "6. Your Rights",
+    number: "07",
+    title: "Your Rights",
     content:
-      "You have the right to request access to the personal information we hold about you, and to request that it be corrected or deleted. To exercise any of these rights, please contact us at the email address below and we will respond within a reasonable timeframe.",
+      "You have the right to request access to the personal information we hold about you, and to request that it be corrected or deleted, in line with the Protection of Personal Information Act (POPIA). To exercise any of these rights, please contact us at the email address below and we will respond within a reasonable timeframe.",
   },
   {
-    title: "7. Contact",
+    number: "08",
+    title: "Contact",
     content: null,
     contact: true,
   },
@@ -61,69 +87,75 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
 
-      <main className="flex-1 py-20 md:py-28" style={{ backgroundColor: "#f8fafc" }}>
-        <div className="container-narrow max-w-2xl mx-auto">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm font-medium mb-8 transition-colors hover:opacity-70"
-            style={{ color: "#6b7280" }}
-          >
-            ← Back to home
-          </Link>
+      <PageHero
+        align="left"
+        back={{ href: "/", label: "Back to home" }}
+        eyebrow="Legal"
+        title={
+          <>
+            Privacy <span className="serif-accent text-lime">policy.</span>
+          </>
+        }
+      >
+        <span className="chip-dark font-mono uppercase tracking-[0.12em]">
+          <Calendar size={13} />
+          Last updated: April 2026
+        </span>
+      </PageHero>
 
-          <h1 className="text-4xl font-extrabold mb-2" style={{ color: "#111827" }}>
-            Privacy Policy
-          </h1>
-          <p className="text-sm mb-10" style={{ color: "#9ca3af" }}>
-            Last updated: April 2026
-          </p>
+      <main className="flex-1 bg-paper">
+        <section className="py-20 md:py-28">
+          <div className="container-site">
+            <div className="mx-auto max-w-[720px] border-b border-line">
+              {sections.map((section) => (
+                <section
+                  key={section.title}
+                  className="grid gap-x-8 gap-y-3 border-t border-line py-10 sm:grid-cols-[64px_1fr]"
+                >
+                  <span className="pt-1.5 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+                    {section.number}
+                  </span>
+                  <div>
+                    <h2 className="text-2xl leading-tight tracking-tight text-ink">{section.title}</h2>
 
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm divide-y divide-slate-100">
-            {sections.map((section) => (
-              <div key={section.title} className="p-8">
-                <h2 className="text-base font-bold mb-3" style={{ color: "#111827" }}>
-                  {section.title}
-                </h2>
+                    {section.content && (
+                      <p className="mt-4 text-base leading-[1.75] text-ink/75">{section.content}</p>
+                    )}
 
-                {section.content && (
-                  <p className="text-sm leading-relaxed" style={{ color: "#6b7280" }}>
-                    {section.content}
-                  </p>
-                )}
+                    {section.list && (
+                      <ul className="mt-4 space-y-2.5">
+                        {section.list.map((item) => (
+                          <li key={item} className="flex items-start gap-3 text-base leading-[1.7] text-ink/75">
+                            <span className="mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-ink ring-[3px] ring-lime/50" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
 
-                {section.list && (
-                  <ul className="mt-3 space-y-1.5">
-                    {section.list.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm" style={{ color: "#6b7280" }}>
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#7c3aed" }} />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {section.contact && (
-                  <div className="text-sm leading-relaxed space-y-1" style={{ color: "#6b7280" }}>
-                    <p>
-                      For any privacy-related questions or requests, please contact us at:{" "}
-                      <a
-                        href="mailto:clearsitestudios@outlook.com"
-                        className="font-medium underline underline-offset-4 hover:opacity-70 transition-opacity"
-                        style={{ color: "#7c3aed" }}
-                      >
-                        clearsitestudios@outlook.com
-                      </a>
-                    </p>
-                    <p>Clearsite Studios is based in South Africa.</p>
+                    {section.contact && (
+                      <div className="mt-4 space-y-2 text-base leading-[1.75] text-ink/75">
+                        <p>
+                          For any privacy-related questions or requests, please contact us at:{" "}
+                          <a
+                            href={MAIL_LINK}
+                            className="font-medium text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink"
+                          >
+                            {EMAIL}
+                          </a>
+                        </p>
+                        <p>Clearsite Studios is based in South Africa.</p>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            ))}
+                </section>
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
       </main>
 
       <Footer />

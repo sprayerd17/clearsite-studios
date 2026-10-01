@@ -1,12 +1,33 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { PHONE_DISPLAY, TEL_LINK, whatsappLink } from "@/lib/sale";
-
-import type { Metadata } from "next";
+import PageHero from "@/components/PageHero";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Chat,
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+  User,
+  WhatsApp,
+} from "@/components/icons";
+import {
+  EMAIL,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  MAIL_LINK,
+  PHONE_DISPLAY,
+  TEL_LINK,
+  whatsappLink,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Clearsite Studios | Get In Touch",
-  description: "WhatsApp or call Divan directly about the ClearSite Studios closing-down sale. Based in South Africa.",
+  description:
+    "WhatsApp or call Divan directly about a website or a custom business workflow. Based in South Africa.",
   alternates: {
     canonical: "https://www.clearsitestudios.co.za/contact",
   },
@@ -14,123 +35,136 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-[#1e1b4b] text-white py-20 md:py-28">
-        <div className="absolute -top-32 -right-32 w-[400px] h-[400px] bg-violet-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-fuchsia-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative container-narrow text-center">
-          <span className="badge mb-6 anim-scale-in" style={{ background: "rgba(255,255,255,0.1)", color: "white" }}>
-            Contact
-          </span>
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight tracking-tight text-white anim-fade-up"
-            style={{ animationDelay: "100ms" }}
-          >
-            Get In Touch
-          </h1>
-          <p
-            className="text-lg text-slate-400 max-w-2xl mx-auto anim-fade-up"
-            style={{ animationDelay: "200ms" }}
-          >
-            WhatsApp is the fastest way to reach me — you&apos;ll be messaging me directly, not an inbox.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Contact"
+        title={
+          <>
+            Get in <span className="serif-accent text-lime">touch.</span>
+          </>
+        }
+        intro="WhatsApp is the fastest way to reach me — you'll be messaging me directly, not an inbox."
+      />
 
-      <main className="flex-1 section" style={{ backgroundColor: "#f4f4f5" }}>
-        <div className="container-narrow">
-
-          {/* Contact cards */}
-          <div className="grid sm:grid-cols-2 gap-6 mb-10">
-
-            {/* Call card */}
-            <div
-              className="rounded-2xl border bg-white p-8 shadow-sm flex flex-col gap-5 anim-fade-left"
-              style={{ borderColor: "#e4e4e7" }}
-            >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ backgroundColor: "#ede9fe" }}
+      <main className="flex-1 bg-paper">
+        <section className="section">
+          <div className="container-site">
+            <div className="grid gap-5 lg:grid-cols-[1.25fr_1fr]">
+              {/* WhatsApp — primary */}
+              <a
+                href={whatsappLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grain card-hover anim-fade-left group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-ink p-8 text-white shadow-lift sm:p-10"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-              </div>
-              <div>
-                <h2 className="text-xl font-extrabold mb-1" style={{ color: "#111827" }}>Call Me</h2>
-                <p className="text-sm mb-4" style={{ color: "#6b7280" }}>If you&apos;d rather talk than type</p>
-                <p className="text-sm font-semibold mb-5" style={{ color: "#111827" }}>{PHONE_DISPLAY}</p>
-                <a
-                  href={TEL_LINK}
-                  className="btn-primary inline-flex text-sm"
-                >
-                  Call {PHONE_DISPLAY} →
+                <div aria-hidden="true" className="bg-grid-dark mask-radial pointer-events-none absolute inset-0" />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -bottom-40 -right-40 h-96 w-96 rounded-full blur-3xl"
+                  style={{ background: "radial-gradient(closest-side, rgba(198,242,78,0.25), transparent)" }}
+                />
+                <div className="relative z-10 flex items-start justify-between">
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#25d366] text-white">
+                    <WhatsApp size={26} />
+                  </span>
+                  <span className="chip-dark">
+                    <span className="pulse-dot relative inline-block h-1.5 w-1.5 rounded-full bg-lime text-lime" />
+                    Fastest reply
+                  </span>
+                </div>
+                <div className="relative z-10 mt-16">
+                  <h2 className="text-4xl tracking-tightest text-white sm:text-5xl">WhatsApp me</h2>
+                  <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-white/55">
+                    Fastest way to reach me — goes straight to my phone.
+                  </p>
+                  <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+                    <span className="font-mono text-lg text-white/80">{PHONE_DISPLAY}</span>
+                    <span className="btn-lime">
+                      Open WhatsApp
+                      <ArrowRight size={16} className="btn-arrow" />
+                    </span>
+                  </div>
+                </div>
+              </a>
+
+              <div className="grid gap-5">
+                {/* Call */}
+                <a href={TEL_LINK} className="card card-hover anim-fade-right group flex flex-col p-7 sm:p-8">
+                  <div className="flex items-center justify-between">
+                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-ink text-lime">
+                      <Phone size={19} />
+                    </span>
+                    <ArrowUpRight size={18} className="text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </div>
+                  <h2 className="mt-8 text-2xl tracking-tight text-ink">Call me</h2>
+                  <p className="prose-muted mt-1 text-sm">If you&apos;d rather talk than type</p>
+                  <p className="mt-4 font-mono text-[15px] text-ink">{PHONE_DISPLAY}</p>
                 </a>
+
+                {/* Email + Instagram */}
+                <div className="card anim-fade-right grid divide-y divide-line" style={{ animationDelay: "100ms" }}>
+                  <a href={MAIL_LINK} className="group flex items-center gap-4 p-6 transition-colors hover:bg-paper/50">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-line bg-paper text-ink">
+                      <Mail size={18} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-sm font-medium text-ink">Email</span>
+                      <span className="block truncate text-sm text-muted">{EMAIL}</span>
+                    </span>
+                    <ArrowUpRight size={16} className="ml-auto shrink-0 text-muted" />
+                  </a>
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4 p-6 transition-colors hover:bg-paper/50"
+                  >
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-line bg-paper text-ink">
+                      <Instagram size={18} />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-medium text-ink">Instagram</span>
+                      <span className="block text-sm text-muted">{INSTAGRAM_HANDLE}</span>
+                    </span>
+                    <ArrowUpRight size={16} className="ml-auto shrink-0 text-muted" />
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* WhatsApp card */}
-            <div
-              className="rounded-2xl border bg-white p-8 shadow-sm flex flex-col gap-5 anim-fade-right"
-              style={{ borderColor: "#e4e4e7" }}
-            >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ backgroundColor: "#ede9fe" }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="#7c3aed" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                  <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.25a.75.75 0 0 0 .918.919l5.444-1.468A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 0 1-4.98-1.371l-.356-.214-3.697.997.992-3.67-.233-.376A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z" />
-                </svg>
-              </div>
-              <div>
-                <h2 className="text-xl font-extrabold mb-1" style={{ color: "#111827" }}>WhatsApp Me</h2>
-                <p className="text-sm mb-4" style={{ color: "#6b7280" }}>Fastest way to reach me — goes straight to my phone</p>
-                <p className="text-sm font-semibold mb-5" style={{ color: "#111827" }}>{PHONE_DISPLAY}</p>
-                <a
-                  href={whatsappLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary inline-flex text-sm"
+            {/* Reassurance strip */}
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              {[
+                { icon: User, text: "You're messaging Divan directly" },
+                { icon: Chat, text: "No obligation, no sales script" },
+                { icon: MapPin, text: "Based in South Africa" },
+              ].map((item, i) => (
+                <div
+                  key={item.text}
+                  className="anim-fade-up flex items-center gap-3 rounded-2xl border border-line bg-white/60 px-5 py-4"
+                  style={{ animationDelay: `${i * 80}ms` }}
                 >
-                  Open WhatsApp →
-                </a>
-              </div>
+                  <item.icon size={17} className="shrink-0 text-ink" />
+                  <p className="text-sm font-medium text-ink/80">{item.text}</p>
+                </div>
+              ))}
             </div>
-          </div>
 
-          {/* Reassurance strip */}
-          <div className="grid sm:grid-cols-3 gap-4 mb-12">
-            {[
-              { icon: "🙋", text: "You're messaging Divan directly" },
-              { icon: "✋", text: "No obligation, no sales script" },
-              { icon: "🇿🇦", text: "Based in South Africa" },
-            ].map((item, i) => (
-              <div
-                key={item.text}
-                className="rounded-2xl p-5 border text-center flex items-center justify-center gap-3 anim-fade-up"
-                style={{ borderColor: "#e4e4e7", backgroundColor: "#fafafa", animationDelay: `${i * 100}ms` }}
-              >
-                <span className="text-xl">{item.icon}</span>
-                <p className="text-sm font-semibold" style={{ color: "#374151" }}>{item.text}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Promise line */}
-          <div
-            className="rounded-2xl p-6 text-center anim-fade-up"
-            style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe" }}
-          >
-            <p className="text-sm font-semibold" style={{ color: "#5b21b6" }}>
-              ✦ Prefer email? clearsitestudios@outlook.com — but WhatsApp will always be faster.
+            <p className="anim-fade-up mt-10 text-center text-sm text-muted">
+              Prefer email?{" "}
+              <a href={MAIL_LINK} className="font-medium text-ink underline decoration-lime decoration-2 underline-offset-4">
+                {EMAIL}
+              </a>{" "}
+              — but WhatsApp will always be faster. Rather send your details in writing?{" "}
+              <Link href="/quote" className="font-medium text-ink underline decoration-lime decoration-2 underline-offset-4">
+                Request a quote
+              </Link>
+              .
             </p>
           </div>
-
-        </div>
+        </section>
       </main>
 
       <Footer />

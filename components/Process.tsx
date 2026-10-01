@@ -1,106 +1,75 @@
+import SectionHeading from "./SectionHeading";
+import { Code, Handshake, Key, WhatsApp } from "./icons";
+
 const steps = [
   {
-    number: "01",
-    title: "WhatsApp me",
+    icon: WhatsApp,
+    title: "Request a quote",
     description:
-      "Message me directly and tell me about your business, what you need, and which package looks right. You're talking to me, not a sales team.",
+      "Tap through a two-minute brief, or just WhatsApp me — a website, a workflow, or both. You're talking to me, not a sales team.",
   },
   {
-    number: "02",
+    icon: Handshake,
     title: "We agree the scope and price",
     description:
-      "I confirm what's included and what it costs before anything starts, then invoice you for the 50% deposit that secures your spot. The balance is invoiced on completion.",
+      "Your written quote lands on your own project page. Accept it in one tap and I invoice the 50% deposit that secures your spot. The balance is invoiced on completion.",
   },
   {
-    number: "03",
+    icon: Code,
     title: "I build it",
     description:
-      "Between 3 and 21 days depending on the package, counted from when you've sent me your content. You see it and get your revisions before it goes live.",
+      "Upload your content straight to your project page. Websites take 3 to 21 days depending on size, counted from when your content is in; workflows get their own timeline in the quote. You see it and get your revisions before it goes live.",
   },
   {
-    number: "04",
+    icon: Key,
     title: "Launch and handover",
     description:
-      "Your site goes live on a free hosting tier under an account in your name, and I hand you the credentials. It's yours outright — no monthly fee and nothing left depending on me.",
+      "Everything goes live under accounts in your name, and I hand you the credentials. It's yours outright — no monthly fee to me and nothing left depending on me.",
   },
 ];
 
 export default function Process() {
   return (
-    <section id="process" className="section" style={{ backgroundColor: "#f8fafc" }}>
-      <div className="container-narrow">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <span className="badge mb-4 anim-fade-up">How It Works</span>
-          <h2
-            className="text-3xl sm:text-4xl font-extrabold mb-4 anim-fade-up"
-            style={{ color: "#111827", animationDelay: "100ms" }}
-          >
-            From message to handover.
-          </h2>
-          <p
-            className="max-w-xl mx-auto anim-fade-up"
-            style={{ color: "#6b7280", animationDelay: "180ms" }}
-          >
-            Four steps, no forms, no drawn-out process. Here&apos;s exactly what happens.
-          </p>
-        </div>
+    <section id="process" className="section relative overflow-hidden bg-paper">
+      <div aria-hidden="true" className="bg-grid-light pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_100%,#000,transparent)]" />
+      <div className="container-site relative">
+        <SectionHeading
+          align="center"
+          eyebrow="How it works"
+          title={
+            <>
+              From first message to <span className="serif-accent">handover.</span>
+            </>
+          }
+          intro="Four steps, no drawn-out process. Here's exactly what happens."
+        />
 
-        {/* Timeline — max 700 px, centered */}
-        <div className="mx-auto max-w-[700px]">
-          {steps.map((step, i) => {
-            const isLast = i === steps.length - 1;
-            return (
-              <div
-                key={step.number}
-                className="flex gap-6 sm:gap-8 anim-fade-up"
-                style={{ animationDelay: `${260 + i * 130}ms` }}
+        <div className="relative mt-16">
+          <div
+            aria-hidden="true"
+            className="absolute left-[12.5%] right-[12.5%] top-[50px] hidden h-px lg:block"
+            style={{ backgroundImage: "linear-gradient(90deg, rgba(10,11,13,0.18) 50%, transparent 50%)", backgroundSize: "8px 1px" }}
+          />
+          <ol className="relative grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            {steps.map((s, i) => (
+              <li
+                key={s.title}
+                className="anim-fade-up relative"
+                style={{ animationDelay: `${i * 110}ms` }}
               >
-                {/* ── Left column: numbered circle + vertical connector ── */}
-                <div className="flex flex-col items-center flex-shrink-0">
-                  <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center text-xl font-extrabold border-4 border-white shadow-lg"
-                    style={{
-                      background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
-                      color: "#ffffff",
-                    }}
-                  >
-                    {step.number}
+                <div className="card card-hover flex h-full flex-col p-6 sm:p-7">
+                  <div className="flex items-center justify-between">
+                    <span className="relative z-10 grid h-11 w-11 place-items-center rounded-2xl bg-ink text-lime">
+                      <s.icon size={19} />
+                    </span>
+                    <span className="font-mono text-xs text-muted-light">0{i + 1} / 04</span>
                   </div>
-
-                  {/* Connector — flex-1 stretches to fill the right column height */}
-                  {!isLast && (
-                    <div
-                      className="w-0.5 flex-1 mt-1"
-                      style={{
-                        background:
-                          "linear-gradient(to bottom, #7c3aed, rgba(124,58,237,0.15))",
-                      }}
-                    />
-                  )}
+                  <h3 className="mt-7 text-lg tracking-tight text-ink">{s.title}</h3>
+                  <p className="prose-muted mt-2.5 text-[14.5px]">{s.description}</p>
                 </div>
-
-                {/* ── Right column: title + description ───────────────── */}
-                {/* pb-10 on non-last steps creates the gap the connector fills */}
-                <div className={`min-w-0 flex-1 ${isLast ? "" : "pb-10"}`}>
-                  <div className="glass-card-light glass-card-hover rounded-2xl px-5 pb-5 pt-[18px]">
-                    <h3
-                      className="text-lg font-bold mb-2"
-                      style={{ color: "#111827" }}
-                    >
-                      {step.title}
-                    </h3>
-                    <p
-                      className="text-sm leading-relaxed"
-                      style={{ color: "#6b7280" }}
-                    >
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

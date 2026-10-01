@@ -1,0 +1,22 @@
+rules_version = '2';
+
+// Only accounts listed in the `admins` collection can read or write anything.
+// Visitors never touch Firestore directly: the quote form and client project
+// pages run on the server with the Admin SDK, which bypasses these rules.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    match /{document=**} {
+      allow read, write: if isAdmin();
+    }
+
+    // Lets a signed-in user check whether they are an admin.
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}

@@ -1,18 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { PAYMENT_TERMS, SUPPORT_WINDOW } from "@/lib/sale";
+import { Plus, WhatsApp } from "./icons";
+import { FROM_PRICE, PAYMENT_TERMS, SUPPORT_WINDOW, whatsappLink } from "@/lib/site";
 
 const faqs = [
   {
-    question: "What happens to my site after ClearSite closes?",
+    question: "How much does a website cost?",
+    answer: `Websites start from ${FROM_PRICE} for a simple one-page site with your services or catalogue, contact details and a WhatsApp button. From there the price depends on what you need — more pages, bookings, a blog, an online store. Request a quote and you'll get a written price on your own project page, usually within 1 business day. It takes about two minutes and there's no obligation.`,
+  },
+  {
+    question: "What's a business workflow, and do I need one?",
     answer:
-      "Nothing. Your site keeps running exactly as it is. It is deployed to a hosting account in your name, not mine, so it does not depend on ClearSite Studios still existing. When I close the studio, nothing switches off and nothing needs to be moved.",
+      "It's a custom tool built around a process you already run — quoting, taking bookings, tracking jobs, getting approvals, invoicing, chasing payments. If that process currently lives in spreadsheets, paper or a long WhatsApp thread per customer, a workflow puts it in one place: your clients get a simple link, and you get one screen that shows where everything stands. If your process already runs smoothly, you probably don't need one — and I'll tell you that.",
   },
   {
     question: "Who hosts it, and what does hosting cost me?",
     answer:
-      "Your site is deployed on a free hosting tier under an account in your own name, and I hand you the credentials on completion. That is R0 per month. There is no hosting fee, no maintenance fee, and no invoice from me ever again. The only separate cost is a custom domain if you want one, which you pay directly to the registrar — I do not mark it up or hold it on your behalf.",
+      "Websites are deployed on a free hosting tier under an account in your own name, and I hand you the credentials on completion. That is R0 per month — no hosting fee, no maintenance fee. The only separate cost is a custom domain if you want one, which you pay directly to the registrar; I don't mark it up or hold it on your behalf. Custom workflows follow the same principle, and any running costs are spelled out in your quote before you commit — at small-business volumes they typically stay within free usage allowances.",
   },
   {
     question: "Do I own the site and the code?",
@@ -20,83 +25,87 @@ const faqs = [
       "Yes, outright. Once the build is paid for, the site, the code and the hosting account are all yours. There is no licence, no subscription and no lock-in. If you ever want another developer to take it over, they can — everything they need is already in your hands.",
   },
   {
-    question: "What if something breaks later?",
-    answer:
-      `Straight answer: I am not offering ongoing support once the studio closes, so you should not buy on the assumption that I will be around. Two things make that manageable. A static site on a free tier has very little that can break on its own — there is no server to fall over and no database to corrupt. And because you own the code and the hosting account outright, any developer can pick it up without needing anything from me. I will answer handover questions during the build and for ${SUPPORT_WINDOW} after launch.`,
+    question: "What if I need changes after launch?",
+    answer: `I answer questions during the build and for ${SUPPORT_WINDOW} after launch. After that, message me with what you'd like changed and I'll quote it. A static site on a free tier has very little that can break on its own — there's no server to fall over and no database to corrupt — and because you own the code and the hosting account outright, any developer can pick it up without needing anything from me.`,
   },
   {
-    question: "Why is the price so low?",
+    question: "Will my website work on mobile phones?",
     answer:
-      "Because I am closing, not because the work is different. I am moving on to build Mathly, my maths education platform, and I would rather finish a few more sites properly than leave the remaining packages unsold. You are getting the same build I have been charging full price for. There is also no monthly fee attached any more, so the number you see is genuinely the whole cost.",
+      "Absolutely. Every website I build is mobile-first and tested across different screen sizes — most of your visitors are on a phone, so that's where I start. Workflows are built the same way: they run on your phone like an app, with nothing to download from an app store.",
   },
   {
     question: "How long does a build take, and how do I pay?",
-    answer:
-      `Build times depend on the package: 3 days for Starter, 7 for Business, 14 for Professional and 21 for E-Commerce, counted from when you have sent me your content. Payment is a 50% deposit to secure your spot and start the build, with the balance due once the site is live and handed over to you. ${PAYMENT_TERMS}`,
+    answer: `Website build times depend on the size of the site: about 3 days for a single page, 7 for up to 5 pages, 14 for up to 10 pages and 21 for an online store, counted from when you have sent me your content. Custom workflows are scoped individually and get their own timeline in the quote. Payment is a 50% deposit to secure your spot and start the build, with the balance due once it's live and handed over to you. ${PAYMENT_TERMS}`,
   },
 ];
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="section bg-white">
-      <div className="container-narrow">
-        <div className="text-center mb-12">
-          <span className="badge mb-4 anim-scale-in">FAQ</span>
-          <h2
-            className="text-3xl sm:text-4xl font-extrabold mb-4 anim-fade-up"
-            style={{ color: "#111827", animationDelay: "100ms" }}
-          >
-            The questions you should be asking
-          </h2>
-          <p
-            className="max-w-xl mx-auto anim-fade-up"
-            style={{ color: "#6b7280", animationDelay: "180ms" }}
-          >
-            Buying from a business that is closing is a fair thing to be careful about. Here is
-            exactly how it works.
-          </p>
-        </div>
+    <section id="faq" className="section bg-paper">
+      <div className="container-site">
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <span className="eyebrow anim-fade-up">FAQ</span>
+            <h2
+              className="anim-fade-up mt-5 text-[34px] leading-[1.04] tracking-tightest text-ink sm:text-5xl"
+              style={{ animationDelay: "80ms" }}
+            >
+              Questions, <span className="serif-accent">answered.</span>
+            </h2>
+            <p className="anim-fade-up prose-muted mt-5 max-w-sm" style={{ animationDelay: "160ms" }}>
+              Straight answers on hosting, ownership, timelines and payment. Anything else, just ask.
+            </p>
+            <a
+              href={whatsappLink("Hi Divan, I have a question before getting started.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost anim-fade-up mt-8"
+              style={{ animationDelay: "220ms" }}
+            >
+              <WhatsApp size={16} className="text-[#25d366]" />
+              Ask me on WhatsApp
+            </a>
+          </div>
 
-        <div className="max-w-2xl mx-auto space-y-3">
-          {faqs.map((faq, i) => {
-            const isOpen = open === i;
-            return (
-              <div
-                key={i}
-                className="glass-card-light glass-card-hover rounded-2xl anim-fade-up"
-                style={{ animationDelay: `${i * 80}ms` }}
-              >
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left transition-colors"
-                  aria-expanded={isOpen}
-                >
-                  <span
-                    className="text-base font-semibold"
-                    style={{ color: isOpen ? "#0d9488" : "#111827" }}
+          <div className="divide-y divide-line border-y border-line">
+            {faqs.map((faq, i) => {
+              const isOpen = open === i;
+              return (
+                <div key={faq.question} className="anim-fade-up" style={{ animationDelay: `${i * 60}ms` }}>
+                  <h3>
+                    <button
+                      onClick={() => setOpen(isOpen ? null : i)}
+                      className="group flex w-full items-center justify-between gap-6 py-6 text-left"
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-${i}`}
+                    >
+                      <span className="text-[17px] font-medium tracking-tight text-ink sm:text-lg">{faq.question}</span>
+                      <span
+                        className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition-all duration-300 ${
+                          isOpen ? "rotate-45 border-ink bg-ink text-lime" : "border-line bg-white text-ink group-hover:border-ink/30"
+                        }`}
+                      >
+                        <Plus size={15} strokeWidth={2} />
+                      </span>
+                    </button>
+                  </h3>
+                  <div
+                    id={`faq-${i}`}
+                    role="region"
+                    className={`grid transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
                   >
-                    {faq.question}
-                  </span>
-                  <span
-                    className="flex-shrink-0 text-lg font-light transition-transform duration-200"
-                    style={{
-                      color: isOpen ? "#0d9488" : "#9ca3af",
-                      transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
-                    }}
-                  >
-                    +
-                  </span>
-                </button>
-                {isOpen && (
-                  <p className="px-6 pb-5 text-sm leading-relaxed" style={{ color: "#6b7280" }}>
-                    {faq.answer}
-                  </p>
-                )}
-              </div>
-            );
-          })}
+                    <p className="overflow-hidden pr-12 text-[15px] leading-relaxed text-muted">
+                      <span className="block pb-6">{faq.answer}</span>
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

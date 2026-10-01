@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
+import { ArrowRight } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "5 Reasons Your Small Business Needs a Website in 2026 | Clearsite Studios",
@@ -11,94 +13,88 @@ export const metadata: Metadata = {
   },
 };
 
+const reasons = [
+  {
+    title: "You own it — social media can disappear overnight",
+    body: "Your Facebook or Instagram page can be suspended, hacked, or simply lose its reach due to an algorithm change. Your website belongs to you. No platform can take it away or hide it from your audience.",
+  },
+  {
+    title: "Clients Google you before they call you",
+    body: "When someone hears about your business, the first thing they do is search for you online. If nothing comes up — or worse, a competitor appears instead — you've already lost that client. A website makes you findable.",
+  },
+  {
+    title: "It works for you 24/7",
+    body: "Your website answers questions, showcases your services, and collects enquiries even while you sleep. It's your most hardworking employee and it never takes a day off.",
+  },
+  {
+    title: "It builds trust instantly",
+    body: "A clean, professional website signals that you are serious about your business. Customers are far more likely to contact a business that looks established and credible online.",
+  },
+  {
+    title: "It levels the playing field",
+    body: "A well-built website means a small local business can look just as professional as a large company. Your website is often the first impression — make it count.",
+  },
+];
+
 export default function ArticlePage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
 
-      <main className="flex-1 py-16 md:py-24" style={{ backgroundColor: "#f8fafc" }}>
-        <div className="px-6 mx-auto" style={{ maxWidth: "740px" }}>
+      <PageHero
+        align="left"
+        back={{ href: "/blog", label: "Back to blog" }}
+        eyebrow="Business Tips · 3 min read"
+        title="5 Reasons Your Small Business Needs a Website in 2026"
+        intro="Still relying on social media alone? Here's why a proper website is the smartest investment you can make this year."
+      />
 
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium mb-10 transition-colors hover:opacity-70"
-            style={{ color: "#6b7280" }}
-          >
-            ← Back to blog
-          </Link>
+      <main className="flex-1 bg-paper">
+        <section className="py-20 md:py-28">
+          <div className="container-site">
+            <article className="mx-auto max-w-[720px]">
+              {reasons.map((r, i) => (
+                <div key={r.title} className="mt-12 border-t border-line pt-10 first:mt-0 first:border-t-0 first:pt-0">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h2 className="mt-3 text-2xl leading-tight tracking-tight text-ink">{r.title}</h2>
+                  <p className="mt-4 text-[17px] leading-[1.75] text-ink/75">{r.body}</p>
+                </div>
+              ))}
+            </article>
 
-          <div className="flex items-center gap-3 mb-5">
-            <span className="text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full" style={{ color: "#7c3aed", backgroundColor: "#ede9fe" }}>
-              Business Tips
-            </span>
+            {/* ── CTA ─────────────────────────────────────────────────── */}
+            <div className="anim-fade-up mx-auto mt-20 max-w-[880px]">
+              <div className="grain relative overflow-hidden rounded-3xl bg-ink px-7 py-12 text-white shadow-lift sm:px-12 sm:py-14">
+                <div aria-hidden="true" className="bg-grid-dark mask-radial pointer-events-none absolute inset-0" />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -bottom-40 -right-24 h-80 w-[520px] rounded-full"
+                  style={{ background: "radial-gradient(closest-side, rgba(198,242,78,0.2), transparent)" }}
+                />
+                <div className="relative z-10 max-w-xl">
+                  <span className="eyebrow eyebrow-dark">Next step</span>
+                  <h2 className="mt-5 text-3xl leading-[1.08] tracking-tightest text-white sm:text-[40px]">
+                    Ready to get your business <span className="serif-accent text-lime">online?</span>
+                  </h2>
+                  <p className="mt-4 text-[15.5px] leading-relaxed text-white/55">
+                    Get in touch with Clearsite Studios today for a free, no-obligation quote.
+                  </p>
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                    <Link href="/quote" className="btn-lime">
+                      Request a quote
+                      <ArrowRight size={16} className="btn-arrow" />
+                    </Link>
+                    <Link href="/pricing" className="btn-ghost-dark">
+                      See pricing
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-6" style={{ color: "#111827" }}>
-            5 Reasons Your Small Business Needs a Website in 2026
-          </h1>
-
-          <p className="text-base leading-relaxed mb-10" style={{ color: "#6b7280" }}>
-            Still relying on social media alone? Here&apos;s why a proper website is the smartest investment you can make this year.
-          </p>
-
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 sm:p-10 space-y-8 text-base leading-relaxed" style={{ color: "#374151" }}>
-
-            <div>
-              <h2 className="text-lg font-bold mb-2" style={{ color: "#111827" }}>
-                1. You own it — social media can disappear overnight
-              </h2>
-              <p>
-                Your Facebook or Instagram page can be suspended, hacked, or simply lose its reach due to an algorithm change. Your website belongs to you. No platform can take it away or hide it from your audience.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-bold mb-2" style={{ color: "#111827" }}>
-                2. Clients Google you before they call you
-              </h2>
-              <p>
-                When someone hears about your business, the first thing they do is search for you online. If nothing comes up — or worse, a competitor appears instead — you&apos;ve already lost that client. A website makes you findable.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-bold mb-2" style={{ color: "#111827" }}>
-                3. It works for you 24/7
-              </h2>
-              <p>
-                Your website answers questions, showcases your services, and collects enquiries even while you sleep. It&apos;s your most hardworking employee and it never takes a day off.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-bold mb-2" style={{ color: "#111827" }}>
-                4. It builds trust instantly
-              </h2>
-              <p>
-                A clean, professional website signals that you are serious about your business. Customers are far more likely to contact a business that looks established and credible online.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-bold mb-2" style={{ color: "#111827" }}>
-                5. It levels the playing field
-              </h2>
-              <p>
-                A well-built website means a small local business can look just as professional as a large company. Your website is often the first impression — make it count.
-              </p>
-            </div>
-
-            <div className="pt-4 border-t border-slate-100">
-              <p className="mb-5" style={{ color: "#6b7280" }}>
-                Ready to get your business online? Get in touch with Clearsite Studios today for a free, no-obligation quote.
-              </p>
-              <Link href="/pricing" className="btn-primary inline-flex">
-                Request a Quote →
-              </Link>
-            </div>
-
-          </div>
-        </div>
+        </section>
       </main>
 
       <Footer />

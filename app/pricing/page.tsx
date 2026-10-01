@@ -1,395 +1,317 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { packages, whatsappLink } from "@/lib/sale";
+import PageHero from "@/components/PageHero";
+import SectionHeading from "@/components/SectionHeading";
+import Contact from "@/components/Contact";
+import {
+  ArrowRight,
+  Bag,
+  Check,
+  FileText,
+  Globe,
+  Handshake,
+  Key,
+  Layers,
+  WhatsApp,
+  Workflow,
+  Zap,
+} from "@/components/icons";
+import { FROM_PRICE, quoteHref, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Closing Down Prices | ClearSite Studios",
-  description:
-    "The remaining ClearSite Studios website packages at a reduced once-off price, from R399. You own the site outright, hosted free, no monthly fee.",
+  title: "Pricing | ClearSite Studios",
+  description: `Websites from ${FROM_PRICE} once-off, and custom business workflows quoted per project. Every project gets a written quote — you own everything outright, no monthly fee.`,
   alternates: {
     canonical: "https://www.clearsitestudios.co.za/pricing",
   },
 };
 
-// Market and agency figures carried over from the previous pricing page.
-const marketRates: Record<string, { label: string; market: string; agency: string }> = {
-  STARTER: { label: "Starter (1 page)", market: "R3,765", agency: "R5,000+" },
-  BUSINESS: { label: "Business (5 pages)", market: "R6,254", agency: "R15,000+" },
-  PROFESSIONAL: { label: "Professional (10 pages)", market: "R14,780", agency: "R40,000+" },
-  "E-COMMERCE": { label: "E-Commerce", market: "R27,980+", agency: "R40,000+" },
-};
+const factors = [
+  {
+    icon: Layers,
+    title: "Size & features",
+    body: "How many pages, and what they need to do — galleries, bookings, a blog, maps, analytics. A focused one-page site sits at the bottom of the range.",
+  },
+  {
+    icon: FileText,
+    title: "Your content",
+    body: "If your logo, photos and text are ready, it's quicker. If you'd like help putting them together, I'll include that in the quote.",
+  },
+  {
+    icon: Bag,
+    title: "Selling online",
+    body: "Stores depend on how many products you sell, how customers pay, and whether you deliver or offer collection.",
+  },
+  {
+    icon: Workflow,
+    title: "Custom workflows",
+    body: "Systems are scoped around your process — what it needs to handle, who uses it, and what it replaces.",
+  },
+];
+
+const steps = [
+  { title: "Tell me what you need", body: "A two-minute brief — mostly tapping. Or just WhatsApp me." },
+  { title: "Get a written quote", body: "It lands on your own private project page, usually within 1 business day." },
+  { title: "Accept in one tap", body: "Pay the 50% deposit, upload your content, and the build starts." },
+];
 
 const ownership = [
   {
-    icon: "🔑",
+    icon: Key,
     heading: "The site is yours outright",
     body: "Design, code and content. Once it's paid for, you own it — no licence, no subscription, no lock-in.",
   },
   {
-    icon: "💸",
+    icon: Zap,
     heading: "Hosted free, R0 per month",
-    body: "Deployed on a free hosting tier. There is no hosting fee and no maintenance fee, because there is no studio left to bill you.",
+    body: "Websites are deployed on a free hosting tier. There is no hosting fee and no maintenance fee from me.",
   },
   {
-    icon: "📨",
+    icon: Globe,
     heading: "Credentials handed over",
     body: "The hosting account is in your name and you get the logins on completion. Nothing sits behind my account.",
   },
   {
-    icon: "🚪",
+    icon: Handshake,
     heading: "No ongoing dependency on me",
-    body: "Your site keeps running after I close. If you ever want changes, any developer can pick it up from what you already hold.",
+    body: "If you ever want changes, I'm a message away — but any developer can pick it up from what you already hold.",
   },
+];
+
+const market = [
+  { label: "Single-page website", market: "R3,765", agency: "R5,000+" },
+  { label: "5-page website", market: "R6,254", agency: "R15,000+" },
+  { label: "10-page website", market: "R14,780", agency: "R40,000+" },
+  { label: "Online store", market: "R27,980+", agency: "R40,000+" },
 ];
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
 
-      {/* Closing sale banner */}
-      <div
-        className="w-full py-3 px-4 text-center text-white text-sm font-bold"
-        style={{ background: "linear-gradient(135deg, #7c3aed, #6d28d9)" }}
+      <PageHero
+        eyebrow="Pricing"
+        title={
+          <>
+            Websites from {FROM_PRICE}. <span className="serif-accent text-lime">Quoted to fit.</span>
+          </>
+        }
+        intro="Every business needs something a little different, so every project gets a written quote before anything starts — no guesswork, no surprises, and no monthly fee."
       >
-        Closing down — remaining packages reduced to a once-off price.
-      </div>
-
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-[#1e1b4b] text-white py-16 md:py-24">
-        <div className="absolute -top-32 -right-32 w-[400px] h-[400px] bg-violet-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-fuchsia-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative container-narrow text-center">
-          <span
-            className="badge mb-6 anim-scale-in"
-            style={{ background: "rgba(255,255,255,0.1)", color: "white" }}
-          >
-            Closing Down Prices
-          </span>
-          <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5 leading-tight tracking-tight text-white anim-fade-up"
-            style={{ animationDelay: "100ms" }}
-          >
-            The remaining packages,
-            <br />
-            <span className="gradient-text">at a once-off reduced price.</span>
-          </h1>
-          <p
-            className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto anim-fade-up"
-            style={{ animationDelay: "200ms" }}
-          >
-            Same build I&apos;ve been charging full price for. The price is lower because I&apos;m
-            closing the studio, not because the work is different.
-          </p>
-        </div>
-      </section>
-
-      {/* Pricing cards */}
-      <section className="section" style={{ backgroundColor: "#f4f4f5" }}>
-        <div className="container-narrow">
-          <div className="text-center mb-12">
-            <h2
-              className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 anim-fade-up"
-              style={{ color: "#111827" }}
-            >
-              Choose Your Package
-            </h2>
-            <p
-              className="text-base anim-fade-up"
-              style={{ color: "#6b7280", animationDelay: "100ms" }}
-            >
-              Once-off payment. No monthly fee, now or ever.
-            </p>
-          </div>
-
-          {/* Estimate disclaimer — sits above the cards so it is read first */}
-          <div
-            className="max-w-3xl mx-auto mb-10 rounded-2xl px-6 py-5 text-center anim-fade-up"
-            style={{ backgroundColor: "#ede9fe", border: "1px solid #ddd6fe", animationDelay: "150ms" }}
-          >
-            <p className="text-sm leading-relaxed font-medium" style={{ color: "#5b21b6" }}>
-              These prices are estimates for a typical build. Your final price is confirmed in a
-              written quote once I know exactly what you need — message me and I&apos;ll put one
-              together. No cost and no obligation for the quote.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 gap-6">
-            {packages.map((pkg, i) => (
-              <div
-                key={pkg.name}
-                className="relative rounded-2xl bg-white p-7 flex flex-col transition-all duration-200 hover:shadow-xl hover:-translate-y-1 anim-fade-up shadow-lg"
-                style={{ animationDelay: `${i * 80}ms`, border: "2px solid #7c3aed" }}
-              >
-                <div
-                  className="inline-flex self-start mb-4 px-3 py-1 rounded-full text-xs font-bold text-white"
-                  style={{ background: "linear-gradient(135deg, #7c3aed, #6d28d9)" }}
-                >
-                  {pkg.salePrice ? "Closing down — 80% off" : "Closing down sale"}
-                </div>
-
-                <div className="mb-5">
-                  <p
-                    className="text-xs font-bold tracking-widest uppercase mb-2"
-                    style={{ color: "#7c3aed" }}
-                  >
-                    {pkg.name}
-                  </p>
-                  <div className="flex flex-wrap items-end gap-2 mb-1">
-                    {pkg.salePrice ? (
-                      <>
-                        <span className="text-lg line-through" style={{ color: "#9ca3af" }}>
-                          {pkg.originalPrice}
-                        </span>
-                        <span className="text-4xl font-extrabold" style={{ color: "#7c3aed" }}>
-                          {pkg.salePrice}
-                        </span>
-                        <span className="text-sm mb-1.5" style={{ color: "#6b7280" }}>
-                          once-off
-                        </span>
-                      </>
-                    ) : (
-                      <span className="text-3xl font-extrabold" style={{ color: "#7c3aed" }}>
-                        Quoted on request
-                      </span>
-                    )}
-                  </div>
-                  {!pkg.salePrice && (
-                    <p className="text-sm mb-1" style={{ color: "#6b7280" }}>
-                      Stores vary too much to price up front — tell me what you need to sell and
-                      I&apos;ll quote you.
-                    </p>
-                  )}
-                  <p className="text-sm" style={{ color: "#6b7280" }}>
-                    Delivered in{" "}
-                    <span className="font-semibold" style={{ color: "#374151" }}>
-                      {pkg.delivery}
-                    </span>
-                  </p>
-                </div>
-
-                <ul className="space-y-2.5 flex-1 mb-5">
-                  {pkg.features.map((feat) => (
-                    <li
-                      key={feat}
-                      className="flex items-start gap-2.5 text-sm"
-                      style={{ color: "#374151" }}
-                    >
-                      <svg
-                        className="mt-0.5 shrink-0 w-4 h-4"
-                        style={{ color: "#7c3aed" }}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {feat}
-                    </li>
-                  ))}
-                  <li className="flex items-start gap-2.5 text-sm font-semibold" style={{ color: "#374151" }}>
-                    <svg
-                      className="mt-0.5 shrink-0 w-4 h-4"
-                      style={{ color: "#7c3aed" }}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Yours outright — no monthly fee
-                  </li>
-                </ul>
-
-                <a
-                  href={pkg.learnMoreLink}
-                  className="text-sm text-gray-400 hover:text-purple-600 transition-colors mt-2 block text-center mb-4"
-                >
-                  Why this package? →
-                </a>
-                <a
-                  href={whatsappLink(
-                    pkg.salePrice
-                      ? `Hi Divan, I saw the ClearSite closing-down sale and I'm interested in the ${pkg.planParam} package.`
-                      : `Hi Divan, I saw the ClearSite closing-down sale and I'd like a quote for the ${pkg.planParam} package.`
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary text-center"
-                >
-                  {pkg.salePrice
-                    ? `WhatsApp me about ${pkg.planParam} →`
-                    : `Get an ${pkg.planParam} quote →`}
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Unsure CTA */}
-      <section className="py-8" style={{ backgroundColor: "#f4f4f5" }}>
-        <div className="container-narrow text-center">
+        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link href={quoteHref()} className="btn-lime btn-lg w-full sm:w-auto">
+            Get a quote
+            <ArrowRight size={17} className="btn-arrow" />
+          </Link>
           <a
-            href={whatsappLink(
-              "Hi Divan, I saw the ClearSite closing-down sale. I'm not sure which package fits — can you help?"
-            )}
+            href={whatsappLink("Hi Divan, I'd like to ask about pricing for a project.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-outline inline-flex items-center gap-2 anim-fade-up"
+            className="btn-ghost-dark btn-lg w-full sm:w-auto"
           >
-            Not sure which package fits? Message me →
+            <WhatsApp size={17} />
+            Ask on WhatsApp
           </a>
         </div>
-      </section>
+      </PageHero>
 
-      {/* What you actually get — replaces the old monthly services section */}
-      <section className="section" style={{ backgroundColor: "#1e1b4b" }}>
-        <div className="container-narrow">
-          <div className="text-center mb-10">
-            <p
-              className="text-xs font-bold tracking-widest uppercase mb-2"
-              style={{ color: "#a78bfa" }}
-            >
-              No Monthly Fees
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-              What the price actually includes
-            </h2>
-            <p className="text-base max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
-              There is no hosting fee and no retainer. A studio that is closing has no business
-              selling you a monthly commitment, so I&apos;ve removed both.
-            </p>
-          </div>
+      <main className="flex-1">
+        {/* ── What shapes the price ─────────────────────────────────────── */}
+        <section className="section bg-paper">
+          <div className="container-site">
+            <SectionHeading
+              eyebrow="How it's priced"
+              title={
+                <>
+                  What shapes your <span className="serif-accent">quote.</span>
+                </>
+              }
+              intro="Prices start low for simple sites and scale with what you actually need — you only pay for what your business will use."
+            />
 
-          <div className="grid sm:grid-cols-2 gap-6">
-            {ownership.map((item, i) => (
-              <div
-                key={item.heading}
-                className="rounded-2xl p-7 flex flex-col anim-fade-up"
-                style={{
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  animationDelay: `${i * 80}ms`,
-                }}
-              >
-                <div className="text-2xl mb-4">{item.icon}</div>
-                <h3 className="text-base font-extrabold text-white mb-2">{item.heading}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#cbd5e1" }}>
-                  {item.body}
-                </p>
+            <div className="mt-14 grid gap-4 lg:grid-cols-[1fr_1.4fr] lg:gap-5">
+              {/* Anchor */}
+              <div className="grain anim-fade-up relative flex flex-col justify-between overflow-hidden rounded-3xl bg-ink p-7 text-white shadow-lift sm:p-9">
+                <div aria-hidden="true" className="bg-grid-dark mask-radial pointer-events-none absolute inset-0" />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -bottom-32 -right-32 h-80 w-80 rounded-full blur-3xl"
+                  style={{ background: "radial-gradient(closest-side, rgba(198,242,78,0.22), transparent)" }}
+                />
+                <div className="relative z-10">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-lime">Starting point</p>
+                  <p className="mt-6 flex items-baseline gap-2">
+                    <span className="text-sm text-white/50">from</span>
+                    <span className="text-6xl font-semibold tracking-tightest sm:text-7xl">{FROM_PRICE}</span>
+                  </p>
+                  <p className="mt-2 text-sm text-white/50">once-off · no monthly fee</p>
+                  <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-white/65">
+                    A simple one-page site: your services or catalogue, contact details and a WhatsApp
+                    button. Ideal for tradespeople and small service businesses that need to look
+                    professional online.
+                  </p>
+                </div>
+                <ul className="relative z-10 mt-8 space-y-2.5">
+                  {["Mobile-first design", "WhatsApp contact button", "Handed over in your name"].map((p) => (
+                    <li key={p} className="flex items-center gap-2.5 text-sm text-white/80">
+                      <Check size={15} strokeWidth={2.4} className="text-lime" />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
+
+              {/* Factors */}
+              <div className="grid gap-4 sm:grid-cols-2">
+                {factors.map((f, i) => (
+                  <div
+                    key={f.title}
+                    className="card anim-fade-up p-6 sm:p-7"
+                    style={{ animationDelay: `${(i + 1) * 80}ms` }}
+                  >
+                    <span className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-paper text-ink">
+                      <f.icon size={18} />
+                    </span>
+                    <h3 className="mt-6 text-lg tracking-tight text-ink">{f.title}</h3>
+                    <p className="prose-muted mt-2 text-[14.5px]">{f.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+        </section>
 
-          <p className="text-sm text-center mt-8" style={{ color: "#94a3b8" }}>
-            A custom domain is the only separate cost, paid directly to the registrar. I don&apos;t
-            mark it up and I don&apos;t hold it for you.
-          </p>
-        </div>
-      </section>
+        {/* ── How quoting works ─────────────────────────────────────────── */}
+        <section className="bg-paper pb-24 md:pb-32">
+          <div className="container-site">
+            <div className="card anim-fade-up overflow-hidden p-7 sm:p-10">
+              <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+                <div className="max-w-md">
+                  <span className="eyebrow">How quoting works</span>
+                  <h2 className="mt-5 text-3xl tracking-tightest text-ink sm:text-4xl">
+                    Two minutes to ask. <span className="serif-accent">No obligation.</span>
+                  </h2>
+                  <Link href={quoteHref()} className="btn-ink mt-8">
+                    Start your quote
+                    <ArrowRight size={16} className="btn-arrow" />
+                  </Link>
+                </div>
+                <ol className="grid flex-1 gap-3 sm:grid-cols-3 lg:max-w-2xl">
+                  {steps.map((s, i) => (
+                    <li key={s.title} className="rounded-2xl border border-line bg-paper/60 p-5">
+                      <span className="grid h-8 w-8 place-items-center rounded-full bg-ink font-mono text-xs text-lime">
+                        0{i + 1}
+                      </span>
+                      <p className="mt-4 font-medium tracking-tight text-ink">{s.title}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-muted">{s.body}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* Comparison table */}
-      <section className="section" style={{ backgroundColor: "#f4f4f5" }}>
-        <div className="container-narrow">
-          <div className="text-center mb-10">
-            <h2
-              className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 anim-fade-up"
-              style={{ color: "#111827" }}
-            >
-              How These Prices Compare
-            </h2>
-            <p
-              className="text-base anim-fade-up"
-              style={{ color: "#6b7280", animationDelay: "100ms" }}
-            >
-              What the same build typically costs elsewhere in South Africa.
+        {/* ── What the price includes ─────────────────────────────────── */}
+        <section id="ownership" className="section bg-white">
+          <div className="container-site">
+            <SectionHeading
+              eyebrow="No monthly fees"
+              title={
+                <>
+                  What the price <span className="serif-accent">actually</span> includes.
+                </>
+              }
+              intro="There is no hosting fee and no retainer. You pay once for the build, and it's yours."
+            />
+            <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {ownership.map((item, i) => (
+                <div
+                  key={item.heading}
+                  className="anim-fade-up rounded-3xl border border-line bg-paper/60 p-6 sm:p-7"
+                  style={{ animationDelay: `${i * 80}ms` }}
+                >
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-ink text-lime">
+                    <item.icon size={18} />
+                  </span>
+                  <h3 className="mt-6 text-lg tracking-tight text-ink">{item.heading}</h3>
+                  <p className="prose-muted mt-2 text-sm">{item.body}</p>
+                </div>
+              ))}
+            </div>
+            <p className="anim-fade-up mt-8 text-sm text-muted">
+              A custom domain is the only separate cost, paid directly to the registrar. I don&apos;t
+              mark it up and I don&apos;t hold it for you.
             </p>
           </div>
+        </section>
 
-          <div className="overflow-x-auto anim-fade-up" style={{ animationDelay: "200ms" }}>
-            <table
-              className="w-full min-w-[560px] rounded-2xl overflow-hidden border-separate border-spacing-0"
-              style={{ border: "1px solid #e4e4e7" }}
-            >
-              <thead>
-                <tr style={{ background: "linear-gradient(135deg, #7c3aed, #6d28d9)" }}>
-                  <th
-                    className="text-left px-5 py-4 text-sm font-bold text-white"
-                    style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}
-                  >
-                    Package
-                  </th>
-                  <th
-                    className="px-5 py-4 text-sm font-bold text-white text-center"
-                    style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}
-                  >
-                    Closing Price
-                  </th>
-                  <th
-                    className="px-5 py-4 text-sm font-bold text-center"
-                    style={{ color: "#cbd5e1", borderBottom: "1px solid rgba(255,255,255,0.15)" }}
-                  >
-                    SA Market Average
-                  </th>
-                  <th
-                    className="px-5 py-4 text-sm font-bold text-center"
-                    style={{ color: "#cbd5e1", borderBottom: "1px solid rgba(255,255,255,0.15)" }}
-                  >
-                    Agency Pricing
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {packages.map((pkg, i) => {
-                  const rates = marketRates[pkg.name];
-                  const last = i === packages.length - 1;
-                  const cellBorder = last ? undefined : "1px solid #e4e4e7";
-                  return (
-                    <tr key={pkg.name} style={{ backgroundColor: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
-                      <td
-                        className="px-5 py-4 text-sm font-semibold"
-                        style={{ color: "#374151", borderBottom: cellBorder }}
-                      >
-                        {rates.label}
-                      </td>
-                      <td
-                        className="px-5 py-4 text-sm font-bold text-center"
-                        style={{ color: "#7c3aed", borderBottom: cellBorder }}
-                      >
-                        {pkg.salePrice ?? "On request"}
-                      </td>
-                      <td
-                        className="px-5 py-4 text-sm text-center"
-                        style={{ color: "#6b7280", borderBottom: cellBorder }}
-                      >
-                        {rates.market}
-                      </td>
-                      <td
-                        className="px-5 py-4 text-sm text-center"
-                        style={{ color: "#6b7280", borderBottom: cellBorder }}
-                      >
-                        {rates.agency}
-                      </td>
+        {/* ── Market comparison ───────────────────────────────────────── */}
+        <section className="section bg-paper">
+          <div className="container-site">
+            <SectionHeading
+              eyebrow="Compare"
+              title={
+                <>
+                  What it typically costs <span className="serif-accent">elsewhere.</span>
+                </>
+              }
+              intro={`The same builds from other South African designers and agencies. ClearSite quotes start from ${FROM_PRICE}.`}
+            />
+
+            <div className="anim-fade-up mt-12 overflow-x-auto rounded-3xl border border-line bg-white shadow-card">
+              <table className="w-full min-w-[520px] border-collapse text-left">
+                <thead>
+                  <tr className="border-b border-line">
+                    <th className="px-6 py-5 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-muted">
+                      Project
+                    </th>
+                    <th className="px-6 py-5 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-muted">
+                      SA market average
+                    </th>
+                    <th className="px-6 py-5 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-muted">
+                      Agency pricing
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {market.map((row, i) => (
+                    <tr key={row.label} className={i === market.length - 1 ? "" : "border-b border-line"}>
+                      <td className="px-6 py-5 text-[15px] font-medium text-ink">{row.label}</td>
+                      <td className="px-6 py-5 text-[15px] text-muted">{row.market}</td>
+                      <td className="px-6 py-5 text-[15px] text-muted">{row.agency}</td>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-          <p
-            className="text-sm text-center mt-5 anim-fade-up"
-            style={{ color: "#9ca3af", animationDelay: "300ms" }}
-          >
-            Estimates only — your final price is confirmed by quote. All prices exclude domain
-            registration if required.
-          </p>
-        </div>
-      </section>
+            <div className="anim-fade-up mt-6 flex flex-col items-start justify-between gap-4 rounded-2xl bg-lime-soft/70 px-6 py-5 sm:flex-row sm:items-center">
+              <p className="text-[15px] text-ink">
+                <span className="font-semibold">Find out what yours would cost.</span>{" "}
+                <span className="text-ink/70">Written quote, no obligation, usually within 1 business day.</span>
+              </p>
+              <Link href={quoteHref()} className="btn-ink btn-sm shrink-0">
+                Get a quote
+                <ArrowRight size={15} className="btn-arrow" />
+              </Link>
+            </div>
+            <p className="mt-4 text-sm text-muted-light">All prices exclude domain registration if required.</p>
+          </div>
+        </section>
+
+        <Contact
+          title={
+            <>
+              Get a written quote. <span className="serif-accent text-lime">No obligation.</span>
+            </>
+          }
+          intro="Tell me what you need and I'll confirm the scope and the price before anything starts."
+        />
+      </main>
 
       <Footer />
     </div>

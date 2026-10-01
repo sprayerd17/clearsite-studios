@@ -1,0 +1,74 @@
+import "server-only";
+import { cert, getApps, initializeApp, type App } from "firebase-admin/app";
+import { getFirestore, type Firestore } from "firebase-admin/firestore";
+
+// Same setup as the RAD Cricket app. firebase-admin/auth is deliberately not used
+// at runtime (its jwks-rsa dependency doesn't load on some serverless runtimes).
+
+const globalForAdmin = globalThis as { __adminDb?: Firestore };
+
+/**
+ * True when the server can reach Firebase — either the local emulators or a real
+ * project with a service account. Until then the quote form falls back to email.
+ */
+export function isFirebaseConfigured(): boolean {
+  if (process.env.FIRESTORE_EMULATOR_HOST) return true;
+  return Boolean(
+    process.env.FIREBASE_PROJECT_ID && process.env.FIREBASE_CLIENT_EMAIL && process.env.FIREBASE_PRIVATE_KEY,
+  );
+}
+
+function adminApp(): App {
+  const existing = getApps()[0];
+  if (existing) return existing;
+
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+  const storageBucket = process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET;
+  // Against the local emulator no credentials are needed.
+  if (process.env.FIRESTORE_EMULATOR_HOST) return initializeApp({ projectId, storageBucket });
+
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  if (!projectId || !clientEmail || !privateKey) {
+    throw new Error(
+      "Missing FIREBASE_PROJECT_ID / FIREBASE_CLIENT_EMAIL / FIREBASE_PRIVATE_KEY environment variables.",
+    );
+  }
+  return initializeApp({
+    credential: cert({ projectId, clientEmail, privateKey }),
+    storageBucket,
+  });
+}
+
+/** Server-side Firestore with full access. Used by the public quote form and client pages. */
+export function adminDb(): Firestore {
+  if (!globalForAdmin.__adminDb) {
+    const db = getFirestore(adminApp());
+    db.settings({ ignoreUndefinedProperties: true });
+    globalForAdmin.__adminDb = db;
+  }
+  return globalForAdmin.__adminDb;
+}
+
+/**
+ * Saves a file to Storage and returns a Firebase download URL for it.
+ * The URL carries its own unguessable token, so it works without signing in.
+ */
+export async function uploadToStorage(path: string, data: Buffer, contentType: string): Promise<string> {
+  const { getStorage } = await import("firebase-admin/storage");
+  const bucket = getStorage(adminApp()).bucket();
+  const token = crypto.randomUUID();
+  await bucket.file(path).save(data, {
+    contentType,
+    resumable: false,
+    metadata: { metadata: { firebaseStorageDownloadTokens: token } },
+  });
+  const emulator = process.env.FIREBASE_STORAGE_EMULATOR_HOST;
+  const base = emulator ? `http://${emulator}` : "https://firebasestorage.googleapis.com";
+  return `${base}/v0/b/${bucket.name}/o/${encodeURIComponent(path)}?alt=media&token=${token}`;
+}
+
+export async function deleteFromStorage(path: string): Promise<void> {
+  const { getStorage } = await import("firebase-admin/storage");
+  await getStorage(adminApp()).bucket().file(path).delete({ ignoreNotFound: true });
+}

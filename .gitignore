@@ -35,3 +35,11 @@ next-env.d.ts
 
 # Claude Code session data
 .claude/
+
+# firebase
+.firebase/
+.emulator-data/
+*-debug.log
+
+# private price list (remove this line to version it in a private repo)
+/pricing/*.xlsx

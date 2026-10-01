@@ -6,23 +6,39 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "emulators": "node scripts/emulators.mjs",
+    "dev:local": "concurrently -k -n firebase,next -c yellow,cyan \"npm:emulators\" \"npm:dev\"",
+    "seed": "node --env-file=.env.development.local scripts/seed.mjs",
+    "seed:prod": "node --env-file=.env.production.local scripts/seed.mjs",
+    "make-admin": "node --env-file=.env.production.local scripts/make-admin.mjs",
+    "deploy:rules": "firebase deploy --only firestore,storage",
+    "export-logo": "node scripts/export-logo.mjs",
+    "prices:import": "node --env-file=.env.development.local scripts/import-prices.mjs",
+    "prices:import:prod": "node --env-file=.env.production.local scripts/import-prices.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
     "@types/nodemailer": "^8.0.0",
+    "firebase": "^12.19.0",
+    "firebase-admin": "^14.5.0",
     "next": "^16.2.2",
     "nodemailer": "^8.0.7",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^10.0.5",
     "eslint": "^8",
     "eslint-config-next": "15.2.4",
+    "exceljs": "^4.4.0",
+    "firebase-tools": "^15.32.1",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
