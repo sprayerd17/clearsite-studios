@@ -43,3 +43,7 @@ next-env.d.ts
 
 # private price list (remove this line to version it in a private repo)
 /pricing/*.xlsx
+
+# Firebase keys and config pasted during setup (npm run env:prod)
+/firebase-setup/
+*-firebase-adminsdk-*.json

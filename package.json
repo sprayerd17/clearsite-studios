@@ -13,10 +13,11 @@
     "seed": "node --env-file=.env.development.local scripts/seed.mjs",
     "seed:prod": "node --env-file=.env.production.local scripts/seed.mjs",
     "make-admin": "node --env-file=.env.production.local scripts/make-admin.mjs",
-    "deploy:rules": "firebase deploy --only firestore,storage",
+    "deploy:rules": "node --env-file=.env.production.local scripts/deploy-rules.mjs",
     "export-logo": "node scripts/export-logo.mjs",
     "prices:import": "node --env-file=.env.development.local scripts/import-prices.mjs",
-    "prices:import:prod": "node --env-file=.env.production.local scripts/import-prices.mjs"
+    "prices:import:prod": "node --env-file=.env.production.local scripts/import-prices.mjs",
+    "env:prod": "node scripts/make-env.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",

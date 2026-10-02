@@ -65,11 +65,9 @@ Test data is kept in `.emulator-data/` between runs.
    - **Authentication** → enable **Email/Password**, then add yourself as a user.
    - **Project settings → General** → add a Web app and copy its config.
    - **Project settings → Service accounts** → generate a private key. Keep that file private.
-2. **Env vars.** Copy `.env.example` to `.env.production.local` and fill it in. Add the same variables to your hosting provider's environment settings, marking `FIREBASE_PRIVATE_KEY` and `SMTP_PASSWORD` as secret.
-3. **Rules, admin and price list.**
+2. **Env vars.** Put both pieces into the `firebase-setup/` folder (git-ignored): paste the web app's `firebaseConfig` block into `paste-firebase-config-here.txt`, and move the downloaded key `.json` into the folder. Then run `npm run env:prod`. It writes `.env.production.local` and `firebase-setup/vercel-env.txt`. Paste the whole of `vercel-env.txt` into Vercel → Settings → Environment Variables (Production). Skip any variable Vercel says already exists, e.g. the `SMTP_*` ones.
+3. **Rules, admin and price list.** These use the service account key, so no `firebase login` is needed:
    ```bash
-   npx firebase login
-   npx firebase use --add
    npm run deploy:rules
    npm run make-admin -- you@example.com
    npm run prices:import:prod

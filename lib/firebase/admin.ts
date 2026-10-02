@@ -28,7 +28,8 @@ function adminApp(): App {
   if (process.env.FIRESTORE_EMULATOR_HOST) return initializeApp({ projectId, storageBucket });
 
   const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
-  const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  // Tolerates the key pasted with or without surrounding quotes (e.g. into Vercel), with \n escapes.
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY?.trim().replace(/^"|"$/g, "").replace(/\\n/g, "\n");
   if (!projectId || !clientEmail || !privateKey) {
     throw new Error(
       "Missing FIREBASE_PROJECT_ID / FIREBASE_CLIENT_EMAIL / FIREBASE_PRIVATE_KEY environment variables.",
