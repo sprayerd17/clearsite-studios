@@ -16,11 +16,25 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "11mb",
     },
   },
+  async headers() {
+    return [
+      {
+        // Always fetch the latest service worker so notification changes roll out.
+        source: "/sw.js",
+        headers: [
+          { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+          { key: "Content-Type", value: "application/javascript; charset=utf-8" },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       // Package price pages were retired when pricing moved to quotes.
       { source: "/packages/:slug*", destination: "/pricing", permanent: true },
       { source: "/get-started", destination: "/quote", permanent: true },
+      // Was the old Formspree redirect target.
+      { source: "/thank-you", destination: "/", permanent: true },
     ];
   },
 };

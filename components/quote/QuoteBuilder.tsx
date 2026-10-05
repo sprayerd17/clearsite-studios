@@ -93,7 +93,6 @@ export default function QuoteBuilder() {
   const [formError, setFormError] = useState("");
   const [direction, setDirection] = useState<1 | -1>(1);
   const [status, setStatus] = useState<Status>("idle");
-  const [done, setDone] = useState<{ message: string } | null>(null);
   const [honeypot, setHoneypot] = useState("");
 
   // A field to focus after the next render (so its error is in the DOM and gets announced).
@@ -143,7 +142,7 @@ export default function QuoteBuilder() {
       card.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "start" });
     }
     headingRef.current?.focus({ preventScroll: true });
-  }, [step, done]);
+  }, [step]);
 
   useEffect(() => {
     if (!focusTarget) return;
@@ -273,16 +272,8 @@ export default function QuoteBuilder() {
     submitted.current = true;
     clearDraft();
 
-    if (result.token) {
-      setStatus("redirecting");
-      router.push(`/q/${result.token}?new=1`);
-      return;
-    }
-
-    // Fallback mode (no project page yet): show the confirmation here.
-    setDone({ message: whatsappSummary(draft) });
-    setStatus("idle");
-    moved.current = true;
+    setStatus("redirecting");
+    router.push(`/q/${result.token}?new=1`);
   }
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -290,48 +281,6 @@ export default function QuoteBuilder() {
     if (busy) return;
     if (isLast) void submit();
     else next();
-  }
-
-  /* ─── Success (fallback mode) ────────────────────────────────────────── */
-
-  if (done) {
-    return (
-      <div ref={cardRef} className="card overflow-hidden">
-        <div className="relative px-6 py-14 text-center sm:px-10 sm:py-20" role="status">
-          <span className={`mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-lime text-ink shadow-glow ${styles.pop}`}>
-            <Check size={30} strokeWidth={2.4} />
-          </span>
-          <h2
-            ref={headingRef}
-            tabIndex={-1}
-            className="mt-7 text-3xl tracking-tightest text-ink focus-visible:outline-none sm:text-4xl"
-          >
-            Request <span className="serif-accent">sent!</span>
-          </h2>
-          <p className="prose-muted mx-auto mt-3 max-w-md text-[16px]">
-            I&apos;ll get back to you within 1 business day.
-          </p>
-          <p className="mx-auto mt-2 max-w-md text-[14px] leading-relaxed text-muted">
-            In a hurry? Send me a quick WhatsApp — your request summary is already typed in.
-          </p>
-          <a
-            href={whatsappLink(done.message)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-lime btn-lg mt-8"
-          >
-            <WhatsApp size={18} />
-            Message me on WhatsApp
-          </a>
-          <div className="mt-6">
-            <Link href="/" className="link-arrow text-muted hover:text-ink">
-              Back to the homepage
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
   }
 
   /* ─── Builder ────────────────────────────────────────────────────────── */

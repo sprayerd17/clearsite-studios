@@ -67,7 +67,6 @@ const sections: Section[] = [
       "We use the following third-party services to operate this website:",
     list: [
       "Google Firebase — used to store quote requests, project pages and uploaded files securely.",
-      "Formspree — used as a backup to deliver quote request form submissions.",
       "Google Analytics — used to understand how visitors interact with our site. Data collected is anonymous and aggregated.",
     ],
   },

@@ -2,12 +2,12 @@
 
 import { revalidatePath } from "next/cache";
 import { adminDb, deleteFromStorage, uploadToStorage } from "@/lib/firebase/admin";
-import { SITE_URL, defaultOnboarding } from "@/lib/quote/defaults";
+import { defaultOnboarding } from "@/lib/quote/defaults";
 import { TOKEN_PATTERN, newId } from "@/lib/quote/ids";
-import { invoiceNumber, normalizeLead, totals } from "@/lib/quote/leads";
+import { invoiceNumber, normalizeLead, quoteTotalText, totals } from "@/lib/quote/leads";
 import { formatRand } from "@/lib/quote/money";
 import type { LeadData, LeadEvent, ProofFile, UploadedFile } from "@/lib/quote/types";
-import { notifyStudio } from "@/lib/server/notify";
+import { alertStudio } from "@/lib/server/notify";
 
 // Anyone with the link can call these, so every input is checked and only the
 // specific change the client is allowed to make is written.
@@ -85,14 +85,17 @@ async function updateLeadByToken(
     return { ok: false, error: "Something went wrong. Please try again." };
   }
   if (out.notify && out.lead && out.id) {
-    await notifyStudio(
-      out.notify.subject,
-      [
-        { label: "Client", value: `${out.lead.contact.name}${out.lead.contact.business ? ` — ${out.lead.contact.business}` : ""}` },
+    const client = `${out.lead.contact.name}${out.lead.contact.business ? ` — ${out.lead.contact.business}` : ""}`;
+    await alertStudio({
+      title: out.notify.subject,
+      body: `${out.lead.contact.name}: ${out.notify.detail}`,
+      lines: [
+        { label: "Client", value: client },
         { label: "Update", value: out.notify.detail },
       ],
-      `${SITE_URL}/admin/leads/${out.id}`,
-    );
+      path: `/admin/leads/${out.id}`,
+      tag: out.notify.subject,
+    });
   }
   revalidatePath(`/q/${token}`);
   return { ok: true };
@@ -112,10 +115,10 @@ export async function acceptQuote(token: string, version: number): Promise<Actio
         quote: { ...lead.quote, acceptedAt: now },
         onboarding: lead.onboarding.length ? lead.onboarding : defaultOnboarding(),
       },
-      event: `Accepted the quote (${formatRand(t.total)})`,
+      event: `Accepted the quote (${quoteTotalText(lead.quote)})`,
       notify: {
         subject: `#${lead.number}: quote accepted`,
-        detail: `Accepted the quote for ${formatRand(t.total)}. Deposit due: ${formatRand(t.deposit)}.`,
+        detail: `Accepted the quote for ${quoteTotalText(lead.quote)}. Deposit due: ${formatRand(t.deposit)}.`,
       },
     };
   });

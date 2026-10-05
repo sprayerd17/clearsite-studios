@@ -134,6 +134,29 @@ export async function deleteLead(id: string): Promise<void> {
   await deleteDoc(doc(fb().db, "leads", id));
 }
 
+/* ─── Push notifications ────────────────────────────────────────────────── */
+
+/** Stable document id for a push endpoint (endpoints are long URLs). */
+async function endpointId(endpoint: string): Promise<string> {
+  const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(endpoint));
+  return Array.from(new Uint8Array(hash), (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+export async function savePushSubscription(sub: PushSubscriptionJSON, uid: string): Promise<void> {
+  if (!sub.endpoint || !sub.keys) throw new Error("Incomplete push subscription");
+  await setDoc(doc(fb().db, "pushSubscriptions", await endpointId(sub.endpoint)), {
+    endpoint: sub.endpoint,
+    keys: sub.keys,
+    uid,
+    userAgent: navigator.userAgent,
+    createdAt: Date.now(),
+  });
+}
+
+export async function removePushSubscription(endpoint: string): Promise<void> {
+  await deleteDoc(doc(fb().db, "pushSubscriptions", await endpointId(endpoint)));
+}
+
 /* ─── Price list ────────────────────────────────────────────────────────── */
 
 export function subscribePrices(cb: (prices: PriceItem[]) => void, onError?: OnError): Unsubscribe {

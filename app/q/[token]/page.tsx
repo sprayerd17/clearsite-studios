@@ -34,7 +34,15 @@ import ProjectHero from "@/components/project/ProjectHero";
 import QuoteLines from "@/components/project/QuoteLines";
 import { CheckRow, Label, SectionCard } from "@/components/project/ui";
 import { isFirebaseConfigured } from "@/lib/firebase/admin";
-import { formatDate, invoiceNumber, quoteExpiresAt, totals, type Totals } from "@/lib/quote/leads";
+import {
+  formatDate,
+  invoiceNumber,
+  monthlyAmount,
+  quoteExpiresAt,
+  quoteTotalText,
+  totals,
+  type Totals,
+} from "@/lib/quote/leads";
 import { formatRand } from "@/lib/quote/money";
 import { firstName, waLink } from "@/lib/quote/phone";
 import type { Settings } from "@/lib/quote/types";
@@ -97,7 +105,7 @@ export default async function ProjectPage({ params, searchParams }: Props) {
     docs.push({
       href: docHref(token, "quote"),
       label: docInfo(lead, "quote").linkLabel,
-      detail: `${formatRand(t.total)}${lead.quote.sentAt ? ` · sent ${formatDate(lead.quote.sentAt)}` : ""}`,
+      detail: `${quoteTotalText(lead.quote)}${lead.quote.sentAt ? ` · sent ${formatDate(lead.quote.sentAt)}` : ""}`,
     });
   }
   if (available.deposit) {
@@ -145,6 +153,7 @@ export default async function ProjectPage({ params, searchParams }: Props) {
             status={lead.status}
             startedOn={view.startedOn}
             totals={t}
+            monthly={monthlyAmount(lead.quote)}
             showMoney={available.quote}
             docs={docs}
             contactFirst={contactFirst}
@@ -278,7 +287,7 @@ function Quoted({ view }: { view: View }) {
         </p>
 
         <div className="mt-8">
-          <QuoteLines items={lead.quote.items} total={t.total} deposit={t.deposit} depositPercent={lead.quote.depositPercent} />
+          <QuoteLines items={lead.quote.items} total={t.total} deposit={t.deposit} depositPercent={lead.quote.depositPercent} monthly={lead.quote.monthly} />
         </div>
 
         {lead.quote.notes.trim() && (
@@ -485,12 +494,13 @@ function Launched({ view }: { view: View }) {
         </SectionCard>
       )}
 
-      <Handover />
+      <Handover monthly={lead.quote.monthly} />
     </>
   );
 }
 
-function Handover() {
+function Handover({ monthly }: { monthly?: { amount: number; description: string } | null }) {
+  const perMonth = monthly && monthly.amount > 0 ? monthly : null;
   return (
     <SectionCard
       icon={Key}
@@ -502,8 +512,9 @@ function Handover() {
       }
     >
       <p className="prose-muted mt-3 max-w-xl text-[15px]">
-        Everything is in your name — hosting account, credentials and code. No licence, no monthly fee to me, and
-        nothing left depending on me.
+        {perMonth
+          ? `Everything is in your name — hosting account, credentials and code. No licence and no lock-in. Your ${formatRand(perMonth.amount)}/month covers ${perMonth.description ? perMonth.description.charAt(0).toLowerCase() + perMonth.description.slice(1) : "ongoing support"}.`
+          : "Everything is in your name — hosting account, credentials and code. No licence, no monthly fee to me, and nothing left depending on me."}
       </p>
       <ul className="mt-6 flex flex-wrap gap-2">
         {["Hosting account in your name", "Logins handed over", "Code and content are yours"].map((p) => (

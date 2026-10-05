@@ -69,6 +69,29 @@ export async function uploadToStorage(path: string, data: Buffer, contentType: s
   return `${base}/v0/b/${bucket.name}/o/${encodeURIComponent(path)}?alt=media&token=${token}`;
 }
 
+/**
+ * Checks a Firebase ID token belongs to an admin and returns their uid, or null.
+ * Firebase Auth's REST API validates the token (signature and expiry).
+ */
+export async function verifyAdmin(idToken: string): Promise<string | null> {
+  try {
+    const emulator = process.env.FIREBASE_AUTH_EMULATOR_HOST;
+    const base = emulator ? `http://${emulator}/identitytoolkit.googleapis.com` : "https://identitytoolkit.googleapis.com";
+    const res = await fetch(`${base}/v1/accounts:lookup?key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idToken }),
+    });
+    if (!res.ok) return null;
+    const uid = ((await res.json()) as { users?: { localId?: string }[] }).users?.[0]?.localId;
+    if (!uid) return null;
+    const admin = await adminDb().doc(`admins/${uid}`).get();
+    return admin.exists ? uid : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function deleteFromStorage(path: string): Promise<void> {
   const { getStorage } = await import("firebase-admin/storage");
   await getStorage(adminApp()).bucket().file(path).delete({ ignoreNotFound: true });

@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import { Check, WhatsApp, X } from "@/components/icons";
 import { mutateLead } from "@/lib/firebase/data";
 import { defaultOnboarding } from "@/lib/quote/defaults";
-import { formatDate, formatDateTime, quoteExpiresAt, STATUS, totals } from "@/lib/quote/leads";
+import { formatDate, formatDateTime, quoteExpiresAt, quoteTotalText, STATUS, totals } from "@/lib/quote/leads";
 import { formatRand } from "@/lib/quote/money";
 import { newId } from "@/lib/quote/ids";
 import { firstName } from "@/lib/quote/phone";
@@ -186,7 +186,12 @@ export function NextStep({
               {quote.draft.items.length} item{quote.draft.items.length === 1 ? "" : "s"}
               {quote.dirty && <span className="text-amber-300"> · unsaved edits included</span>}
             </span>
-            <span className="font-semibold tabular-nums">{formatRand(quote.total)}</span>
+            <span className="font-semibold tabular-nums">
+              {formatRand(quote.total)}
+              {quote.draft.monthlyAmount > 0 && (
+                <span className="font-normal text-white/60"> + {formatRand(quote.draft.monthlyAmount)}/mo</span>
+              )}
+            </span>
           </div>
           <Button variant="lime" size="lg" className="w-full" onClick={() => quote.send("send-next")} pending={quote.pending("send-next")} disabled={quote.busy}>
             {!quote.pending("send-next") && <WhatsApp size={18} />} Send quote
@@ -203,7 +208,7 @@ export function NextStep({
       step = (
         <Step
           title={`Waiting for ${name} to accept`}
-          text={sentAt ? `Quote v${lead.quote.version} (${formatRand(t.total)}) sent ${formatDateTime(sentAt)}.` : undefined}
+          text={sentAt ? `Quote v${lead.quote.version} (${quoteTotalText(lead.quote)}) sent ${formatDateTime(sentAt)}.` : undefined}
         >
           {expired && expires && (
             <p className="flex items-start gap-2 rounded-xl bg-amber-300/10 px-3.5 py-2.5 text-sm text-amber-200">
@@ -212,7 +217,7 @@ export function NextStep({
           )}
           <div className="grid gap-2 sm:grid-cols-2">
             <a
-              href={templateLink(lead, settings.templates.quoteReady, { total: formatRand(t.total) })}
+              href={templateLink(lead, settings.templates.quoteReady, { total: quoteTotalText(lead.quote) })}
               target="_blank"
               rel="noopener noreferrer"
               onClick={logWhatsApp("Resent the quote on WhatsApp")}

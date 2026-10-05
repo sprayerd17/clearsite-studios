@@ -1,11 +1,10 @@
 import "server-only";
 import nodemailer from "nodemailer";
-import { briefSummary } from "@/lib/quote/brief";
+import { briefSummary, serviceLabel } from "@/lib/quote/brief";
 import { DEFAULT_SETTINGS, SITE_URL } from "@/lib/quote/defaults";
 import { displayPhone } from "@/lib/quote/phone";
 import type { Brief, Contact } from "@/lib/quote/types";
-
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mpqolnaq";
+import { notifyAdmins } from "./push";
 
 function smtpConfigured(): boolean {
   return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD);
@@ -14,11 +13,8 @@ function smtpConfigured(): boolean {
 const escape = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-/**
- * Emails the studio. Uses the same SMTP_* variables as the old lead emails.
- * Never throws — a failed notification must not fail the client's request.
- */
-export async function notifyStudio(subject: string, lines: { label: string; value: string }[], link?: string) {
+/** Emails the studio, using the same SMTP_* variables as the old lead emails. */
+async function emailStudio(subject: string, lines: { label: string; value: string }[], link?: string) {
   const to = process.env.NOTIFY_EMAIL || DEFAULT_SETTINGS.notifyEmail;
   if (!smtpConfigured()) {
     console.info(`[notify] SMTP not configured — skipped "${subject}"`);
@@ -58,6 +54,31 @@ export async function notifyStudio(subject: string, lines: { label: string; valu
   }
 }
 
+export interface StudioAlert {
+  /** Email subject and notification title. */
+  title: string;
+  /** One-line notification text. */
+  body: string;
+  /** Detail rows for the email. */
+  lines: { label: string; value: string }[];
+  /** Admin page to open, e.g. /admin/leads/abc. */
+  path: string;
+  /** Same tag = the newer notification replaces the older one. */
+  tag?: string;
+}
+
+/**
+ * Tells the studio something happened: an email (if SMTP is set up) and a push
+ * notification to every phone with notifications on. Never throws — a failed
+ * alert must not fail the client's request.
+ */
+export async function alertStudio(alert: StudioAlert) {
+  await Promise.all([
+    emailStudio(alert.title, alert.lines, `${SITE_URL}${alert.path}`),
+    notifyAdmins({ title: alert.title, body: alert.body, url: alert.path, tag: alert.tag }),
+  ]);
+}
+
 export function contactLines(contact: Contact): { label: string; value: string }[] {
   return [
     { label: "Name", value: contact.name },
@@ -69,29 +90,13 @@ export function contactLines(contact: Contact): { label: string; value: string }
 }
 
 export async function notifyNewLead(number: number, leadId: string, contact: Contact, brief: Brief) {
-  await notifyStudio(
-    `New quote request #${number} — ${contact.business || contact.name}`,
-    [...contactLines(contact), ...briefSummary(brief)],
-    `${SITE_URL}/admin/leads/${leadId}`,
-  );
-}
-
-/**
- * Used before Firebase is set up: sends the brief to the existing Formspree
- * form so requests still reach the inbox. Returns false if that fails too.
- */
-export async function sendToFormspree(contact: Contact, brief: Brief): Promise<boolean> {
-  const fields: Record<string, string> = {};
-  for (const l of [...contactLines(contact), ...briefSummary(brief)]) fields[l.label] = l.value;
-  try {
-    const res = await fetch(FORMSPREE_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ _subject: `Quote request — ${contact.business || contact.name}`, ...fields }),
-    });
-    return res.ok;
-  } catch (e) {
-    console.error("[formspree] failed", e);
-    return false;
-  }
+  const who = contact.business ? `${contact.name} (${contact.business})` : contact.name;
+  const what = brief.services.map(serviceLabel).join(", ");
+  await alertStudio({
+    title: `New quote request #${number}`,
+    body: what ? `${who} — ${what}` : who,
+    lines: [...contactLines(contact), ...briefSummary(brief)],
+    path: `/admin/leads/${leadId}`,
+    tag: `lead-${number}`,
+  });
 }

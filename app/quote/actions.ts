@@ -7,7 +7,7 @@ import { newToken } from "@/lib/quote/ids";
 import { FIRST_LEAD_NUMBER, draftItems } from "@/lib/quote/leads";
 import { isValidPhone, normalizePhone } from "@/lib/quote/phone";
 import type { Brief, Contact, LeadData, PriceItem, ServiceKey, Settings } from "@/lib/quote/types";
-import { notifyNewLead, sendToFormspree } from "@/lib/server/notify";
+import { notifyNewLead } from "@/lib/server/notify";
 
 /** What the quote builder sends. Everything is re-checked here — never trust the browser. */
 export interface BriefInput {
@@ -31,7 +31,7 @@ export interface BriefInput {
 }
 
 export type SubmitResult =
-  | { ok: true; token: string | null }
+  | { ok: true; token: string }
   | { ok: false; error: string; field?: string };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -111,12 +111,9 @@ export async function submitBrief(input: BriefInput): Promise<SubmitResult> {
     throw e;
   }
 
-  // Before Firebase is set up, requests still reach the inbox via Formspree.
   if (!isFirebaseConfigured()) {
-    const sent = await sendToFormspree(contact, brief);
-    return sent
-      ? { ok: true, token: null }
-      : { ok: false, error: "Your request couldn't be sent. Please WhatsApp me instead." };
+    console.error("[quote] Firebase isn't configured — see QUOTES.md");
+    return { ok: false, error: "Quote requests aren't available right now. Please WhatsApp me instead." };
   }
 
   const db = adminDb();

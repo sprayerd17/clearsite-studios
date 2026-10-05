@@ -76,6 +76,10 @@ const vars = {
   SMTP_USER: existing.SMTP_USER ?? "",
   SMTP_PASSWORD: existing.SMTP_PASSWORD ?? "",
   NOTIFY_EMAIL: existing.NOTIFY_EMAIL || "clearsitestudios@outlook.com",
+  // Push notification keys — kept as they are, since new keys would switch off every phone's notifications.
+  NEXT_PUBLIC_VAPID_PUBLIC_KEY: existing.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? "",
+  VAPID_PRIVATE_KEY: existing.VAPID_PRIVATE_KEY ?? "",
+  VAPID_SUBJECT: existing.VAPID_SUBJECT || "mailto:clearsitestudios@outlook.com",
 };
 
 const body = Object.entries(vars).map(([k, v]) => `${k}=${v}`).join("\n");

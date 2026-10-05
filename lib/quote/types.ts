@@ -54,8 +54,17 @@ export interface QuoteItem {
   unit: Cents;
 }
 
+/** A recurring monthly amount shown on the quote, separate from the once-off total and deposit. */
+export interface MonthlyFee {
+  amount: Cents;
+  /** e.g. "Hosting, maintenance and ongoing support" — editable per quote. */
+  description: string;
+}
+
 export interface Quote {
   items: QuoteItem[];
+  /** null / missing / amount 0 = no monthly fee. */
+  monthly?: MonthlyFee | null;
   /** Scope notes and terms shown to the client under the items. */
   notes: string;
   depositPercent: number;
@@ -187,6 +196,8 @@ export interface Settings {
   quoteValidDays: number;
   /** Shown on every quote under the notes. */
   quoteTerms: string;
+  /** Pre-filled description when a monthly fee is added to a quote. */
+  monthlyDescription: string;
   /** Where new-lead emails go. */
   notifyEmail: string;
   templates: MessageTemplates;

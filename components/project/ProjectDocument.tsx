@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Check } from "@/components/icons";
 import { LogoMark } from "@/components/Logo";
-import { formatDate, lineTotal, quoteExpiresAt, totals } from "@/lib/quote/leads";
+import { formatDate, lineTotal, monthlyAmount, quoteExpiresAt, totals } from "@/lib/quote/leads";
 import { formatRand } from "@/lib/quote/money";
 import { displayPhone } from "@/lib/quote/phone";
 import type { Settings } from "@/lib/quote/types";
@@ -49,6 +49,11 @@ export default function ProjectDocument({
         { label: `Deposit to start (${pct}%)`, value: formatRand(t.deposit) },
         { label: "Balance once live", value: formatRand(Math.max(0, t.total - t.deposit)) },
       ];
+    }
+    const monthly = monthlyAmount(lead.quote);
+    if (monthly > 0) {
+      const what = lead.quote.monthly?.description.trim();
+      after = [...after, { label: what ? `Monthly — ${what}` : "Monthly", value: `${formatRand(monthly)} / month` }];
     }
   } else if (kind === "deposit") {
     const deposits = payments.filter((p) => p.kind === "deposit");

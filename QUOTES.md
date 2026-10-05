@@ -35,7 +35,7 @@ The sheet is git-ignored so your prices stay private. Remove the `/pricing/*.xls
 | Email (SMTP) | You get an email for every new request, an accepted quote, proof of payment, and "content ready". It uses the same `SMTP_*` variables as the old lead emails. |
 | WhatsApp | `wa.me` links with the message already typed. Nothing is sent automatically. |
 
-**Before Firebase is set up**, the form still works. Requests go to your existing Formspree inbox, and the visitor gets a WhatsApp button instead of a project page.
+**Firebase is required.** If it isn't configured, the quote form shows an error asking the visitor to WhatsApp you instead.
 
 Money is stored in cents. Message wording, bank details, deposit % and quote terms are all editable in **Admin → Settings**.
 

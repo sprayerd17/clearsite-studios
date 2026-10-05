@@ -1,6 +1,6 @@
 import { lineTotal } from "@/lib/quote/leads";
 import { formatRand } from "@/lib/quote/money";
-import type { Cents, QuoteItem } from "@/lib/quote/types";
+import type { Cents, MonthlyFee, QuoteItem } from "@/lib/quote/types";
 
 /** Quote items with their line totals, then the total and the deposit split. */
 export default function QuoteLines({
@@ -8,12 +8,15 @@ export default function QuoteLines({
   total,
   deposit,
   depositPercent,
+  monthly,
 }: {
   items: QuoteItem[];
   total: Cents;
   deposit: Cents;
   depositPercent: number;
+  monthly?: MonthlyFee | null;
 }) {
+  const perMonth = monthly && monthly.amount > 0 ? monthly : null;
   return (
     <div>
       <div className="flex items-center justify-between border-b border-line pb-3">
@@ -61,6 +64,21 @@ export default function QuoteLines({
           </dl>
         )}
       </div>
+
+      {perMonth && (
+        <div className="mt-3 flex items-start justify-between gap-4 rounded-2xl border border-line bg-white p-5">
+          <div className="min-w-0">
+            <p className="text-[15px] font-medium text-ink">Monthly</p>
+            {perMonth.description && <p className="mt-1 text-sm leading-relaxed text-muted">{perMonth.description}</p>}
+          </div>
+          <p className="shrink-0 text-right">
+            <span className="text-[22px] font-semibold leading-none tracking-tight tabular-nums text-ink">
+              {formatRand(perMonth.amount)}
+            </span>
+            <span className="block pt-1 text-xs text-muted">per month</span>
+          </p>
+        </div>
+      )}
     </div>
   );
 }

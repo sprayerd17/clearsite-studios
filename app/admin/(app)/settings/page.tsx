@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { Check } from "@/components/icons";
 import { useAdmin } from "@/components/admin/AdminProvider";
+import { NotificationsCard } from "@/components/admin/Notifications";
 import { Button, Card, CardBody, CardHeader, ErrorText, Field, Input, NumberInput, PageLoader, Textarea, labelClass } from "@/components/admin/ui";
 import { useAction, useFlash } from "@/components/admin/useAction";
 import { saveSettings } from "@/lib/firebase/data";
@@ -92,6 +93,8 @@ function SettingsForm({ saved }: { saved: Settings }) {
         <h1 className="mt-1.5 text-[28px] tracking-[-0.04em] sm:text-[32px]">Settings</h1>
       </div>
 
+      <NotificationsCard />
+
       <Card>
         <CardHeader eyebrow="Business" title="Your details" subtitle="Shown on quotes and the client's project page." />
         <CardBody className="grid gap-4 sm:grid-cols-2">
@@ -147,6 +150,12 @@ function SettingsForm({ saved }: { saved: Settings }) {
           </div>
           <Field label="Quote terms" hint="Shown on every quote, under your notes.">
             <Textarea value={form.quoteTerms} onChange={(e) => set("quoteTerms", e.target.value)} className="min-h-32" />
+          </Field>
+          <Field
+            label="Monthly fee description"
+            hint="Pre-filled when you add a monthly fee to a quote. You can still change it on each quote."
+          >
+            <Input value={form.monthlyDescription} onChange={(e) => set("monthlyDescription", e.target.value)} />
           </Field>
         </CardBody>
       </Card>

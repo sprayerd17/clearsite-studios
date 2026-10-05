@@ -13,7 +13,8 @@ export const DEFAULT_SETTINGS: Settings = {
   depositPercent: 50,
   quoteValidDays: 14,
   quoteTerms:
-    "A 50% deposit secures your spot and starts the build; the balance is due once it's live and handed over. Build time is counted from when I've received your content. Everything goes live under accounts in your name — no monthly fee to me.",
+    "A 50% deposit secures your spot and starts the build; the balance is due once it's live and handed over. Build time is counted from when I've received your content. Everything goes live under accounts in your name.",
+  monthlyDescription: "Hosting, maintenance and ongoing support",
   notifyEmail: "clearsitestudios@outlook.com",
   templates: {
     quoteReady:

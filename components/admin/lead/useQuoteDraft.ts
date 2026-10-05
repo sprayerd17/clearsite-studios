@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { mutateLead } from "@/lib/firebase/data";
 import { draftItems, lineTotal } from "@/lib/quote/leads";
 import { formatRand } from "@/lib/quote/money";
-import type { Lead, PriceItem, QuoteItem, Settings } from "@/lib/quote/types";
+import type { Cents, Lead, PriceItem, QuoteItem, Settings } from "@/lib/quote/types";
 import { openAfterSave, templateLink } from "../format";
 import { useAction } from "../useAction";
 
@@ -14,11 +14,35 @@ export interface QuoteDraft {
   notes: string;
   depositPercent: number;
   validDays: number;
+  /** 0 = no monthly fee. */
+  monthlyAmount: Cents;
+  monthlyDescription: string;
 }
 
 function fromLead(lead: Lead): QuoteDraft {
-  const { items, notes, depositPercent, validDays } = lead.quote;
-  return { items, notes, depositPercent, validDays };
+  const { items, notes, depositPercent, validDays, monthly } = lead.quote;
+  return {
+    items,
+    notes,
+    depositPercent,
+    validDays,
+    monthlyAmount: monthly?.amount ?? 0,
+    monthlyDescription: monthly?.description ?? "",
+  };
+}
+
+/** The draft as it's stored on the lead's quote. */
+function toQuoteFields(d: QuoteDraft) {
+  const { monthlyAmount, monthlyDescription, ...rest } = d;
+  return {
+    ...rest,
+    monthly: monthlyAmount > 0 ? { amount: monthlyAmount, description: monthlyDescription.trim() } : null,
+  };
+}
+
+/** "R4,560.00" or "R4,560.00 + R350.00/month" for the draft being edited. */
+function totalText(total: Cents, d: QuoteDraft): string {
+  return d.monthlyAmount > 0 ? `${formatRand(total)} + ${formatRand(d.monthlyAmount)}/month` : formatRand(total);
 }
 
 /** Stable string for comparing drafts (Firestore doesn't keep key order). */
@@ -28,6 +52,8 @@ function keyOf(d: QuoteDraft): string {
     d.notes,
     d.depositPercent,
     d.validDays,
+    d.monthlyAmount,
+    d.monthlyAmount > 0 ? d.monthlyDescription : "",
   ]);
 }
 
@@ -35,6 +61,7 @@ function clean(d: QuoteDraft): QuoteDraft {
   return {
     ...d,
     notes: d.notes.trim(),
+    monthlyDescription: d.monthlyDescription.trim(),
     items: d.items.map((i) => ({ ...i, name: i.name.trim(), description: i.description.trim() })),
   };
 }
@@ -102,7 +129,7 @@ export function useQuoteDraft(lead: Lead, settings: Settings, prices: PriceItem[
           lead.id,
           (l) => {
             if (l.status !== "new") throw new Error("This quote has already gone out — use “Send updated quote” instead.");
-            return { quote: { ...l.quote, ...next } };
+            return { quote: { ...l.quote, ...toQuoteFields(next) } };
           },
           "Saved quote draft",
         ),
@@ -145,14 +172,14 @@ export function useQuoteDraft(lead: Lead, settings: Settings, prices: PriceItem[
               status: "quoted",
               quote: {
                 ...l.quote,
-                ...next,
+                ...toQuoteFields(next),
                 sentAt: Date.now(),
                 version: (l.quote.version || 0) + 1,
                 acceptedAt: undefined,
               },
             };
           },
-          resend ? `Sent updated quote v${version} (${formatRand(total)})` : `Sent the quote (${formatRand(total)})`,
+          resend ? `Sent updated quote v${version} (${totalText(total, next)})` : `Sent the quote (${totalText(total, next)})`,
         ),
       key,
     );
@@ -161,7 +188,7 @@ export function useQuoteDraft(lead: Lead, settings: Settings, prices: PriceItem[
       return false;
     }
     setDraft(next);
-    tab?.go(templateLink(lead, settings.templates.quoteReady, { total: formatRand(total) }));
+    tab?.go(templateLink(lead, settings.templates.quoteReady, { total: totalText(total, next) }));
     return true;
   }
 

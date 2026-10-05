@@ -17,6 +17,7 @@ export default function ProjectAside({
   status,
   startedOn,
   totals,
+  monthly = 0,
   showMoney,
   docs,
   contactFirst,
@@ -27,6 +28,8 @@ export default function ProjectAside({
   status: LeadStatus;
   startedOn: string;
   totals: Totals;
+  /** Monthly fee on the quote, 0 if none. */
+  monthly?: number;
   /** Once a quote has been sent. */
   showMoney: boolean;
   docs: AsideDoc[];
@@ -45,6 +48,7 @@ export default function ProjectAside({
           <Item label="Status" value={STATUS[status].label} />
           <Item label="Requested" value={startedOn} />
           {showMoney && <Item label="Total" value={formatRand(totals.total)} strong />}
+          {showMoney && monthly > 0 && <Item label="Monthly" value={`${formatRand(monthly)}/month`} />}
           {showMoney && accepted && <Item label="Paid" value={formatRand(totals.paid)} />}
           {showMoney && accepted && (
             <Item label="Outstanding" value={formatRand(totals.outstanding)} strong={totals.outstanding > 0} />

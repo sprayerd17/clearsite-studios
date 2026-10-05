@@ -5,6 +5,10 @@ import Logo from "@/components/Logo";
 export const metadata: Metadata = {
   title: "Admin · ClearSite Studios",
   robots: { index: false, follow: false },
+  // Lets the admin be added to a phone's home screen and open like an app —
+  // which iPhones require before they'll show web push notifications.
+  manifest: "/admin.webmanifest",
+  appleWebApp: { capable: true, title: "ClearSite", statusBarStyle: "black-translucent" },
 };
 
 /**
@@ -23,7 +27,7 @@ export default function AdminRootLayout({ children }: { children: ReactNode }) {
           <h1 className="mt-8 text-3xl tracking-tight">Admin isn&apos;t set up yet</h1>
           <p className="mt-3 text-[15px] leading-relaxed text-white/55">
             Add the Firebase environment variables to this deployment to switch on quotes and the
-            admin. Until then, quote requests from the site are emailed to you through Formspree.
+            admin. Until then the quote form asks visitors to WhatsApp you instead.
             Setup steps are in <span className="font-mono text-white/80">QUOTES.md</span>.
           </p>
         </div>

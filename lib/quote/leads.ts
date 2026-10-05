@@ -4,6 +4,7 @@
  */
 import { autoAddKeys } from "./brief";
 import { newId } from "./ids";
+import { formatRand } from "./money";
 import type {
   Brief,
   Cents,
@@ -89,6 +90,18 @@ export function totals(lead: Pick<LeadData, "quote" | "payments" | "status">): T
     dueKind = "balance";
   }
   return { total, deposit, paidDeposit, paidBalance, paid, outstanding, dueNow, dueKind };
+}
+
+/** The monthly fee on a quote, or 0 if there isn't one. Never part of the once-off total or deposit. */
+export function monthlyAmount(quote: Pick<Quote, "monthly">): Cents {
+  return quote.monthly && quote.monthly.amount > 0 ? quote.monthly.amount : 0;
+}
+
+/** "R4,560.00" or "R4,560.00 + R350.00/month" — for messages, history and summaries. */
+export function quoteTotalText(quote: Pick<Quote, "items" | "monthly">): string {
+  const total = quote.items.reduce((sum, i) => sum + lineTotal(i), 0);
+  const monthly = monthlyAmount(quote);
+  return monthly ? `${formatRand(total)} + ${formatRand(monthly)}/month` : formatRand(total);
 }
 
 /** "1042" → used in links and messages as "#1042". */

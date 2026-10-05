@@ -5,11 +5,12 @@ import { useEffect, useMemo, useState } from "react";
 import { Plus, Search, X } from "@/components/icons";
 import { ChevronRightIcon, PaperclipIcon } from "@/components/admin/icons";
 import { relativeTime } from "@/components/admin/format";
+import { NotificationPrompt } from "@/components/admin/Notifications";
 import { Chip, EmptyState, ErrorText, PageLoader, StatusChip, labelClass } from "@/components/admin/ui";
 import { friendlyError } from "@/components/admin/useAction";
 import { subscribeLeads } from "@/lib/firebase/data";
 import { budgetLabel, serviceLabel, sourceLabel } from "@/lib/quote/brief";
-import { ACTIVE_STATUSES, totals } from "@/lib/quote/leads";
+import { ACTIVE_STATUSES, monthlyAmount, totals } from "@/lib/quote/leads";
 import { formatRand } from "@/lib/quote/money";
 import { displayPhone } from "@/lib/quote/phone";
 import type { Lead, LeadStatus } from "@/lib/quote/types";
@@ -104,6 +105,8 @@ export default function LeadsPage() {
           </Link>
         </div>
       </div>
+
+      <NotificationPrompt />
 
       <div className="relative">
         <Search size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-light" />
@@ -243,7 +246,14 @@ function LeadRow({ lead }: { lead: Lead }) {
           )}
         </span>
         <span className="flex shrink-0 items-center gap-1.5">
-          {quoted && <span className="font-semibold tabular-nums text-ink">{formatRand(total)}</span>}
+          {quoted && (
+            <span className="font-semibold tabular-nums text-ink">
+              {formatRand(total)}
+              {monthlyAmount(lead.quote) > 0 && (
+                <span className="font-normal text-muted"> + {formatRand(monthlyAmount(lead.quote))}/mo</span>
+              )}
+            </span>
+          )}
           <ChevronRightIcon size={16} className="text-muted-light transition-transform group-hover:translate-x-0.5" />
         </span>
       </div>

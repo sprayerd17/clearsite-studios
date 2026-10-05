@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Check, Plus, Refresh, Search, WhatsApp, X } from "@/components/icons";
-import { lineTotal, formatDate, formatDateTime, quoteExpiresAt } from "@/lib/quote/leads";
+import { lineTotal, formatDate, formatDateTime, monthlyAmount, quoteExpiresAt } from "@/lib/quote/leads";
 import { formatRand } from "@/lib/quote/money";
 import { newId } from "@/lib/quote/ids";
 import type { Lead, PriceItem, QuoteItem } from "@/lib/quote/types";
@@ -111,7 +111,14 @@ function ReadOnly({ lead }: { lead: Lead }) {
           <p className="mt-1.5 whitespace-pre-line text-sm text-ink">{lead.quote.notes}</p>
         </div>
       )}
-      <Totals total={total} deposit={deposit} depositPercent={lead.quote.depositPercent} validDays={lead.quote.validDays} />
+      <Totals
+        total={total}
+        deposit={deposit}
+        depositPercent={lead.quote.depositPercent}
+        validDays={lead.quote.validDays}
+        monthly={monthlyAmount(lead.quote)}
+        monthlyDescription={lead.quote.monthly?.description}
+      />
     </div>
   );
 }
@@ -119,7 +126,7 @@ function ReadOnly({ lead }: { lead: Lead }) {
 /* ─── Editor ────────────────────────────────────────────────────────────── */
 
 function Editor({ lead, quote, onStopEdit }: { lead: Lead; quote: QuoteDraftApi; onStopEdit: () => void }) {
-  const { prices, pricesLoaded } = useAdmin();
+  const { prices, pricesLoaded, settings } = useAdmin();
   const [picker, setPicker] = useState(false);
   const [focusId, setFocusId] = useState<string | null>(null);
   const { draft } = quote;
@@ -209,7 +216,46 @@ function Editor({ lead, quote, onStopEdit }: { lead: Lead; quote: QuoteDraftApi;
         />
       </Field>
 
-      <Totals total={quote.total} deposit={quote.deposit} depositPercent={draft.depositPercent} />
+      <div className="rounded-2xl border border-line bg-paper/50 p-4">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="font-medium text-ink">Monthly fee</p>
+            <p className="mt-0.5 text-xs leading-relaxed text-muted">
+              Shown on the quote as a separate monthly amount — not part of the total or deposit. Leave at R0 for none.
+            </p>
+          </div>
+        </div>
+        <div className="mt-3 grid gap-3 sm:grid-cols-[180px_1fr]">
+          <Field label="Per month">
+            <MoneyInput
+              value={draft.monthlyAmount}
+              onChange={(cents) =>
+                quote.update({
+                  monthlyAmount: cents,
+                  // Start from the preset the first time an amount goes in.
+                  monthlyDescription: draft.monthlyDescription || (cents > 0 ? settings.monthlyDescription : ""),
+                })
+              }
+              aria-label="Monthly fee per month"
+            />
+          </Field>
+          <Field label="What it covers">
+            <Input
+              value={draft.monthlyDescription}
+              onChange={(e) => quote.update({ monthlyDescription: e.target.value })}
+              placeholder={settings.monthlyDescription}
+              disabled={draft.monthlyAmount <= 0}
+            />
+          </Field>
+        </div>
+      </div>
+
+      <Totals
+        total={quote.total}
+        deposit={quote.deposit}
+        depositPercent={draft.depositPercent}
+        monthly={draft.monthlyAmount}
+      />
 
       <button
         type="button"
@@ -319,11 +365,15 @@ function Totals({
   deposit,
   depositPercent,
   validDays,
+  monthly = 0,
+  monthlyDescription,
 }: {
   total: number;
   deposit: number;
   depositPercent: number;
   validDays?: number;
+  monthly?: number;
+  monthlyDescription?: string;
 }) {
   return (
     <div className="rounded-2xl bg-ink px-5 py-4 text-white">
@@ -347,6 +397,17 @@ function Totals({
           </div>
         )}
       </div>
+      {monthly > 0 && (
+        <div className="mt-3 flex items-baseline justify-between gap-3 border-t border-white/10 pt-3">
+          <span className="min-w-0 text-sm text-white/60">
+            Monthly{monthlyDescription ? <span className="block text-xs text-white/40">{monthlyDescription}</span> : null}
+          </span>
+          <span className="shrink-0 text-lg font-semibold tabular-nums">
+            {formatRand(monthly)}
+            <span className="text-sm font-normal text-white/55">/month</span>
+          </span>
+        </div>
+      )}
     </div>
   );
 }
