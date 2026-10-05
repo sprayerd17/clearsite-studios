@@ -18,9 +18,11 @@ import {
   type DocumentSnapshot,
   type Unsubscribe,
 } from "firebase/firestore";
+import { sourceLabel } from "@/lib/quote/brief";
 import { withDefaults } from "@/lib/quote/defaults";
-import { normalizeLead } from "@/lib/quote/leads";
-import type { Lead, LeadData, PriceItem, Settings } from "@/lib/quote/types";
+import { newToken } from "@/lib/quote/ids";
+import { FIRST_LEAD_NUMBER, draftItems, normalizeLead } from "@/lib/quote/leads";
+import type { Brief, Contact, Lead, LeadData, LeadSource, PriceItem, Settings } from "@/lib/quote/types";
 import { fb } from "./client";
 
 type OnError = (e: Error) => void;
@@ -71,6 +73,56 @@ export async function mutateLead(
       updatedAt: now,
     });
   });
+}
+
+export interface NewLeadInput {
+  contact: Contact;
+  brief: Brief;
+  source: LeadSource;
+  /** Start the quote with the price-list items that match the services picked. */
+  prefill: boolean;
+}
+
+/**
+ * Creates a lead by hand — for enquiries that arrive on WhatsApp, by phone or in
+ * person. Numbered from the same counter as website requests, with its own
+ * private client link, so everything after this works exactly the same.
+ */
+export async function createLead(input: NewLeadInput, settings: Settings, prices: PriceItem[]): Promise<string> {
+  const { db } = fb();
+  const ref = doc(collection(db, "leads"));
+  await runTransaction(db, async (tx) => {
+    const counterRef = doc(db, "counters", "leads");
+    const counter = await tx.get(counterRef);
+    const number = ((counter.data()?.value as number | undefined) ?? FIRST_LEAD_NUMBER - 1) + 1;
+    const now = Date.now();
+    const lead: LeadData = {
+      number,
+      token: newToken(),
+      createdAt: now,
+      updatedAt: now,
+      status: "new",
+      contact: input.contact,
+      brief: input.brief,
+      quote: {
+        items: input.prefill ? draftItems(input.brief, prices) : [],
+        notes: "",
+        depositPercent: settings.depositPercent,
+        validDays: settings.quoteValidDays,
+        version: 0,
+      },
+      payments: [],
+      proofOfPayment: [],
+      onboarding: [],
+      notes: "",
+      events: [{ at: now, by: "admin", text: `Added by hand (${sourceLabel(input.source)})` }],
+      seenAt: now,
+      source: input.source,
+    };
+    tx.set(counterRef, { value: number });
+    tx.set(ref, lead);
+  });
+  return ref.id;
 }
 
 /** Marks a lead as opened so it stops showing as new in the list. */

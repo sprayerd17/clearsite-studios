@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Search, X } from "@/components/icons";
+import { Plus, Search, X } from "@/components/icons";
 import { ChevronRightIcon, PaperclipIcon } from "@/components/admin/icons";
 import { relativeTime } from "@/components/admin/format";
 import { Chip, EmptyState, ErrorText, PageLoader, StatusChip, labelClass } from "@/components/admin/ui";
 import { friendlyError } from "@/components/admin/useAction";
 import { subscribeLeads } from "@/lib/firebase/data";
-import { budgetLabel, serviceLabel } from "@/lib/quote/brief";
+import { budgetLabel, serviceLabel, sourceLabel } from "@/lib/quote/brief";
 import { ACTIVE_STATUSES, totals } from "@/lib/quote/leads";
 import { formatRand } from "@/lib/quote/money";
 import { displayPhone } from "@/lib/quote/phone";
@@ -92,12 +92,17 @@ export default function LeadsPage() {
           <p className={labelClass}>Quote requests</p>
           <h1 className="mt-1.5 text-[28px] tracking-[-0.04em] sm:text-[32px]">Leads</h1>
         </div>
-        {unseen > 0 && (
-          <Chip tone="lime" className="mb-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-ink" />
-            {unseen} new {unseen === 1 ? "request" : "requests"}
-          </Chip>
-        )}
+        <div className="mb-1 flex items-center gap-2">
+          {unseen > 0 && (
+            <Chip tone="lime" className="hidden sm:inline-flex">
+              <span className="h-1.5 w-1.5 rounded-full bg-ink" />
+              {unseen} new {unseen === 1 ? "request" : "requests"}
+            </Chip>
+          )}
+          <Link href="/admin/leads/new" className="btn-lime btn-sm">
+            <Plus size={16} /> New lead
+          </Link>
+        </div>
       </div>
 
       <div className="relative">
@@ -210,6 +215,11 @@ function LeadRow({ lead }: { lead: Lead }) {
       </div>
 
       <div className="mt-3 flex flex-wrap items-center gap-1.5">
+        {lead.source && lead.source !== "website" && (
+          <span className="inline-flex items-center rounded-full bg-ink px-2.5 py-0.5 text-xs font-medium text-white">
+            via {sourceLabel(lead.source)}
+          </span>
+        )}
         {lead.brief.services.map((s) => (
           <span key={s} className="chip px-2.5 py-0.5">
             {serviceLabel(s)}

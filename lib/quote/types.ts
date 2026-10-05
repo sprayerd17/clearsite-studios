@@ -23,6 +23,9 @@ export type LeadStatus = "new" | "quoted" | "accepted" | "building" | "launched"
 
 export type PreferredContact = "whatsapp" | "call" | "email";
 
+/** Where a lead came from. Website requests are "website"; the rest are added by hand in the admin. */
+export type LeadSource = "website" | "whatsapp" | "call" | "email" | "in-person" | "referral" | "other";
+
 export interface Brief {
   services: ServiceKey[];
   /** Answers keyed by question id (see lib/quote/brief.ts). */
@@ -123,6 +126,8 @@ export interface LeadData {
   lastClientActionAt?: number;
   /** Set when the admin has opened the lead, so new ones can be highlighted. */
   seenAt?: number;
+  /** Missing on older website requests — treat as "website". */
+  source?: LeadSource;
 }
 
 export interface Lead extends LeadData {

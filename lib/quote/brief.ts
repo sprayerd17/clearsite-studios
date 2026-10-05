@@ -179,6 +179,21 @@ export const BUDGETS: Option[] = [
   { value: "unsure", label: "Not sure yet" },
 ];
 
+/** How a lead reached you — for leads added by hand in the admin. */
+export const LEAD_SOURCES = [
+  { value: "whatsapp", label: "WhatsApp" },
+  { value: "call", label: "Phone call" },
+  { value: "email", label: "Email" },
+  { value: "in-person", label: "In person" },
+  { value: "referral", label: "Referral" },
+  { value: "other", label: "Other" },
+] as const;
+
+export function sourceLabel(source: string | undefined): string {
+  if (!source || source === "website") return "Website";
+  return LEAD_SOURCES.find((s) => s.value === source)?.label ?? source;
+}
+
 export const PREFERRED_CONTACT = [
   { value: "whatsapp", label: "WhatsApp" },
   { value: "call", label: "Phone call" },
@@ -208,9 +223,9 @@ export function budgetLabel(value: string): string {
 
 /** Human-readable lines for the brief, used on the client page, admin and email. */
 export function briefSummary(brief: Brief): { label: string; value: string }[] {
-  const lines: { label: string; value: string }[] = [
-    { label: "Looking for", value: brief.services.map(serviceLabel).join(", ") },
-  ];
+  const lines: { label: string; value: string }[] = brief.services.length
+    ? [{ label: "Looking for", value: brief.services.map(serviceLabel).join(", ") }]
+    : [];
   for (const q of visibleQuestions(brief.services)) {
     const answer = brief.answers[q.id];
     if (answer === undefined || answer === "" || (Array.isArray(answer) && answer.length === 0)) continue;

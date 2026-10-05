@@ -4,7 +4,7 @@ import { adminDb, isFirebaseConfigured } from "@/lib/firebase/admin";
 import { BUDGETS, PREFERRED_CONTACT, SERVICES, TIMELINES, visibleQuestions } from "@/lib/quote/brief";
 import { withDefaults } from "@/lib/quote/defaults";
 import { newToken } from "@/lib/quote/ids";
-import { draftItems } from "@/lib/quote/leads";
+import { FIRST_LEAD_NUMBER, draftItems } from "@/lib/quote/leads";
 import { isValidPhone, normalizePhone } from "@/lib/quote/phone";
 import type { Brief, Contact, LeadData, PriceItem, ServiceKey, Settings } from "@/lib/quote/types";
 import { notifyNewLead, sendToFormspree } from "@/lib/server/notify";
@@ -34,7 +34,6 @@ export type SubmitResult =
   | { ok: true; token: string | null }
   | { ok: false; error: string; field?: string };
 
-const FIRST_LEAD_NUMBER = 1001;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 class InputError extends Error {
@@ -161,6 +160,7 @@ export async function submitBrief(input: BriefInput): Promise<SubmitResult> {
         notes: "",
         events: [{ at: now, by: "client", text: "Sent a quote request" }],
         lastClientActionAt: now,
+        source: "website",
       };
       tx.set(counterRef, { value: number });
       tx.set(ref, lead);

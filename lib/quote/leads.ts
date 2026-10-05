@@ -25,6 +25,9 @@ export const STATUS: Record<LeadStatus, { label: string; tone: "lime" | "ink" | 
   closed: { label: "Closed", tone: "muted" },
 };
 
+/** Lead numbers start here (shared by website requests and leads added by hand). */
+export const FIRST_LEAD_NUMBER = 1001;
+
 /** Statuses that still need something from someone. */
 export const ACTIVE_STATUSES: LeadStatus[] = ["new", "quoted", "accepted", "building", "launched"];
 
@@ -178,6 +181,7 @@ export function normalizeLead(data: Partial<LeadData>): LeadData {
     closedAt: data.closedAt,
     lastClientActionAt: data.lastClientActionAt,
     seenAt: data.seenAt,
+    source: data.source ?? "website",
   };
 }
 
