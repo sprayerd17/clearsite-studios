@@ -22,7 +22,7 @@ import { FROM_PRICE, quoteHref, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Pricing | ClearSite Studios",
-  description: `Websites from ${FROM_PRICE} once-off, and custom business workflows quoted per project. Every project gets a written quote — you own everything outright, no monthly fee.`,
+  description: `Websites from ${FROM_PRICE} once-off, and custom business workflows quoted per project. Every project gets a written quote — you own everything outright, with optional monthly hosting & support.`,
   alternates: {
     canonical: "https://www.clearsitestudios.co.za/pricing",
   },
@@ -61,12 +61,12 @@ const ownership = [
   {
     icon: Key,
     heading: "The site is yours outright",
-    body: "Design, code and content. Once it's paid for, you own it — no licence, no subscription, no lock-in.",
+    body: "Design, code and content. Once it's paid for, you own it — no licence and no lock-in.",
   },
   {
     icon: Zap,
-    heading: "Hosted free, R0 per month",
-    body: "Websites are deployed on a free hosting tier. There is no hosting fee and no maintenance fee from me.",
+    heading: "Hosting in your name",
+    body: "Websites go live on a hosting account in your name, usually on a free tier. Prefer me to look after it? Add a monthly hosting & support plan.",
   },
   {
     icon: Globe,
@@ -99,7 +99,7 @@ export default function PricingPage() {
             Websites from {FROM_PRICE}. <span className="serif-accent text-lime">Quoted to fit.</span>
           </>
         }
-        intro="Every business needs something a little different, so every project gets a written quote before anything starts — no guesswork, no surprises, and no monthly fee."
+        intro="Every business needs something a little different, so every project gets a written quote before anything starts — no guesswork and no surprises. Once-off and monthly amounts are always shown separately."
       >
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link href={quoteHref()} className="btn-lime btn-lg w-full sm:w-auto">
@@ -147,7 +147,7 @@ export default function PricingPage() {
                     <span className="text-sm text-white/50">from</span>
                     <span className="text-6xl font-semibold tracking-tightest sm:text-7xl">{FROM_PRICE}</span>
                   </p>
-                  <p className="mt-2 text-sm text-white/50">once-off · no monthly fee</p>
+                  <p className="mt-2 text-sm text-white/50">once-off build price</p>
                   <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-white/65">
                     A simple one-page site: your services or catalogue, contact details and a WhatsApp
                     button. Ideal for tradespeople and small service businesses that need to look
@@ -219,13 +219,13 @@ export default function PricingPage() {
         <section id="ownership" className="section bg-white">
           <div className="container-site">
             <SectionHeading
-              eyebrow="No monthly fees"
+              eyebrow="What you get"
               title={
                 <>
                   What the price <span className="serif-accent">actually</span> includes.
                 </>
               }
-              intro="There is no hosting fee and no retainer. You pay once for the build, and it's yours."
+              intro="You pay once for the build, and it's yours. Ongoing hosting, maintenance and support is optional — if you want it, it's a monthly amount shown separately on your quote."
             />
             <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {ownership.map((item, i) => (

@@ -5,7 +5,7 @@ import { MATHLY_URL } from "@/lib/site";
 
 const stats = [
   { value: "3–21", unit: "days", label: "Typical website build time" },
-  { value: "R0", unit: "/month", label: "Monthly fees to me — ever" },
+  { value: "1", unit: "link", label: "Your quote, invoices and uploads in one place" },
   { value: "100%", unit: "", label: "Of the code and accounts handed over" },
   { value: "1", unit: "person", label: "You deal with me, start to finish" },
 ];

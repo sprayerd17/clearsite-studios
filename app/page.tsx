@@ -13,10 +13,10 @@ import Footer from "@/components/Footer";
 
 const title = "ClearSite Studios — Websites & Business Workflows | South Africa";
 const description =
-  "Fast, modern websites and custom business workflows — quotes, approvals, invoices and payments in one place. Built by one person, handed over in full, no monthly fee.";
+  "Fast, modern websites and custom business workflows — quotes, approvals, invoices and payments in one place. Built by one person, handed over in full, yours outright.";
 const ogTitle = "Websites that win customers. Workflows that run the rest.";
 const ogDescription =
-  "Websites and custom business workflows for South African businesses. Yours outright, no monthly fee.";
+  "Websites and custom business workflows for South African businesses. Yours outright, no lock-in.";
 
 export const metadata: Metadata = {
   title,

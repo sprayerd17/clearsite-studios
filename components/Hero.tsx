@@ -103,7 +103,7 @@ export default function Hero() {
           className="rise mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-white/45"
           style={{ animationDelay: "320ms" }}
         >
-          {["Websites from R800", "No monthly fee", "Yours outright"].map((t) => (
+          {["Websites from R800", "Yours outright", "No lock-in"].map((t) => (
             <li key={t} className="inline-flex items-center gap-1.5">
               <Check size={14} strokeWidth={2.25} className="text-lime" />
               {t}

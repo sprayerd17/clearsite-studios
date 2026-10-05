@@ -108,7 +108,7 @@ export default function OpengraphImage() {
             <span style={{ color: "#ffffff", marginLeft: 22 }}>that run the rest.</span>
           </div>
           <div style={{ display: "flex", fontSize: 29, color: "rgba(255,255,255,0.55)", marginTop: 30, lineHeight: 1.4 }}>
-            Built by one person, handed over in full — no monthly fee.
+            Built by one person, handed over in full — no lock-in.
           </div>
         </div>
 

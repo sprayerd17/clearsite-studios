@@ -11,7 +11,7 @@ import { FROM_PRICE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Get a quote | ClearSite Studios",
   description:
-    "Answer a few quick questions about the website or business workflow you need, and get a written quote in about 2 minutes. No obligation, no monthly fees.",
+    "Answer a few quick questions about the website or business workflow you need, and get a written quote in about 2 minutes. No obligation.",
   alternates: {
     canonical: "https://www.clearsitestudios.co.za/quote",
   },
@@ -48,7 +48,7 @@ export default function QuotePage() {
             className="rise mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60"
             style={{ animationDelay: "240ms" }}
           >
-            {[`Websites from ${FROM_PRICE}`, "No monthly fees", "No obligation"].map((t) => (
+            {[`Websites from ${FROM_PRICE}`, "Yours outright", "No obligation"].map((t) => (
               <li key={t} className="inline-flex items-center gap-2">
                 <Check size={15} strokeWidth={2.4} className="text-lime" />
                 {t}

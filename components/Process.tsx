@@ -24,7 +24,7 @@ const steps = [
     icon: Key,
     title: "Launch and handover",
     description:
-      "Everything goes live under accounts in your name, and I hand you the credentials. It's yours outright — no monthly fee to me and nothing left depending on me.",
+      "Everything goes live under accounts in your name, and I hand you the credentials. It's yours outright with no lock-in — and if you'd like me to look after hosting, updates and support, that's an optional monthly plan on your quote.",
   },
 ];
 

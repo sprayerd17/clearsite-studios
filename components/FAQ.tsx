@@ -17,16 +17,16 @@ const faqs = [
   {
     question: "Who hosts it, and what does hosting cost me?",
     answer:
-      "Websites are deployed on a free hosting tier under an account in your own name, and I hand you the credentials on completion. That is R0 per month — no hosting fee, no maintenance fee. The only separate cost is a custom domain if you want one, which you pay directly to the registrar; I don't mark it up or hold it on your behalf. Custom workflows follow the same principle, and any running costs are spelled out in your quote before you commit — at small-business volumes they typically stay within free usage allowances.",
+      "Websites go live on a hosting account in your own name — usually on a free tier — and I hand you the credentials on completion. If you'd rather not deal with any of it, I offer a monthly plan that covers hosting, maintenance and ongoing support; when it's right for you, it's shown as a separate monthly amount on your quote, so you always know exactly what's once-off and what's monthly. A custom domain is paid directly to the registrar; I don't mark it up or hold it on your behalf. Custom workflows follow the same principle, and any running costs are spelled out in your quote before you commit.",
   },
   {
     question: "Do I own the site and the code?",
     answer:
-      "Yes, outright. Once the build is paid for, the site, the code and the hosting account are all yours. There is no licence, no subscription and no lock-in. If you ever want another developer to take it over, they can — everything they need is already in your hands.",
+      "Yes, outright. Once the build is paid for, the site, the code and the hosting account are all yours. There is no licence and no lock-in — even with a monthly support plan, you can stop it any time. If you ever want another developer to take it over, they can — everything they need is already in your hands.",
   },
   {
     question: "What if I need changes after launch?",
-    answer: `I answer questions during the build and for ${SUPPORT_WINDOW} after launch. After that, message me with what you'd like changed and I'll quote it. A static site on a free tier has very little that can break on its own — there's no server to fall over and no database to corrupt — and because you own the code and the hosting account outright, any developer can pick it up without needing anything from me.`,
+    answer: `I answer questions during the build and for ${SUPPORT_WINDOW} after launch. After that, message me with what you'd like changed and I'll quote it — or have updates covered by a monthly support plan. A static site on a free tier has very little that can break on its own — there's no server to fall over and no database to corrupt — and because you own the code and the hosting account outright, any developer can pick it up without needing anything from me.`,
   },
   {
     question: "Will my website work on mobile phones?",

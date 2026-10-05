@@ -42,9 +42,9 @@ const smallCards = [
   {
     icon: Key,
     eyebrow: "Ownership",
-    title: "Yours outright. No monthly fee.",
-    body: "Everything goes live under accounts in your name and the credentials are handed over on completion. No licence, no subscription, no lock-in.",
-    points: ["Code and content are yours", "Hosting account in your name", "Logins handed over", "Nothing left depending on me"],
+    title: "Yours outright. No lock-in.",
+    body: "Everything goes live under accounts in your name and the credentials are handed over on completion. Want me to keep looking after it? Add an optional monthly hosting & support plan.",
+    points: ["Code and content are yours", "Hosting account in your name", "Logins handed over", "Optional hosting & support plan"],
     href: "/pricing#ownership",
     cta: "What the price includes",
   },
